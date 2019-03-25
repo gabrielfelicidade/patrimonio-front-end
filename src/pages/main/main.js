@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
-import './main.css';
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import Login from '../login';
+import Home from '../home';
 import Location from '../location';
+import User from '../user';
 import Error404 from '../error404';
+
+import MenuBar from '../../components/menuBar';
 
 class Main extends Component {
   render() {
     return (
       <div className="Main">
         <header className="Main-header">
+          <MenuBar />
+        </header>
+        <div className="Main-body">
           <BrowserRouter>
             <Switch>
-              <Route path="/" exact={true} component={Login} />
+              <Route path="/" exact component={Home} />
               <Route path="/localizacao" component={Location} />
-              <Route path='*' component={Error404} />
+              <Route path="/usuario" component={User} />
+              <Route path="*" component={Error404} />
             </Switch>
           </ BrowserRouter>
-        </header>
-        <div className="component-location">Aparecer nos dois</div>
+        </div>
+        <div className="Main-footer">
+          <h3>Rodapé</h3>
+        </div>
       </div>
     );
   }
