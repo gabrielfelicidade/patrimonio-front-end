@@ -1,39 +1,73 @@
-import React, {Component} from 'react';
-import {Menu} from 'primereact/menu';
+import React, { Component } from 'react';
+import { Menubar } from 'primereact/menubar';
+import { Button } from 'primereact/button';
 
-export class MenuBar extends Component {
-
+export default class MenuBar extends Component {
     constructor() {
         super();
         this.state = {
             items: [
                 {
-                    label: 'Opções',
-                    items: [{label: 'Home', icon: 'pi pi-fw pi-home', url: '/'}]
-                }, 
+                    label: 'Home',
+                    icon: 'pi pi-fw pi-file',
+                    url: '/'
+                },
                 {
-                    label: 'Conta',
-                    items: [{label: 'Usuários', icon: 'pi pi-fw pi-cog', url: '/usuario'},
-                            {label: 'Sair', icon: 'pi pi-fw pi-power-off', url: '/login'}]
-                }
+                    label: 'Patrimônio',
+                    icon: 'pi pi-fw pi-pencil',
+                    items: [
+                        {
+                            label: 'Novo',
+                            icon: 'pi pi-fw pi-align-left'
+                        },
+                        {
+                            label: 'Listar',
+                            icon: 'pi pi-fw pi-align-right'
+                        }
+                    ]
+                },
+                {
+                    label: 'Localização',
+                    icon: 'pi pi-fw pi-user',
+                    items: [
+                        {
+                            label: 'Novo',
+                            icon: 'pi pi-fw pi-align-left',
+                            url: '/localizacao-cadastro'
+                        },
+                        {
+                            label: 'Listar',
+                            icon: 'pi pi-fw pi-align-right'
+                        }
+                    ]
+                },
+                {
+                    label: 'Método de Aquisição',
+                    icon: 'pi pi-fw pi-user',
+                    items: [
+                        {
+                            label: 'Novo',
+                            icon: 'pi pi-fw pi-align-left',
+                            url: '/metodo-aquisicao-cadastro'
+                        },
+                        {
+                            label: 'Listar',
+                            icon: 'pi pi-fw pi-align-right',
+                            url: '/metodo-aquisicao'
+                        }
+                    ]
+                },
             ]
         };
     }
-
+    
     render() {
         return (
-            <div>
-                <div className="content-section">
-                    <div className="feature-intro">
-                        <h3>Menu</h3>
-                    </div>
-                </div>
-                <div className="Menu">
-                    <Menu model={this.state.items}/>
-                </div>
+            <div className="content-section implementation">
+                <Menubar model={this.state.items}>
+                    <Button label="Sair" icon="pi pi-power-off" style={{ marginLeft: 4 }} />
+                </Menubar>
             </div>
-        )
+        );
     }
 }
-
-export default MenuBar;

@@ -1,12 +1,14 @@
-import React, {Component} from 'react';
-import './home.css'
+import React, { Component } from 'react';
+
+import './home.css';
 
 export default class home extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {};
-    // }
-    render() {
-      return <div className="component-home">Home</div>;
-    }
+  render() {
+    return (
+      <div className="component-home">
+        <h2>Sistema de Controle de Patrimônio</h2>
+        <h3>Home</h3>
+      </div>
+    );
   }
+}

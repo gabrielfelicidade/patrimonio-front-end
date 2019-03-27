@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import './index.css';
+import * as serviceWorker from './serviceWorker';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Main from './pages/main';
 import Login from './pages/login';
 
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import './index.css';
 
 ReactDOM.render(
     <BrowserRouter>
