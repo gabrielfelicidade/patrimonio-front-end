@@ -18,7 +18,7 @@ export class AppTopbar extends Component {
                     <span className="pi pi-bars"/>
                 </button>
                 <div className="layout-topbar-icons">
-                    <h2>Sistema Controle de Patrimônio</h2>
+                    <h2>Controle de Patrimônio</h2>
                 </div>
             </div>
         );

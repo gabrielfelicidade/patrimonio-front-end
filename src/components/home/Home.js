@@ -7,8 +7,8 @@ export class Home extends Component {
             <div className="p-grid">
                 <div className="p-col-12">
                     <div className="card">
-                        <h1>Empty Page</h1>
-                        <p>Use this page to start from scratch and place your custom content.</p>
+                        <h1>Home | Sistema Controle de Patrimônio</h1>
+                        <p>Ainda não sei o que vai na home!</p>
                     </div>
                 </div>
             </div>

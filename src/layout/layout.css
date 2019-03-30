@@ -1497,3 +1497,12 @@ h2 {
 
 .ql-container.ql-snow * {
   box-sizing: border-box; }
+
+.buttons {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#btnSave, #btnCancel {
+    margin: 40px 60px 0px 0px;
+}

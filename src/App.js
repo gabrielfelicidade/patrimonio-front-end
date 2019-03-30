@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
-import {AppTopbar} from './AppTopbar';
-import {AppFooter} from './AppFooter';
-import {AppMenu} from './AppMenu';
-import {AppInlineProfile} from './AppInlineProfile';
-import {Route} from 'react-router-dom';
-import {ScrollPanel} from 'primereact/components/scrollpanel/ScrollPanel';
+import { AppTopbar } from './AppTopbar';
+import { AppMenu } from './AppMenu';
+import { AppInlineProfile } from './AppInlineProfile';
+import { Route } from 'react-router-dom';
+import { ScrollPanel } from 'primereact/components/scrollpanel/ScrollPanel';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -72,17 +71,17 @@ class App extends Component {
                 mobileMenuActive: !mobileMenuActive
             });
         }
-       
+
         event.preventDefault();
     }
 
     onSidebarClick(event) {
         this.menuClick = true;
-        setTimeout(() => {this.layoutMenuScroller.moveBar(); }, 500);
+        setTimeout(() => { this.layoutMenuScroller.moveBar(); }, 500);
     }
 
     onMenuItemClick(event) {
-        if(!event.item.items) {
+        if (!event.item.items) {
             this.setState({
                 overlayMenuActive: false,
                 mobileMenuActive: false
@@ -92,19 +91,25 @@ class App extends Component {
 
     createMenu() {
         this.menu = [
-            {label: 'Homepage', icon: 'pi pi-fw pi-home', command: () => {window.location = '#/'}},
-            {label: 'Localizações', icon: 'pi pi-fw pi-home', items: [
-                {label: 'Cadastrar', icon: 'pi pi-fw pi-home', to: '/localizacao/novo'},
-                {label: 'Consultar', icon: 'pi pi-fw pi-home', to: '/localizacao'}
-            ]},
-            {label: 'Métodos de Aquisição', icon: 'pi pi-fw pi-home', items: [
-                {label: 'Cadastrar', icon: 'pi pi-fw pi-home', to: '/metodo-aquisicao/novo'},
-                {label: 'Consultar', icon: 'pi pi-fw pi-home', to: '/metodo-aquisicao'}
-            ]},
-            {label: 'Patrimonios', icon: 'pi pi-fw pi-home', items: [
-                {label: 'Cadastrar', icon: 'pi pi-fw pi-home', to: '/patrimonio/novo'},
-                {label: 'Consultar', icon: 'pi pi-fw pi-home', to: '/patrimonio'}
-            ]},
+            { label: 'Home', icon: 'pi pi-fw pi-home', command: () => { window.location = '#/' } },
+            {
+                label: 'Localizações', icon: 'pi pi-fw pi-globe', items: [
+                    { label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/localizacao/novo' },
+                    { label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/localizacao' }
+                ]
+            },
+            {
+                label: 'Métodos de Aquisição', icon: 'pi pi-fw pi-dollar', items: [
+                    { label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/metodo-aquisicao/novo' },
+                    { label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/metodo-aquisicao' }
+                ]
+            },
+            {
+                label: 'Patrimônios', icon: 'pi pi-fw pi-briefcase', items: [
+                    { label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/patrimonio/novo' },
+                    { label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/patrimonio' }
+                ]
+            },
         ];
     }
 
@@ -134,7 +139,7 @@ class App extends Component {
     }
 
     render() {
-        let logo = this.state.layoutColorMode === 'dark' ? 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Fatec-sorocaba.png': 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Fatec-sorocaba.png';
+        let logo = this.state.layoutColorMode === 'dark' ? 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Fatec-sorocaba.png' : 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Fatec-sorocaba.png';
 
         let wrapperClass = classNames('layout-wrapper', {
             'layout-overlay': this.state.layoutMode === 'overlay',
@@ -143,20 +148,20 @@ class App extends Component {
             'layout-overlay-sidebar-active': this.state.overlayMenuActive && this.state.layoutMode === 'overlay',
             'layout-mobile-sidebar-active': this.state.mobileMenuActive
         });
-        let sidebarClassName = classNames("layout-sidebar", {'layout-sidebar-dark': this.state.layoutColorMode === 'dark'});
+        let sidebarClassName = classNames("layout-sidebar", { 'layout-sidebar-dark': this.state.layoutColorMode === 'dark' });
 
         return (
             <div className={wrapperClass} onClick={this.onWrapperClick}>
-                <AppTopbar onToggleMenu={this.onToggleMenu}/>
+                <AppTopbar onToggleMenu={this.onToggleMenu} />
 
                 <div ref={(el) => this.sidebar = el} className={sidebarClassName} onClick={this.onSidebarClick}>
 
-                    <ScrollPanel ref={(el) => this.layoutMenuScroller = el} style={{height:'100%'}}>
+                    <ScrollPanel ref={(el) => this.layoutMenuScroller = el} style={{ height: '100%' }}>
                         <div className="layout-sidebar-scroll-content" >
                             <div className="layout-logo">
                                 <img alt="Logo" src={logo} height="80" width="140" />
                             </div>
-                            <hr style={{marginTop: 40, marginLeft: 10, marginRight: 10}}></hr>
+                            <hr style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}></hr>
                             <AppInlineProfile />
                             <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} />
                         </div>
@@ -175,8 +180,6 @@ class App extends Component {
                     <Route path="/patrimonio/novo" component={NewPatrimony} />
                     <Route path="/patrimonio/{id}" component={NewPatrimony} />
                 </div>
-
-                <AppFooter />
 
                 <div className="layout-mask"></div>
             </div>
