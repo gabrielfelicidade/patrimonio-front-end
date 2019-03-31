@@ -4,7 +4,7 @@ import {Dropdown} from 'primereact/dropdown';
 import {Button} from 'primereact/button';
 import {DataTable} from 'primereact/datatable';
 import {Column} from 'primereact/column';
-import {CarService} from '../../../service/CarService';
+import {LocationService} from '../../../service/LocationService';
 
 
 export class ListLocation extends Component {
@@ -14,9 +14,9 @@ export class ListLocation extends Component {
             codigo: null,
             descricao: null,
             locationState: null,
-            cars: []
+            locations: []
         };
-        this.carservice = new CarService();
+        this.locationservice = new LocationService();
         this.onlocationStateChange = this.onlocationStateChange.bind(this);
     }
 
@@ -25,7 +25,7 @@ export class ListLocation extends Component {
     }
 
     componentDidMount() {
-        this.carservice.getCarsSmall().then(data => this.setState({cars: data}));
+        this.locationservice.getLocationsSmall().then(data => this.setState({locations: data}));
     }
 
     render() {
@@ -52,13 +52,13 @@ export class ListLocation extends Component {
                                 <h3 className="first" style={{marginRight:'10px'}}>Estado</h3>
                                 <Dropdown value={this.state.locationState} options={locationStates} onChange={this.onlocationStateChange} style={{width:'180px'}} placeholder="Selecione um Estado" optionLabel="name"/>
                             </div>
-                            <Button type="submit" id="btnSearch" label="Consultar" className="p-button-primary" icon="pi pi-search" />
+                            <br></br><Button type="submit" id="btnSearch" label="Consultar" className="p-button-primary" icon="pi pi-search" />
                         </div>
                     </div>
                 </div>
                 <div className="p-col-12">
                     <div className="card">
-                        <DataTable value={this.state.cars} paginator={true} rows={10} rowsPerPageOptions={[10, 30, 50, 100]}>
+                        <DataTable value={this.state.locations} paginator={true} rows={10} rowsPerPageOptions={[10, 30, 50, 100]}>
                             <Column field="vin" header="Código" sortable={true}/>
                             <Column field="year" header="Localização" sortable={true}/>
                             <Column field="brand" header="Estado" sortable={true}/>

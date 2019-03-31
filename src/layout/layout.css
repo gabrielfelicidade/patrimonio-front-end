@@ -1497,24 +1497,3 @@ h2 {
 
 .ql-container.ql-snow * {
   box-sizing: border-box; }
-
-.buttons {
-    display: flex;
-    flex-flow: row wrap;
-}
-
-#btnSave, #btnCancel {
-    margin: 40px 60px 0px 0px;
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-  flex-flow: row wrap;
-  justify-content: space-between;
-}
-
-.search-box-child {
-  display: flex;
-  align-items: center;
-}

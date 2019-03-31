@@ -1,18 +1,18 @@
 import axios from 'axios';
 
-export class CarService {
+export class LocationService {
     
-    getCarsSmall() {
+    getLocationsSmall() {
         return axios.get('assets/demo/data/cars-small.json')
                 .then(res => res.data.data);
     }
 
-    getCarsMedium() {
+    getLocationsMedium() {
         return axios.get('assets/demo/data/cars-medium.json')
                 .then(res => res.data.data);
     }
 
-    getCarsLarge() {
+    getLocationsLarge() {
         return axios.get('assets/demo/data/cars-large.json')
                 .then(res => res.data.data);
     }
