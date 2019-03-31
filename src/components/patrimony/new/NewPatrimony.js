@@ -38,8 +38,8 @@ export class NewPatrimony extends Component {
     render() {
         const locations = [
             {name: 'Prédio TI - Recepção', value: 'Prédio TI - Recepção'},
-            {name: 'Prédio TI - Lab 1', code: 'Prédio TI - Lab 1'},
-            {name: 'CA - Hall', code: 'CA - Hall'}
+            {name: 'Prédio TI - Lab 1', value: 'Prédio TI - Lab 1'},
+            {name: 'CA - Hall', value: 'CA - Hall'}
         ];
 
         const aquisitions = [
