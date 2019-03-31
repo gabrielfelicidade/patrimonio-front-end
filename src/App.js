@@ -110,6 +110,12 @@ class App extends Component {
                     { label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/patrimonio' }
                 ]
             },
+            {
+                label: 'Usuários', icon: 'pi pi-fw pi-user', items: [
+                    { label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/usuario/novo' },
+                    { label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/usuario' }
+                ]
+            },
         ];
     }
 
