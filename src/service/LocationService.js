@@ -1,19 +1,13 @@
 import axios from 'axios';
 
 export class LocationService {
-    
-    getLocationsSmall() {
-        return axios.get('assets/demo/data/cars-small.json')
-                .then(res => res.data.data);
+
+    getAll() {
+        return axios.get('http://localhost:8090/locations')
+            .then(res => res);
     }
 
-    getLocationsMedium() {
-        return axios.get('assets/demo/data/cars-medium.json')
-                .then(res => res.data.data);
-    }
-
-    getLocationsLarge() {
-        return axios.get('assets/demo/data/cars-large.json')
-                .then(res => res.data.data);
+    insert(data) {
+        return axios.post('http://localhost:8090/locations', data).then(res => res);
     }
 }

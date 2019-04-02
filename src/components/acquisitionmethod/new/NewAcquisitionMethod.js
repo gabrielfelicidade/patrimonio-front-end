@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import {InputText} from 'primereact/inputtext';
-import {Button} from 'primereact/button';
+import React, { Component } from 'react';
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
 
 export class NewAcquisitionMethod extends Component {
     constructor() {
         super();
         this.state = {
-            value: null
+            description: null
         };
     }
 
@@ -17,11 +17,11 @@ export class NewAcquisitionMethod extends Component {
                     <div className="card">
                         <h1>Novo Método de Aquisição</h1>
                         <h3 className="first">Descrição</h3>
-                        <InputText type="text" size="40" value={this.state.value1} onChange={(e) => this.setState({value1: e.target.value})} />
+                        <InputText type="text" size="40" value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })} />
                         <br></br>
                         <div className="buttons">
                             <Button type="submit" id="btnSave" label="Salvar" className="p-button-primary" icon="pi pi-save" />
-                            <Button type="button" id="btnCancel" label="Cancelar" className="p-button-danger"  />
+                            <Button type="button" id="btnCancel" label="Cancelar" className="p-button-danger" />
                         </div>
                     </div>
                 </div>

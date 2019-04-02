@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {InputText} from 'primereact/inputtext';
-import {InputMask} from 'primereact/inputmask';
-import {Dropdown} from 'primereact/dropdown';
-import {Button} from 'primereact/button';
-import {InputTextarea} from 'primereact/inputtextarea';
-import {Card} from 'primereact/card';
-import {FileUpload} from 'primereact/fileupload';
+import React, { Component } from 'react';
+import { InputText } from 'primereact/inputtext';
+import { InputMask } from 'primereact/inputmask';
+import { Dropdown } from 'primereact/dropdown';
+import { Button } from 'primereact/button';
+import { InputTextarea } from 'primereact/inputtextarea';
+import { Card } from 'primereact/card';
+import { FileUpload } from 'primereact/fileupload';
 
 export class NewPatrimony extends Component {
     constructor() {
@@ -28,24 +28,24 @@ export class NewPatrimony extends Component {
     }
 
     onLocationChange(e) {
-        this.setState({location: e.value});
+        this.setState({ location: e.value });
     }
 
     onAquisitionChange(e) {
-        this.setState({aquisition: e.value});
+        this.setState({ aquisition: e.value });
     }
 
     render() {
         const locations = [
-            {name: 'Prédio TI - Recepção', value: 'Prédio TI - Recepção'},
-            {name: 'Prédio TI - Lab 1', value: 'Prédio TI - Lab 1'},
-            {name: 'CA - Hall', value: 'CA - Hall'}
+            { name: 'Prédio TI - Recepção', value: 'Prédio TI - Recepção' },
+            { name: 'Prédio TI - Lab 1', value: 'Prédio TI - Lab 1' },
+            { name: 'CA - Hall', value: 'CA - Hall' }
         ];
 
         const aquisitions = [
-            {name: 'Compra', value: 'Compra'},
-            {name: 'Doação', code: 'Doação'},
-            {name: 'Leilão', code: 'Leilão'}
+            { name: 'Compra', value: 'Compra' },
+            { name: 'Doação', code: 'Doação' },
+            { name: 'Leilão', code: 'Leilão' }
         ];
 
         return (
@@ -56,32 +56,32 @@ export class NewPatrimony extends Component {
                         <div className="p-grid">
                             <div className="p-col">
                                 <h3>Localização</h3>
-                                <Dropdown value={this.state.location} options={locations} onChange={this.onLocationChange} style={{width:'400px'}} placeholder="Selecione uma Localização" optionLabel="name"/>
+                                <Dropdown value={this.state.location} options={locations} onChange={this.onLocationChange} style={{ width: '400px' }} placeholder="Selecione uma Localização" optionLabel="name" />
                                 <h3>Número do Processo de Aquisição</h3>
-                                <InputText type="text" keyfilter="pint" value1={this.state.value1} onChange={(e) => this.setState({value1: e.target.value1})} />
+                                <InputText type="text" keyfilter="pint" value={this.state.value1} onChange={(e) => this.setState({ value1: e.target.value })} />
                                 <h3 className="first">Nota Fiscal</h3>
-                                <InputText type="text" size="40" value2={this.state.value2} onChange={(e) => this.setState({value2: e.target.value2})} />
+                                <InputText type="text" size="40" value={this.state.value2} onChange={(e) => this.setState({ value2: e.target.value })} />
                                 <h3 className="first">Modelo</h3>
-                                <InputText type="text" size="40" value3={this.state.value3} onChange={(e) => this.setState({value3: e.target.value3})} />
+                                <InputText type="text" size="40" value={this.state.value3} onChange={(e) => this.setState({ value3: e.target.value })} />
                                 <h3>Valor {this.state.val1}</h3>
-                                <InputMask mask="R$ 999,99" value4={this.state.value4} placeholder="R$" onChange={(e) => this.setState({value4: e.value4})} />
+                                <InputMask mask="R$ 999,99" value={this.state.value4} placeholder="R$" onChange={(e) => this.setState({ value4: e.value })} />
                                 <h3>Informações Complementares</h3>
                                 <InputTextarea rows={5} cols={30} autoResize={true} />
                             </div>
                             <div className="p-col">
                                 <h3>Número do Patrimônio</h3>
-                                <InputText type="text" keyfilter="pint" value5={this.state.value5} onChange={(e) => this.setState({value5: e.target.value5})} />
+                                <InputText type="text" keyfilter="pint" value={this.state.value5} onChange={(e) => this.setState({ value5: e.target.value })} />
                                 <h3 className="first">Descrição</h3>
-                                <InputText type="text" size="40" value6={this.state.value6} onChange={(e) => this.setState({value6: e.target.value6})} />
+                                <InputText type="text" size="40" value={this.state.value6} onChange={(e) => this.setState({ value6: e.target.value })} />
                                 <h3 className="first">Marca</h3>
-                                <InputText type="text" size="40" value7={this.state.value7} onChange={(e) => this.setState({value7: e.target.value7})} />
+                                <InputText type="text" size="40" value={this.state.value7} onChange={(e) => this.setState({ value7: e.target.value })} />
                                 <h3 className="first">Número de Série</h3>
-                                <InputText type="text" size="40" value={this.state.value8} onChange={(e) => this.setState({value8: e.target.value8})} />
+                                <InputText type="text" size="40" value={this.state.value8} onChange={(e) => this.setState({ value8: e.target.value })} />
                                 <h3>Método de Aquisição</h3>
-                                <Dropdown value={this.state.aquisition} options={aquisitions} onChange={this.onAquisitionChange} style={{width:'400px'}} placeholder="Selecione um meio de Aquisição" optionLabel="name"/>
+                                <Dropdown value={this.state.aquisition} options={aquisitions} onChange={this.onAquisitionChange} style={{ width: '400px' }} placeholder="Selecione um meio de Aquisição" optionLabel="name" />
                                 <h3>Imagem</h3>
                                 <div className="img-box">
-                                    <Card style={{width: '108px', height: '108px'}}> 
+                                    <Card style={{ width: '108px', height: '108px' }}>
                                     </Card>
                                     <FileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize={1000000} onUpload={this.onBasicUploadAuto} auto={true} chooseLabel="Selecionar" />
                                 </div>
@@ -90,7 +90,7 @@ export class NewPatrimony extends Component {
                         </div>
                         <div className="buttons">
                             <Button type="submit" id="btnSave" label="Salvar" className="p-button-primary" icon="pi pi-save" />
-                            <Button type="button" id="btnCancel" label="Cancelar" className="p-button-danger"  />
+                            <Button type="button" id="btnCancel" label="Cancelar" className="p-button-danger" />
                         </div>
                     </div>
                 </div>
