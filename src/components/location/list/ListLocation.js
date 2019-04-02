@@ -8,12 +8,13 @@ import { LocationService } from '../../../service/LocationService';
 
 
 export class ListLocation extends Component {
+
     constructor() {
         super();
         this.state = {
-            locationId: null,
-            description: null,
-            locationState: null,
+            locationId: "",
+            description: "",
+            status: "",
             locations: []
         };
         this.locationService = new LocationService();
@@ -25,9 +26,8 @@ export class ListLocation extends Component {
     }
 
     componentDidMount() {
-        this.locationservice.getAll().then((res) => {
+        this.locationService.getAll().then((res) => {
             this.setState({ locations: res.data });
-            console.log(res.data);
         });
     }
 
@@ -43,8 +43,6 @@ export class ListLocation extends Component {
             { name: 'Ativo', value: 'Ativo' },
             { name: 'Inativo', value: 'Inativo' }
         ];
-
-        console.log("Locations: ", this.state.locations);
 
         return (
             <div className="p-grid">

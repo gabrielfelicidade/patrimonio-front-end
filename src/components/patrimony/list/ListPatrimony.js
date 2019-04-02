@@ -5,18 +5,21 @@ import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { PatrimonyService } from '../../../service/PatrimonyService';
+import { LocationService } from '../../../service/LocationService';
 
 export class ListPatrimony extends Component {
     constructor() {
         super();
         this.state = {
-            number: null,
-            brand: null,
-            description: null,
-            patrimonyState: null,
-            complement: null,
-            patrimonies: []
+            number: 0,
+            brand: "",
+            description: "",
+            status: "",
+            additionalInformation: "",
+            patrimonies: [],
+            locations: []
         };
+        this.locationService = new LocationService();
         this.patrimonyService = new PatrimonyService();
         this.onPatrimonyStateChange = this.onPatrimonyStateChange.bind(this);
         this.onLocationChange = this.onLocationChange.bind(this);
@@ -31,19 +34,18 @@ export class ListPatrimony extends Component {
     }
 
     componentDidMount() {
-        this.patrimonyService.getPatrimoniesSmall().then(data => this.setState({ patrimonies: data }));
+        this.patrimonyService.getAll().then((data) => {
+            this.setState({ patrimonies: data.data })
+        });
+        this.locationService.getAll().then((data) => {
+            this.setState({ locations: data.data });
+        });
     }
 
     render() {
         const patrimonyStates = [
             { name: 'Ativo', value: 'Ativo' },
             { name: 'Inativo', value: 'Inativo' }
-        ];
-
-        const locations = [
-            { name: 'Prédio TI - Recepção', value: 'Prédio TI - Recepção' },
-            { name: 'Prédio TI - Lab 1', value: 'Prédio TI - Lab 1' },
-            { name: 'CA - Hall', value: 'CA - Hall' }
         ];
 
         return (
@@ -55,7 +57,7 @@ export class ListPatrimony extends Component {
                         <div className="search-box">
                             <div>
                                 <h3>Localização</h3>
-                                <Dropdown value={this.state.location} options={locations} onChange={this.onLocationChange} style={{ width: '400px' }} placeholder="Selecione uma Localização" optionLabel="name" />
+                                <Dropdown value={this.state.location} options={this.state.locations} onChange={this.onLocationChange} style={{ width: '400px' }} placeholder="Selecione uma Localização" optionLabel="description" />
                             </div>
                             <div className="search-box-child">
                                 <h3 className="first" style={{ marginRight: '10px' }}>Número</h3>
@@ -84,11 +86,13 @@ export class ListPatrimony extends Component {
                 </div>
                 <div className="p-col-12">
                     <div className="card">
-                        <DataTable value={this.state.locations} paginator={true} rows={10} rowsPerPageOptions={[10, 30, 50, 100]}>
-                            <Column field="location" header="Localização" sortable={true} />
-                            <Column field="number" header="Número do Patrimônio" sortable={true} />
-                            <Column field="description" header="Descrição" sortable={true} />
+                        <DataTable value={this.state.patrimonies} paginator={true} rows={10} rowsPerPageOptions={[10, 30, 50, 100]}>
+                            <Column field="patrimonyId" header="Número do Patrimônio" sortable={true} />
+                            <Column field="description" header="Patrimônio" sortable={true} />
+                            <Column field="model" header="Modelo" sortable={true} />
                             <Column field="brand" header="Marca" sortable={true} />
+                            <Column field="location.description" header="Localização" sortable={true} />
+                            <Column field="acquisitionMethod.description" header="Método de Aquisição" sortable={true} />
                         </DataTable>
                     </div>
                 </div>

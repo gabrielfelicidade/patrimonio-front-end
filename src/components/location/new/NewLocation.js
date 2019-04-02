@@ -9,13 +9,28 @@ export class NewLocation extends Component {
         this.state = {
             locationId: null,
             description: "",
-            status: null
+            status: true
         };
         this.locationService = new LocationService();
+        this.insert = this.insert.bind(this);
     }
 
     insert() {
-        console.log(this.locationService.insert(this.state));
+        if (this.state.description.trim() !== "") {
+            var obj = this.locationService.insert(this.state);
+            if (obj != null) {
+                console.log(obj);
+                this.setState({
+                    locationId: null,
+                    description: "",
+                    status: true
+                });
+            } else {
+                console.log("error");
+            }
+        } else {
+            console.log("descrição inválida.");
+        }
     }
 
     render() {
@@ -25,7 +40,7 @@ export class NewLocation extends Component {
                     <div className="card">
                         <h1>Nova Localização</h1>
                         <h3 className="first">Descrição</h3>
-                        <InputText type="text" size="40" value={this.state.description} onChange={(e) => this.setState({ description: e.target.description })} />
+                        <InputText type="text" size="40" value={this.state.description} onChange={(e) => this.setState({ description: e.target.value })} />
                         <br></br>
                         <div className="buttons">
                             <Button type="submit" id="btnSave" label="Salvar" className="p-button-primary" icon="pi pi-save" onClick={this.insert} />

@@ -2,18 +2,14 @@ import axios from 'axios';
 
 export class PatrimonyService {
 
-    getPatrimoniesSmall() {
-        return axios.get('assets/demo/data/cars-small.json')
-            .then(res => res.data.data);
+    getAll() {
+        return axios.get('http://localhost:8090/patrimonies')
+            .then(res => res);
     }
 
-    getPatrimoniesMedium() {
-        return axios.get('assets/demo/data/cars-medium.json')
-            .then(res => res.data.data);
+    insert(data) {
+        return axios.post('http://localhost:8090/patrimonies', data)
+            .then(res => res);
     }
-
-    getPatrimoniesLarge() {
-        return axios.get('assets/demo/data/cars-large.json')
-            .then(res => res.data.data);
-    }
+    
 }
