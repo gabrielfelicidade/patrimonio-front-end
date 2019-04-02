@@ -22,8 +22,6 @@
   background: -ms-linear-gradient(left, #0388E5 0%, #07BDF4 100%);
   /* IE10+ */
   background: linear-gradient(to right, #0388E5 0%, #07BDF4 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$left, endColorstr=$right,GradientType=1 );
   /* IE6-9 */ }
   .splash-screen .splash-container {
     width: 40px;
@@ -103,8 +101,6 @@ a {
     background: -ms-linear-gradient(left, #0388E5 0%, #07BDF4 100%);
     /* IE10+ */
     background: linear-gradient(to right, #0388E5 0%, #07BDF4 100%);
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$left, endColorstr=$right,GradientType=1 );
     /* IE6-9 */
     -moz-transition: left 0.2s;
     -o-transition: left 0.2s;
@@ -549,9 +545,6 @@ h2 {
     .card h1:first-child {
       margin: 0 0 .5em 0; }
 
-.p-g {
-  -ms-flex-wrap: wrap; }
-
 /* Dashboard */
 .dashboard .summary {
   position: relative; }
@@ -986,7 +979,6 @@ h2 {
   border: none;
   cursor: pointer;
   display: inline-block;
-  float: left;
   height: 24px;
   outline: none;
   padding: 3px 5px;
@@ -1003,7 +995,6 @@ h2 {
 
 .ql-toolbar .ql-stroke-mitter {
   fill: none;
-  stroke-mitterlimit: 10;
   stroke-width: 2; }
 
 .ql-toolbar .ql-empty {
@@ -1098,7 +1089,6 @@ h2 {
 .ql-snow .ql-image-tooltip a.ql-action {
   border: 1px solid #06c;
   display: inline-block;
-  float: left;
   line-height: 18px;
   padding: 5px;
   width: 50%; }
@@ -1261,7 +1251,6 @@ h2 {
 .ql-toolbar.ql-snow .ql-picker {
   color: #444;
   display: inline-block;
-  float: left;
   font-size: 14px;
   font-weight: 500;
   height: 24px;
@@ -1497,3 +1486,24 @@ h2 {
 
 .ql-container.ql-snow * {
   box-sizing: border-box; }
+
+.buttons {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#btnSave, #btnCancel {
+    margin: 40px 60px 0px 0px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.search-box-child {
+  display: flex;
+  align-items: center;
+} 
