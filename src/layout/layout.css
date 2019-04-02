@@ -22,7 +22,7 @@
   background: -ms-linear-gradient(left, #0388E5 0%, #07BDF4 100%);
   /* IE10+ */
   background: linear-gradient(to right, #0388E5 0%, #07BDF4 100%);
-  /* IE6-9 */ }
+}
   .splash-screen .splash-container {
     width: 40px;
     height: 40px;
@@ -416,9 +416,7 @@ a {
       background: -ms-linear-gradient(top, #4d505b 0%, #3b3e47 100%);
       /* IE10+ */
       background: linear-gradient(to bottom, #4d505b 0%, #3b3e47 100%);
-      /* W3C */
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 );
-      /* IE6-9 */ }
+    }
       .layout-wrapper .layout-sidebar.layout-sidebar-dark .profile > button {
         color: #ffffff; }
         .layout-wrapper .layout-sidebar.layout-sidebar-dark .profile > button:hover {
@@ -1486,11 +1484,6 @@ h2 {
 
 .ql-container.ql-snow * {
   box-sizing: border-box; }
-
-.buttons {
-    display: flex;
-    flex-flow: row wrap;
-}
 
 #btnSave, #btnCancel {
     margin: 40px 60px 0px 0px;
