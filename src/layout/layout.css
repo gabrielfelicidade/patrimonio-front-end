@@ -72,7 +72,7 @@ html {
 body {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 14px;
-  color: #ffffff;
+  color: #eeeeee;
   background-color: #1D2A3A;
   margin: 0;
   padding: 0;
@@ -364,7 +364,7 @@ a {
       .layout-wrapper .layout-sidebar ul li.active-menuitem > ul {
         max-height: 500px; }
       .layout-wrapper .layout-sidebar ul li ul {
-        background-color: #ffffffff;
+        background-color: #ffffff;
         overflow: hidden;
         padding-left: 1.5em;
         max-height: 0;
@@ -533,7 +533,7 @@ h2 {
   margin: 0; }
 
 .card {
-  background-color: #3B5568;
+  background-color: rgb(58, 77, 90);
   padding: 1em;
   margin-bottom: 16px;
   -moz-border-radius: 3px;
