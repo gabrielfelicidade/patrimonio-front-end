@@ -23,6 +23,7 @@ export class ListPatrimony extends Component {
         this.patrimonyService = new PatrimonyService();
         this.onPatrimonyStateChange = this.onPatrimonyStateChange.bind(this);
         this.onLocationChange = this.onLocationChange.bind(this);
+        this.routeNewPatrimony = this.routeNewPatrimony.bind(this);
     }
 
     onPatrimonyStateChange(e) {
@@ -42,6 +43,11 @@ export class ListPatrimony extends Component {
         });
     }
 
+    routeNewPatrimony() {
+        let path = '/patrimonio/novo';
+        this.props.history.push(path);
+      }
+
     render() {
         const patrimonyStates = [
             { name: 'Ativo', value: 'Ativo' },
@@ -55,8 +61,8 @@ export class ListPatrimony extends Component {
                     <div className="card">
                         <h1>Consulta de Patrimônio</h1>
                         <div className="search-box">
-                            <div>
-                                <h3>Localização</h3>
+                            <div className="search-box-child">
+                                <h3 className="first" style={{ marginRight: '10px' }}>Localização</h3>
                                 <Dropdown value={this.state.location} options={this.state.locations} onChange={this.onLocationChange} style={{ width: '400px' }} placeholder="Selecione uma Localização" optionLabel="description" />
                             </div>
                             <div className="search-box-child">
@@ -81,6 +87,7 @@ export class ListPatrimony extends Component {
                             </div>
                             <br></br>
                             <Button type="submit" id="btnSearch" label="Consultar" className="p-button-primary" icon="pi pi-search" />
+                            <Button type="submit" id="btnAdd" label="Adicionar" className="p-button-primary" icon="pi pi-plus" onClick={this.routeNewPatrimony} />
                         </div>
                     </div>
                 </div>

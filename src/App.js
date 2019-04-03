@@ -93,22 +93,25 @@ class App extends Component {
         this.menu = [
             { label: 'Home', icon: 'pi pi-fw pi-home', command: () => { window.location = '#/' } },
             {
-                label: 'Localizações', icon: 'pi pi-fw pi-globe', items: [
-                    { label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/localizacao/novo' },
-                    { label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/localizacao' }
-                ]
+                label: 'Patrimônios', icon: 'pi pi-fw pi-briefcase', to: '/patrimonio'
+                //items: [
+                //    { label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/patrimonio/novo' },
+                //    { label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/patrimonio' }
+                //]
             },
             {
-                label: 'Métodos de Aquisição', icon: 'pi pi-fw pi-dollar', items: [
-                    { label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/metodo-aquisicao/novo' },
-                    { label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/metodo-aquisicao' }
-                ]
+                label: 'Localizações', icon: 'pi pi-fw pi-globe', to: '/localizacao'
+                //items: [
+                    //{ label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/localizacao/novo' },
+                    //{ label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/localizacao' }
+                //]
             },
             {
-                label: 'Patrimônios', icon: 'pi pi-fw pi-briefcase', items: [
-                    { label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/patrimonio/novo' },
-                    { label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/patrimonio' }
-                ]
+                label: 'Métodos de Aquisição', icon: 'pi pi-fw pi-dollar', to: '/metodo-aquisicao'
+                //items: [
+                //    { label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/metodo-aquisicao/novo' },
+                //    { label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/metodo-aquisicao' }
+                //]
             },
             {
                 label: 'Usuários', icon: 'pi pi-fw pi-user', items: [
