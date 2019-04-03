@@ -19,6 +19,8 @@ import { ListLocation } from './components/location/list/ListLocation';
 import { NewLocation } from './components/location/new/NewLocation';
 import { ListPatrimony } from './components/patrimony/list/ListPatrimony';
 import { NewPatrimony } from './components/patrimony/new/NewPatrimony';
+import { MyUser } from './components/myuser/MyUser';
+import { ManageUsers } from './components/manageusers/ManageUsers';
 
 class App extends Component {
 
@@ -114,9 +116,10 @@ class App extends Component {
                 //]
             },
             {
-                label: 'Usuários', icon: 'pi pi-fw pi-user', items: [
-                    { label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/usuario/novo' },
-                    { label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/usuario' }
+                label: 'Administrativo', icon: 'pi pi-fw pi-user', items: [
+                    { label: 'Meu Usuário', icon: 'pi pi-fw pi-cog', to: '/meu-usuario' },
+                    { label: 'Administrar Usuários', icon: 'pi pi-fw pi-table', to: '/administrar-usuarios' },
+                    { label: 'Registro de Alterações', icon: 'pi pi-fw pi-folder-open', to: '/registro-alteracoes' }
                 ]
             },
         ];
@@ -188,6 +191,9 @@ class App extends Component {
                     <Route path="/patrimonio" exact component={ListPatrimony} />
                     <Route path="/patrimonio/novo" component={NewPatrimony} />
                     <Route path="/patrimonio/{id}" component={NewPatrimony} />
+                    <Route path="/meu-usuario" exact component={MyUser}/>
+                    <Route path="/administrar-usuarios" exact component={ManageUsers}/>
+                    <Route path="/registro-alteracoes" />
                 </div>
 
                 <div className="layout-mask"></div>
