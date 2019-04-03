@@ -12,6 +12,7 @@ export class NewAcquisitionMethod extends Component {
         };
         this.acquisitionService = new AcquisitionMethodService();
         this.insert = this.insert.bind(this);
+        this.routeListAcquisitionMethod = this.routeListAcquisitionMethod.bind(this);
     }
 
     insert() {
@@ -23,12 +24,18 @@ export class NewAcquisitionMethod extends Component {
                     acquisitionMethodId: null,
                     description: ""
                 });
+                this.routeListAcquisitionMethod();
             } else {
                 console.log("error");
             }
         } else {
             console.log("descrição inválida.");
         }
+    }
+
+    routeListAcquisitionMethod() {
+        let path = '/metodo-aquisicao';
+        this.props.history.push(path);
     }
 
     render() {
@@ -42,7 +49,7 @@ export class NewAcquisitionMethod extends Component {
                         <br></br>
                         <div className="buttons">
                             <Button type="submit" id="btnSave" label="Salvar" className="p-button-primary" icon="pi pi-save" onClick={this.insert} />
-                            <Button type="button" id="btnCancel" label="Cancelar" className="p-button-danger" />
+                            <Button type="button" id="btnCancel" label="Cancelar" className="p-button-danger" onClick={this.routeListAcquisitionMethod}/>
                         </div>
                     </div>
                 </div>

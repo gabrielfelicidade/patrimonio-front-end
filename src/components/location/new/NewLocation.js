@@ -13,6 +13,7 @@ export class NewLocation extends Component {
         };
         this.locationService = new LocationService();
         this.insert = this.insert.bind(this);
+        this.routeListLocation = this.routeListLocation.bind(this);
     }
 
     insert() {
@@ -25,12 +26,18 @@ export class NewLocation extends Component {
                     description: "",
                     status: true
                 });
+                this.routeListLocation();
             } else {
                 console.log("error");
             }
         } else {
             console.log("descrição inválida.");
         }
+    }
+
+    routeListLocation() {
+        let path = '/localizacao';
+        this.props.history.push(path);
     }
 
     render() {
@@ -44,7 +51,7 @@ export class NewLocation extends Component {
                         <br></br>
                         <div className="buttons">
                             <Button type="submit" id="btnSave" label="Salvar" className="p-button-primary" icon="pi pi-save" onClick={this.insert} />
-                            <Button type="button" id="btnCancel" label="Cancelar" className="p-button-danger" />
+                            <Button type="button" id="btnCancel" label="Cancelar" className="p-button-danger" onClick={this.routeListLocation}/>
                         </div>
                     </div>
                 </div>

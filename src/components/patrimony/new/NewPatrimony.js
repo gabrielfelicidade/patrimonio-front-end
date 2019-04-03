@@ -69,7 +69,7 @@ export class NewPatrimony extends Component {
     routeListPatrimony() {
         let path = '/patrimonio';
         this.props.history.push(path);
-      }
+    }
 
     render() {
         return (

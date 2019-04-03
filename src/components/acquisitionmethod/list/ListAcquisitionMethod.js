@@ -14,12 +14,18 @@ export class ListAcquisitionMethod extends Component {
             acquisitions: []
         };
         this.acquisitionService = new AcquisitionMethodService();
+        this.routeNewAcquisitionMethod = this.routeNewAcquisitionMethod.bind(this);
     }
 
     componentDidMount() {
         this.acquisitionService.getAll().then((res) => {
             this.setState({ acquisitions: res.data });
         });
+    }
+
+    routeNewAcquisitionMethod() {
+        let path = '/metodo-aquisicao/novo';
+        this.props.history.push(path);
     }
     
     render() {
@@ -41,6 +47,7 @@ export class ListAcquisitionMethod extends Component {
                         </div>
 
                         <br></br><Button type="submit" id="btnSearch" label="Consultar" className="p-button-primary" icon="pi pi-search" />
+                        <Button type="submit" id="btnAdd" label="Adicionar" className="p-button-primary" icon="pi pi-plus" onClick={this.routeNewAcquisitionMethod} />
                     </div>
                 </div>
                 <div className="p-col-12">

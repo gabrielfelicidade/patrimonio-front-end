@@ -19,6 +19,7 @@ export class ListLocation extends Component {
         };
         this.locationService = new LocationService();
         this.onLocationStateChange = this.onLocationStateChange.bind(this);
+        this.routeNewLocation = this.routeNewLocation.bind(this);
     }
 
     onLocationStateChange(e) {
@@ -36,6 +37,11 @@ export class ListLocation extends Component {
         return <div>
             {ret}
         </div>;
+    }
+
+    routeNewLocation() {
+        let path = '/localizacao/novo';
+        this.props.history.push(path);
     }
 
     render() {
@@ -63,6 +69,7 @@ export class ListLocation extends Component {
                                 <Dropdown value={this.state.locationState} options={locationStates} onChange={this.onLocationStateChange} style={{ width: '180px' }} placeholder="Selecione um Estado" optionLabel="name" />
                             </div>
                             <br></br><Button type="submit" id="btnSearch" label="Consultar" className="p-button-primary" icon="pi pi-search" />
+                            <Button type="submit" id="btnAdd" label="Adicionar" className="p-button-primary" icon="pi pi-plus" onClick={this.routeNewLocation} />
                         </div>
                     </div>
                 </div>

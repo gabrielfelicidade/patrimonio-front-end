@@ -46,7 +46,7 @@ export class ListPatrimony extends Component {
     routeNewPatrimony() {
         let path = '/patrimonio/novo';
         this.props.history.push(path);
-      }
+    }
 
     render() {
         const patrimonyStates = [
