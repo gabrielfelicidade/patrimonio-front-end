@@ -8,6 +8,7 @@ export class AcquisitionMethodService {
     }
 
     insert(data) {
-        return axios.post('http://localhost:8090/acquisitionmethods', data).then(res => res);
+        return axios.post('http://localhost:8090/acquisitionmethods', data)
+            .then(res => res);
     }
 }

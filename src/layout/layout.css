@@ -72,8 +72,8 @@ html {
 body {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 14px;
-  color: #eeeeee;
-  background-color: #1D2A3A;
+  color: #333333;
+  background-color: #edf0f5;
   margin: 0;
   padding: 0;
   min-height: 100%; }
@@ -533,7 +533,7 @@ h2 {
   margin: 0; }
 
 .card {
-  background-color: rgb(58, 77, 90);
+  background-color: #ffffff;
   padding: 1em;
   margin-bottom: 16px;
   -moz-border-radius: 3px;

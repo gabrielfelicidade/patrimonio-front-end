@@ -11,5 +11,4 @@ export class PatrimonyService {
         return axios.post('http://localhost:8090/patrimonies', data)
             .then(res => res);
     }
-    
 }

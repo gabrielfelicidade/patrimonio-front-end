@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
-import classNames from 'classnames';
-import { AppTopbar } from './AppTopbar';
-import { AppMenu } from './AppMenu';
-import { AppInlineProfile } from './AppInlineProfile';
-import { Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { AppTopbar } from './components/appTopbar/AppTopbar';
+import { AppMenu } from './components/appMenu/AppMenu';
+import { AppInlineProfile } from './components/appInlineProfile/AppInlineProfile';
 import { ScrollPanel } from 'primereact/components/scrollpanel/ScrollPanel';
-import 'primereact/resources/themes/nova-light/theme.css';
-import 'primereact/resources/primereact.min.css';
-import 'primeicons/primeicons.css';
-import 'primeflex/primeflex.css';
-import 'fullcalendar/dist/fullcalendar.css';
-import './layout/layout.css';
-import './App.css';
 import { Home } from './components/home/Home';
 import { ListAcquisitionMethod } from './components/acquisitionmethod/list/ListAcquisitionMethod';
 import { NewAcquisitionMethod } from './components/acquisitionmethod/new/NewAcquisitionMethod';
@@ -21,6 +13,12 @@ import { ListPatrimony } from './components/patrimony/list/ListPatrimony';
 import { NewPatrimony } from './components/patrimony/new/NewPatrimony';
 import { MyUser } from './components/myuser/MyUser';
 import { ManageUsers } from './components/manageusers/ManageUsers';
+import classNames from 'classnames';
+import 'primereact/resources/themes/nova-light/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import 'primeflex/primeflex.css';
+import './layout/layout.css';
 
 class App extends Component {
 
@@ -93,33 +91,15 @@ class App extends Component {
 
     createMenu() {
         this.menu = [
-            { label: 'Home', icon: 'pi pi-fw pi-home', command: () => { window.location = '#/' } },
-            {
-                label: 'Patrimônios', icon: 'pi pi-fw pi-briefcase', to: '/patrimonio'
-                //items: [
-                //    { label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/patrimonio/novo' },
-                //    { label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/patrimonio' }
-                //]
-            },
-            {
-                label: 'Localizações', icon: 'pi pi-fw pi-globe', to: '/localizacao'
-                //items: [
-                    //{ label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/localizacao/novo' },
-                    //{ label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/localizacao' }
-                //]
-            },
-            {
-                label: 'Métodos de Aquisição', icon: 'pi pi-fw pi-dollar', to: '/metodo-aquisicao'
-                //items: [
-                //    { label: 'Cadastrar', icon: 'pi pi-fw pi-plus-circle', to: '/metodo-aquisicao/novo' },
-                //    { label: 'Consultar', icon: 'pi pi-fw pi-table', to: '/metodo-aquisicao' }
-                //]
-            },
+            { label: 'Home', icon: 'pi pi-fw pi-home', to: '/' },
+            { label: 'Patrimônios', icon: 'pi pi-fw pi-briefcase', to: '/patrimonio' },
+            { label: 'Localizações', icon: 'pi pi-fw pi-globe', to: '/localizacao' },
+            { label: 'Métodos de Aquisição', icon: 'pi pi-fw pi-dollar', to: '/metodo-aquisicao' },
             {
                 label: 'Administrativo', icon: 'pi pi-fw pi-user', items: [
                     { label: 'Meu Usuário', icon: 'pi pi-fw pi-cog', to: '/meu-usuario' },
-                    { label: 'Administrar Usuários', icon: 'pi pi-fw pi-table', to: '/administrar-usuarios' },
-                    { label: 'Registro de Alterações', icon: 'pi pi-fw pi-folder-open', to: '/registro-alteracoes' }
+                    { label: 'Administrar Usuários', icon: 'pi pi-fw pi-users', to: '/usuarios' },
+                    { label: 'Registro de Alterações', icon: 'pi pi-fw pi-list', to: '/registro-alteracoes' }
                 ]
             },
         ];
@@ -151,8 +131,7 @@ class App extends Component {
     }
 
     render() {
-        let logo = this.state.layoutColorMode === 'dark' ? 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Fatec-sorocaba.png' : 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Fatec-sorocaba.png';
-
+        let logo = 'https://upload.wikimedia.org/wikipedia/commons/e/ef/Fatec-sorocaba.png';
         let wrapperClass = classNames('layout-wrapper', {
             'layout-overlay': this.state.layoutMode === 'overlay',
             'layout-static': this.state.layoutMode === 'static',
@@ -167,13 +146,12 @@ class App extends Component {
                 <AppTopbar onToggleMenu={this.onToggleMenu} />
 
                 <div ref={(el) => this.sidebar = el} className={sidebarClassName} onClick={this.onSidebarClick}>
-
                     <ScrollPanel ref={(el) => this.layoutMenuScroller = el} style={{ height: '100%' }}>
                         <div className="layout-sidebar-scroll-content" >
                             <div className="layout-logo">
                                 <img alt="Logo" src={logo} height="80" width="140" />
                             </div>
-                            <hr style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }}></hr>
+                            <hr style={{ marginTop: 40, marginLeft: 10, marginRight: 10 }} />
                             <AppInlineProfile />
                             <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} />
                         </div>
@@ -181,22 +159,22 @@ class App extends Component {
                 </div>
 
                 <div className="layout-main">
-                    <Route path="/" exact component={Home} />
-                    <Route path="/metodo-aquisicao" exact component={ListAcquisitionMethod} />
-                    <Route path="/metodo-aquisicao/novo" component={NewAcquisitionMethod} />
-                    <Route path="/metodo-aquisicao/{id}" component={NewAcquisitionMethod} />
-                    <Route path="/localizacao" exact component={ListLocation} />
-                    <Route path="/localizacao/novo" component={NewLocation} />
-                    <Route path="/localizacao/{id}" component={NewLocation} />
-                    <Route path="/patrimonio" exact component={ListPatrimony} />
-                    <Route path="/patrimonio/novo" component={NewPatrimony} />
-                    <Route path="/patrimonio/{id}" component={NewPatrimony} />
-                    <Route path="/meu-usuario" exact component={MyUser}/>
-                    <Route path="/administrar-usuarios" exact component={ManageUsers}/>
-                    <Route path="/registro-alteracoes" />
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route exact path="/metodo-aquisicao" component={ListAcquisitionMethod} />
+                        <Route exact path="/metodo-aquisicao/novo" component={NewAcquisitionMethod} />
+                        <Route path="/metodo-aquisicao/{id}" component={NewAcquisitionMethod} />
+                        <Route exact path="/localizacao" component={ListLocation} />
+                        <Route exact path="/localizacao/novo" component={NewLocation} />
+                        <Route path="/localizacao/{id}" component={NewLocation} />
+                        <Route exact path="/patrimonio" component={ListPatrimony} />
+                        <Route exact path="/patrimonio/novo" component={NewPatrimony} />
+                        <Route path="/patrimonio/{id}" component={NewPatrimony} />
+                        <Route path="/meu-usuario" component={MyUser} />
+                        <Route path="/administrar-usuarios" component={ManageUsers} />
+                        <Route path="/registro-alteracoes" />
+                    </Switch>
                 </div>
-
-                <div className="layout-mask"></div>
             </div>
         );
     }

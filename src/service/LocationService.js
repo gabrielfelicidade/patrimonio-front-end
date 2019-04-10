@@ -8,6 +8,7 @@ export class LocationService {
     }
 
     insert(data) {
-        return axios.post('http://localhost:8090/locations', data).then(res => res);
+        return axios.post('http://localhost:8090/locations', data)
+            .then(res => res);
     }
 }
