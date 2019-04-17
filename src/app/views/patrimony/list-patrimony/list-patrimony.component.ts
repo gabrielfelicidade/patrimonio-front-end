@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PatrimonyService } from '../../../services/patrimony/patrimony.service';
 import { Patrimony } from '../../../model/patrimony';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-patrimony',
@@ -14,7 +15,8 @@ export class ListPatrimonyComponent implements OnInit {
   descriptionFilter: string;
 
   constructor(
-    public patrimonyService: PatrimonyService
+    public patrimonyService: PatrimonyService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -29,10 +31,14 @@ export class ListPatrimonyComponent implements OnInit {
     this.rows = [];
     this.allRows.forEach(
       (element: Patrimony) => {
-        if(element.description.toLowerCase().includes(this.descriptionFilter.toLowerCase())){
+        if (element.description.toLowerCase().includes(this.descriptionFilter.toLowerCase())) {
           this.rows.push(element);
         }
       });
+  }
+
+  goToNew() {
+    this.router.navigate(['patrimonios/novo']);
   }
 
 }

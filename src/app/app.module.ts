@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -46,6 +47,13 @@ import { NewLocationComponent } from './views/location/new-location/new-location
 import { HttpClientModule } from '@angular/common/http';
 import { ListAcquisitionMethodComponent } from './views/acquisition-method/list-acquisition-method/list-acquisition-method.component';
 import { ListPatrimonyComponent } from './views/patrimony/list-patrimony/list-patrimony.component';
+import { ToastrModule } from 'ngx-toastr';
+import { NewAcquisitionMethodComponent } from './views/acquisition-method/new-acquisition-method/new-acquisition-method.component';
+import { NewPatrimonyComponent } from './views/patrimony/new-patrimony/new-patrimony.component';
+import { CurrencyMaskModule } from "ng2-currency-mask";
+import { LogoutComponent } from './views/logout/logout.component';
+import { NewUserComponent } from './views/user/new-user/new-user.component';
+import { ListUserComponent } from './views/user/list-user/list-user.component';
 
 @NgModule({
   imports: [
@@ -62,7 +70,10 @@ import { ListPatrimonyComponent } from './views/patrimony/list-patrimony/list-pa
     ChartsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    CurrencyMaskModule
   ],
   declarations: [
     AppComponent,
@@ -71,16 +82,21 @@ import { ListPatrimonyComponent } from './views/patrimony/list-patrimony/list-pa
     P500Component,
     LoginComponent,
     RegisterComponent,
-    ListLocationComponent,
     DashboardComponent,
-    NewLocationComponent,
+    ListLocationComponent,
     ListAcquisitionMethodComponent,
-    ListPatrimonyComponent
+    ListPatrimonyComponent,
+    ListUserComponent,
+    NewLocationComponent,
+    NewAcquisitionMethodComponent,
+    NewPatrimonyComponent,
+    NewUserComponent,
+    LogoutComponent
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   }],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

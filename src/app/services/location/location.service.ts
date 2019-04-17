@@ -11,11 +11,11 @@ import { Location } from '../../model/location';
 export class LocationService implements ICrud<Location> {
 
   constructor(
-      private httpClient: HttpClient
+    private httpClient: HttpClient
   ) { }
 
   get(id: number): Observable<Location> {
-    throw new Error("Method not implemented.");
+    return this.httpClient.get<Location>(ApiConfig.LOCATIONS.Base + '/' + id);
   }
   getAll(): Observable<Location[]> {
     return this.httpClient.get<Location[]>(ApiConfig.LOCATIONS.Base);
@@ -24,7 +24,7 @@ export class LocationService implements ICrud<Location> {
     return this.httpClient.post<Location>(ApiConfig.LOCATIONS.Base, model);
   }
   update(model: Location): Observable<Location> {
-    throw new Error("Method not implemented.");
+    return this.httpClient.put<Location>(ApiConfig.LOCATIONS.Base, model);
   }
   delete(model: Location): Observable<Location> {
     throw new Error("Method not implemented.");

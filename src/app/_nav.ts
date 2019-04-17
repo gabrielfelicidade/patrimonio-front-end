@@ -50,4 +50,14 @@ export const navItems: NavData[] = [
     url: '/metodos-aquisicao',
     icon: 'icon-home'
   },
+  {
+    name: 'Usuários',
+    url: '/usuarios',
+    icon: 'icon-home'
+  },
+  {
+    name: 'Sair',
+    url: '/sair',
+    icon: 'icon-home'
+  },
 ];

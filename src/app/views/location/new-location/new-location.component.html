@@ -1,6 +1,8 @@
 <div class="card">
   <div class="card-header">
-    Cadastro de <strong>Localizações</strong>
+    <span *ngIf="!locationId">Cadastro</span>
+    <span *ngIf="locationId">Edição</span>
+    de <strong>Localizações</strong>
   </div>
   <div class="card-body">
     <form class="form-inline" [formGroup]="newLocationForm">
@@ -16,7 +18,9 @@
     </form>
   </div>
   <div class="card-footer">
-    <button type="submit" class="btn btn-sm btn-primary" (click)="save()"><i class="fa fa-dot-circle-o"></i> Cadastrar</button>
+    <button type="submit" class="btn btn-sm btn-primary" (click)="save()"><i class="fa fa-dot-circle-o"></i>
+      <span *ngIf="!locationId">Cadastrar</span>
+      <span *ngIf="locationId">Salvar</span></button>
     <button type="reset" class="btn btn-sm btn-danger" (click)="cancel()"><i class="fa fa-ban"></i> Cancelar</button>
   </div>
 </div>

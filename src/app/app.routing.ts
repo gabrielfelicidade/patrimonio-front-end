@@ -12,11 +12,16 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { NewLocationComponent } from './views/location/new-location/new-location.component';
 import { ListAcquisitionMethodComponent } from './views/acquisition-method/list-acquisition-method/list-acquisition-method.component';
 import { ListPatrimonyComponent } from './views/patrimony/list-patrimony/list-patrimony.component';
+import { NewAcquisitionMethodComponent } from './views/acquisition-method/new-acquisition-method/new-acquisition-method.component';
+import { NewPatrimonyComponent } from './views/patrimony/new-patrimony/new-patrimony.component';
+import { LogoutComponent } from './views/logout/logout.component';
+import { ListUserComponent } from './views/user/list-user/list-user.component';
+import { NewUserComponent } from './views/user/new-user/new-user.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
@@ -43,6 +48,14 @@ export const routes: Routes = [
         component: ListPatrimonyComponent
       },
       {
+        path: 'patrimonios/novo',
+        component: NewPatrimonyComponent
+      },
+      {
+        path: 'patrimonios/:id',
+        component: NewPatrimonyComponent
+      },
+      {
         path: 'localizacoes',
         component: ListLocationComponent
       },
@@ -51,8 +64,32 @@ export const routes: Routes = [
         component: NewLocationComponent
       },
       {
+        path: 'localizacoes/:id',
+        component: NewLocationComponent
+      },
+      {
         path: 'metodos-aquisicao',
         component: ListAcquisitionMethodComponent
+      },
+      {
+        path: 'metodos-aquisicao/novo',
+        component: NewAcquisitionMethodComponent
+      },
+      {
+        path: 'metodos-aquisicao/:id',
+        component: NewAcquisitionMethodComponent
+      },
+      {
+        path: 'usuarios',
+        component: ListUserComponent
+      },
+      {
+        path: 'usuarios/novo',
+        component: NewUserComponent
+      },
+      {
+        path: 'sair',
+        component: LogoutComponent
       },
     ]
   },
@@ -60,7 +97,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

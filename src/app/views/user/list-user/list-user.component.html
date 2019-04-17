@@ -1,10 +1,10 @@
 <div class="card">
   <div class="card-header">
-    Consulta de <strong>Localizações</strong>
+    Consulta de <strong>Métodos de Aquisição</strong>
   </div>
   <div class="card-body">
     <div class="form-inline">
-      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter" placeholder="Descrição">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="nameFilter" placeholder="Nome">
       <button type="submit" class="btn btn-primary mb-4" (click)="filter()">Filtrar</button>
     </div>
     <div class="form-inline">
@@ -15,18 +15,20 @@
         <thead>
           <tr>
             <th>Código</th>
-            <th>Descrição</th>
+            <th>Nome</th>
+            <th>Usuário</th>
             <th>Status</th>
-            <th>Visualizar</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let row of rows">
-            <td>{{row.locationId}}</td>
-            <td>{{row.description}}</td>
-            <td *ngIf="row.status">Ativo</td>
-            <td *ngIf="!row.status">Inativo</td>
-            <td><a [routerLink]="['/localizacoes', row.locationId]"><i class="icon-eye"></i></a></td>
+            <td>{{row.userId}}</td>
+            <td>{{row.name}}</td>
+            <td>{{row.username}}</td>
+            <td>
+              <span *ngIf="row.status">Ativo</span>
+              <span *ngIf="!row.status">Inativo</span>
+            </td>
           </tr>
         </tbody>
       </table>

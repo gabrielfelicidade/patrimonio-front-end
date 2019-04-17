@@ -12,19 +12,19 @@ export class AcquisitionMethodService implements ICrud<AcquisitionMethod> {
 
   constructor(
     private httpClient: HttpClient
-) { }
+  ) { }
 
   get(id: number): Observable<AcquisitionMethod> {
-    throw new Error("Method not implemented.");
+    return this.httpClient.get<AcquisitionMethod>(ApiConfig.ACQUISITION_METHODS.Base + '/' + id);
   }
   getAll(): Observable<AcquisitionMethod[]> {
     return this.httpClient.get<AcquisitionMethod[]>(ApiConfig.ACQUISITION_METHODS.Base);
   }
   insert(model: AcquisitionMethod): Observable<AcquisitionMethod> {
-    throw new Error("Method not implemented.");
+    return this.httpClient.post<AcquisitionMethod>(ApiConfig.ACQUISITION_METHODS.Base, model);
   }
   update(model: AcquisitionMethod): Observable<AcquisitionMethod> {
-    throw new Error("Method not implemented.");
+    return this.httpClient.put<AcquisitionMethod>(ApiConfig.ACQUISITION_METHODS.Base, model);
   }
   delete(model: AcquisitionMethod): Observable<AcquisitionMethod> {
     throw new Error("Method not implemented.");

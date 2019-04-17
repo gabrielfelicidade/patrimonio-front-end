@@ -1,0 +1,103 @@
+<div class="card">
+  <div class="card-header">
+    <span *ngIf="!patrimonyId">Cadastro</span>
+    <span *ngIf="patrimonyId">Edição</span>
+    de <strong>Localizações</strong>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="newPatrimonyForm">
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label>Número do Patrimônio</label>
+            <input type="text" class="form-control" formControlName="patrimonyId" placeholder="Número do Patrimônio"
+              [readOnly]="patrimonyId">
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label>Número do Processo de Aquisição</label>
+            <input type="text" class="form-control" formControlName="acquisitionProcessId"
+              placeholder="Número do Processo de Aquisição">
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label>Número de Série</label>
+            <input type="text" class="form-control" formControlName="serialNumber" placeholder="Número de Série">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label>Descrição</label>
+            <input type="text" class="form-control" formControlName="description" placeholder="Descrição">
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label>Nota Fiscal</label>
+            <input type="text" class="form-control" formControlName="commercialInvoice" placeholder="Nota Fiscal">
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label>Modelo</label>
+            <input type="text" class="form-control" formControlName="model" placeholder="Modelo">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label>Marca</label>
+            <input type="text" class="form-control" formControlName="brand" placeholder="Marca">
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label>Informações Adicionais</label>
+            <input type="text" class="form-control" formControlName="additionalInformation"
+              placeholder="Informações Adicionais">
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label>Valor (R$)</label>
+            <input currencyMask class="form-control" placeholder="R$ 0,00" formControlName="value"
+              [options]="CustomCurrencyMaskConfig" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label>Localização</label>
+            <select class="custom-select" formControlName="locationId">
+              <option value="0" selected>Selecione a Localização</option>
+              <option *ngFor="let location of locations" value="{{location.locationId}}">{{location.description}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label>Método de Aquisição</label>
+            <select class="custom-select" formControlName="acquisitionMethodId">
+              <option value="0" selected>Selecione o Método de Aquisição</option>
+              <option *ngFor="let acquisitionMethod of acquisitionMethods"
+                value="{{acquisitionMethod.acquisitionMethodId}}">{{acquisitionMethod.description}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-sm btn-primary" (click)="save()"><i class="fa fa-dot-circle-o"></i>
+      <span *ngIf="!patrimonyId">Cadastrar</span>
+      <span *ngIf="patrimonyId">Salvar</span></button>
+    <button type="reset" class="btn btn-sm btn-danger" (click)="cancel()"><i class="fa fa-ban"></i> Cancelar</button>
+  </div>
+</div>

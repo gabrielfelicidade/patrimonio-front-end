@@ -15,16 +15,16 @@ export class PatrimonyService implements ICrud<Patrimony> {
   ) { }
 
   get(id: number): Observable<Patrimony> {
-    throw new Error("Method not implemented.");
+    return this.httpClient.get<Patrimony>(ApiConfig.PATRIMONIES.Base + '/' + id);
   }
   getAll(): Observable<Patrimony[]> {
     return this.httpClient.get<Patrimony[]>(ApiConfig.PATRIMONIES.Base);
   }
   insert(model: Patrimony): Observable<Patrimony> {
-    throw new Error("Method not implemented.");
+    return this.httpClient.post<Patrimony>(ApiConfig.PATRIMONIES.Base, model);
   }
   update(model: Patrimony): Observable<Patrimony> {
-    throw new Error("Method not implemented.");
+    return this.httpClient.put<Patrimony>(ApiConfig.PATRIMONIES.Base, model);
   }
   delete(model: Patrimony): Observable<Patrimony> {
     throw new Error("Method not implemented.");

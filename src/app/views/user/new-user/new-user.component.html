@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-header">
+    Cadastro de <strong>Usuários</strong>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="newUserForm">
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="Nome">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label>Usuário</label>
+            <input type="text" class="form-control" formControlName="username" placeholder="Usuário">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label>Senha</label>
+            <input type="password" class="form-control" formControlName="password" placeholder="Senha">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <button type="submit" class="btn btn-sm btn-primary" (click)="save()"><i class="fa fa-dot-circle-o"></i>
+      Cadastrar</button>
+    <button type="reset" class="btn btn-sm btn-danger" (click)="cancel()"><i class="fa fa-ban"></i> Cancelar</button>
+  </div>
+</div>

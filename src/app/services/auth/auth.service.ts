@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { ApiConfig } from '../../constants/api.config';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +9,13 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   constructor(
-    public router: Router
+    public router: Router,
+    public httpClient: HttpClient
   ) { }
+
+  public logIn(username: string, password: string) {
+    return this.httpClient.post(ApiConfig.LOGIN, { username: username, password: password });
+  }
 
   public canActivate(): boolean {
     let token = localStorage.getItem('token');

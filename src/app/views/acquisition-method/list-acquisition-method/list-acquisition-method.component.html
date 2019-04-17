@@ -1,27 +1,32 @@
 <div class="card">
-    <div class="card-header">
-      Consulta de <strong>Métodos de Aquisição</strong>
+  <div class="card-header">
+    Consulta de <strong>Métodos de Aquisição</strong>
+  </div>
+  <div class="card-body">
+    <div class="form-inline">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter" placeholder="Descrição">
+      <button type="submit" class="btn btn-primary mb-4" (click)="filter()">Filtrar</button>
     </div>
-    <div class="card-body">
-      <div class="form-inline">
-        <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter" placeholder="Descrição">
-        <button type="submit" class="btn btn-primary mb-4" (click)="filter()">Filtrar</button>
-      </div>
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Código</th>
-              <th>Descrição</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let row of rows">
-              <td>{{row.acquisitionMethodId}}</td>
-              <td>{{row.description}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="form-inline">
+      <button type="submit" class="btn btn-primary mb-4" (click)="goToNew()">Novo</button>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Visualizar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of rows">
+            <td>{{row.acquisitionMethodId}}</td>
+            <td>{{row.description}}</td>
+            <td><a [routerLink]="['/metodos-aquisicao', row.acquisitionMethodId]"><i class="icon-eye"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
+</div>

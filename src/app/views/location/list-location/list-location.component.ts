@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocationService } from '../../../services/location/location.service';
 import { Location } from '../../../model/location';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-location',
@@ -14,7 +15,8 @@ export class ListLocationComponent implements OnInit {
   descriptionFilter: string;
 
   constructor(
-    public locationService: LocationService
+    public locationService: LocationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -29,10 +31,14 @@ export class ListLocationComponent implements OnInit {
     this.rows = [];
     this.allRows.forEach(
       (element: Location) => {
-        if(element.description.toLowerCase().includes(this.descriptionFilter.toLowerCase())){
+        if (element.description.toLowerCase().includes(this.descriptionFilter.toLowerCase())) {
           this.rows.push(element);
         }
       });
+  }
+
+  goToNew() {
+    this.router.navigate(['localizacoes/novo']);
   }
 
 }
