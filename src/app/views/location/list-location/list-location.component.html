@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-header">
+    Consulta de <strong>Localizações</strong>
+  </div>
+  <div class="card-body">
+    <div class="form-inline">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter" placeholder="Descrição">
+      <button type="submit" class="btn btn-primary mb-4" (click)="filter()">Filtrar</button>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of rows">
+            <td>{{row.locationId}}</td>
+            <td>{{row.description}}</td>
+            <td *ngIf="row.status">Ativo</td>
+            <td *ngIf="!row.status">Inativo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

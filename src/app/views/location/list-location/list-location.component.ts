@@ -1,0 +1,38 @@
+import { Component, OnInit } from '@angular/core';
+import { LocationService } from '../../../services/location/location.service';
+import { Location } from '../../../model/location';
+
+@Component({
+  selector: 'app-list-location',
+  templateUrl: './list-location.component.html',
+  styleUrls: ['./list-location.component.scss']
+})
+export class ListLocationComponent implements OnInit {
+
+  allRows: Location[] = [];
+  rows: Location[] = [];
+  descriptionFilter: string;
+
+  constructor(
+    public locationService: LocationService
+  ) { }
+
+  ngOnInit() {
+    this.locationService.getAll().subscribe(
+      (data) => {
+        this.allRows = Object.assign([], data);
+        this.rows = Object.assign([], data);
+      });
+  }
+
+  filter() {
+    this.rows = [];
+    this.allRows.forEach(
+      (element: Location) => {
+        if(element.description.toLowerCase().includes(this.descriptionFilter.toLowerCase())){
+          this.rows.push(element);
+        }
+      });
+  }
+
+}
