@@ -17,5 +17,5 @@ export class ApiConfig {
         Base: ApiConfig.API_ENDPOINT + 'users'
     }
 
-    public static LOGIN = ApiConfig.API_ENDPOINT + 'users/login';
+    public static LOGIN = ApiConfig.API_ENDPOINT + 'login';
 }

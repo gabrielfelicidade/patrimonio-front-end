@@ -46,6 +46,7 @@
     "core-js": "^2.6.5",
     "flag-icon-css": "^3.3.0",
     "font-awesome": "^4.7.0",
+    "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
     "mutationobserver-shim": "^0.3.3",
     "ng2-charts": "^1.6.0",

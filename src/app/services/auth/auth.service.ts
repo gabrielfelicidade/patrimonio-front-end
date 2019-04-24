@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ApiConfig } from '../../constants/api.config';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class AuthService {
 
   constructor(
     public router: Router,
-    public httpClient: HttpClient
+    public httpClient: HttpClient,
+    public jwtHelper: JwtHelperService
   ) { }
 
   public logIn(username: string, password: string) {
@@ -19,7 +21,7 @@ export class AuthService {
 
   public canActivate(): boolean {
     let token = localStorage.getItem('token');
-    if (token == 'true') {
+    if (token && !this.jwtHelper.isTokenExpired(token)) {
       return true;
     } else {
       this.router.navigate(['login']);

@@ -25,9 +25,9 @@ export class LoginComponent {
   logIn() {
     let controls = this.loginForm.controls;
     this.authService.logIn(controls.login.value, controls.password.value).subscribe(
-      (data: boolean) => {
+      (data: any) => {
         if (data) {
-          localStorage.setItem('token', 'true');
+          localStorage.setItem('token', data.token);
           this.toastr.success('Logado com sucesso!', 'Sucesso!');
           this.router.navigate(['home']);
         } else {

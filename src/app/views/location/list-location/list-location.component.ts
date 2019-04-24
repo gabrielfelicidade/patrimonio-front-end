@@ -21,7 +21,7 @@ export class ListLocationComponent implements OnInit {
 
   ngOnInit() {
     this.locationService.getAll().subscribe(
-      (data) => {
+      (data: any) => {
         this.allRows = Object.assign([], data);
         this.rows = Object.assign([], data);
       });

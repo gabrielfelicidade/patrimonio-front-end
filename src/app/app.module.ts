@@ -54,6 +54,13 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 import { LogoutComponent } from './views/logout/logout.component';
 import { NewUserComponent } from './views/user/new-user/new-user.component';
 import { ListUserComponent } from './views/user/list-user/list-user.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   imports: [
@@ -73,7 +80,12 @@ import { ListUserComponent } from './views/user/list-user/list-user.component';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    })
   ],
   declarations: [
     AppComponent,
@@ -96,6 +108,10 @@ import { ListUserComponent } from './views/user/list-user/list-user.component';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
+  }, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true
   }],
   bootstrap: [AppComponent]
 })
