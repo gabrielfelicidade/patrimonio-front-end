@@ -38,26 +38,26 @@ export const navItems: NavData[] = [
   {
     name: 'Patrimônios',
     url: '/patrimonios',
-    icon: 'icon-home'
+    icon: 'icon-briefcase'
   },
   {
     name: 'Localizações',
     url: '/localizacoes',
-    icon: 'icon-home'
+    icon: 'icon-location-pin'
   },
   {
     name: 'Métodos de Aquisição',
     url: '/metodos-aquisicao',
-    icon: 'icon-home'
+    icon: 'icon-credit-card'
   },
   {
     name: 'Usuários',
     url: '/usuarios',
-    icon: 'icon-home'
+    icon: 'icon-user'
   },
   {
     name: 'Sair',
     url: '/sair',
-    icon: 'icon-home'
+    icon: 'icon-ban'
   },
 ];
