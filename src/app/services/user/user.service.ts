@@ -15,7 +15,7 @@ export class UserService implements ICrud<User> {
   ) { }
 
   get(id: number): Observable<User> {
-    throw new Error("Method not implemented.");
+    return this.httpClient.get<User>(ApiConfig.USERS.Base + '/' + id);
   }
   getAll(): Observable<User[]> {
     return this.httpClient.get<User[]>(ApiConfig.USERS.Base);
@@ -24,10 +24,10 @@ export class UserService implements ICrud<User> {
     return this.httpClient.post<User>(ApiConfig.USERS.Base, model);
   }
   update(model: User): Observable<User> {
-    throw new Error("Method not implemented.");
+    return this.httpClient.put<User>(ApiConfig.USERS.Base, model);
   }
-  delete(model: User): Observable<User> {
-    throw new Error("Method not implemented.");
+  delete(id: number): Observable<User> {
+    return this.httpClient.delete<User>(ApiConfig.USERS.Base + '/' + id);
   }
 
 }

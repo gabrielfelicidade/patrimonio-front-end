@@ -73,6 +73,19 @@ export class NewAcquisitionMethodComponent implements OnInit {
     }
   }
 
+  delete() {
+    if (this.acquisitionMethodId) {
+      this.acquisitionMethodService.delete(this.acquisitionMethodId).subscribe(
+        (data) => {
+          this.toastr.success('Método de Aquisição excluído com sucesso!', 'Sucesso!');
+          this.cancel();
+        },
+        (err) => {
+          this.toastr.error('Erro: ' + err, 'Erro!');
+        });
+    }
+  }
+
   cancel() {
     this.router.navigate(['metodos-aquisicao']);
   }

@@ -88,6 +88,10 @@ export const routes: Routes = [
         component: NewUserComponent
       },
       {
+        path: 'usuarios/:id',
+        component: NewUserComponent
+      },
+      {
         path: 'sair',
         component: LogoutComponent
       },

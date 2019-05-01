@@ -61,13 +61,25 @@ export class NewLocationComponent implements OnInit {
           this.cancel();
         },
         (err) => {
-          console.log(err);
           this.toastr.error('Erro: ' + err, 'Erro!');
         });
     } else {
       this.locationService.insert(obj).subscribe(
         (data) => {
           this.toastr.success('Localização inserida com sucesso!', 'Sucesso!');
+          this.cancel();
+        },
+        (err) => {
+          this.toastr.error('Erro: ' + err, 'Erro!');
+        });
+    }
+  }
+
+  delete() {
+    if (this.locationId) {
+      this.locationService.delete(this.locationId).subscribe(
+        (data) => {
+          this.toastr.success('Localização excluída com sucesso!', 'Sucesso!');
           this.cancel();
         },
         (err) => {

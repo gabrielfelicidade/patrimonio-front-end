@@ -24,8 +24,7 @@
           <tr *ngFor="let row of rows">
             <td>{{row.locationId}}</td>
             <td>{{row.description}}</td>
-            <td *ngIf="row.status">Ativo</td>
-            <td *ngIf="!row.status">Inativo</td>
+            <td>{{row.status ? 'Ativo' : 'Inativo'}}</td>
             <td><a [routerLink]="['/localizacoes', row.locationId]"><i class="icon-eye"></i></a></td>
           </tr>
         </tbody>

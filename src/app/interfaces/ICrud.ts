@@ -5,5 +5,5 @@ export interface ICrud<T> {
     getAll(): Observable<T[]>;
     insert(model: T): Observable<T>;
     update(model: T): Observable<T>;
-    delete(model: T): Observable<T>;
+    delete(id: number): Observable<T>;
 }

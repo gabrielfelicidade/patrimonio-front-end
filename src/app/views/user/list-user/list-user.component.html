@@ -18,6 +18,7 @@
             <th>Nome</th>
             <th>Usuário</th>
             <th>Status</th>
+            <th>Visualizar</th>
           </tr>
         </thead>
         <tbody>
@@ -25,10 +26,8 @@
             <td>{{row.userId}}</td>
             <td>{{row.name}}</td>
             <td>{{row.username}}</td>
-            <td>
-              <span *ngIf="row.status">Ativo</span>
-              <span *ngIf="!row.status">Inativo</span>
-            </td>
+            <td>{{row.status ? 'Ativo' : 'Inativo'}}</td>
+            <td><a [routerLink]="['/usuarios', row.userId]"><i class="icon-eye"></i></a></td>
           </tr>
         </tbody>
       </table>

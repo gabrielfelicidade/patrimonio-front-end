@@ -1,6 +1,8 @@
 <div class="card">
   <div class="card-header">
-    Cadastro de <strong>Usuários</strong>
+    <span *ngIf="!acquisitionMethodId">Cadastro</span>
+    <span *ngIf="acquisitionMethodId">Edição</span>
+    de <strong>Usuários</strong>
   </div>
   <div class="card-body">
     <form [formGroup]="newUserForm">
@@ -31,8 +33,12 @@
     </form>
   </div>
   <div class="card-footer">
-    <button type="submit" class="btn btn-sm btn-primary" (click)="save()"><i class="fa fa-dot-circle-o"></i>
-      Cadastrar</button>
+    <button type="submit" class="btn btn-sm btn-primary" (click)="save()"><i class="fa fa-save"></i>
+      <span *ngIf="!userId"> Cadastrar</span>
+      <span *ngIf="userId"> Salvar</span></button>
+    <span *ngIf="userId">
+      <button type="reset" class="btn btn-sm btn-danger" (click)="delete()"><i class="fa cui-circle-x "></i> Excluir</button>
+    </span>
     <button type="reset" class="btn btn-sm btn-danger" (click)="cancel()"><i class="fa fa-ban"></i> Cancelar</button>
   </div>
 </div>

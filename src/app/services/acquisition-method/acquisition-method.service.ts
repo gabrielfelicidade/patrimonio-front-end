@@ -26,8 +26,8 @@ export class AcquisitionMethodService implements ICrud<AcquisitionMethod> {
   update(model: AcquisitionMethod): Observable<AcquisitionMethod> {
     return this.httpClient.put<AcquisitionMethod>(ApiConfig.ACQUISITION_METHODS.Base, model);
   }
-  delete(model: AcquisitionMethod): Observable<AcquisitionMethod> {
-    throw new Error("Method not implemented.");
+  delete(id: number): Observable<AcquisitionMethod> {
+    return this.httpClient.delete<AcquisitionMethod>(ApiConfig.ACQUISITION_METHODS.Base + '/' + id);
   }
 
 }

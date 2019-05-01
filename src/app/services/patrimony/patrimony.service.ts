@@ -26,7 +26,7 @@ export class PatrimonyService implements ICrud<Patrimony> {
   update(model: Patrimony): Observable<Patrimony> {
     return this.httpClient.put<Patrimony>(ApiConfig.PATRIMONIES.Base, model);
   }
-  delete(model: Patrimony): Observable<Patrimony> {
+  delete(id: number): Observable<Patrimony> {
     throw new Error("Method not implemented.");
   }
 

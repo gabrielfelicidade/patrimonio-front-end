@@ -26,8 +26,8 @@ export class LocationService implements ICrud<Location> {
   update(model: Location): Observable<Location> {
     return this.httpClient.put<Location>(ApiConfig.LOCATIONS.Base, model);
   }
-  delete(model: Location): Observable<Location> {
-    throw new Error("Method not implemented.");
+  delete(id: number): Observable<Location> {
+    return this.httpClient.delete<Location>(ApiConfig.LOCATIONS.Base + '/' + id);
   }
 
 }
