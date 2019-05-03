@@ -10,25 +10,15 @@
     <div class="form-inline">
       <button type="submit" class="btn btn-primary mb-4" (click)="goToNew()">Novo</button>
     </div>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Código</th>
-            <th>Descrição</th>
-            <th>Status</th>
-            <th>Visualizar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let row of rows">
-            <td>{{row.locationId}}</td>
-            <td>{{row.description}}</td>
-            <td>{{row.status ? 'Ativo' : 'Inativo'}}</td>
-            <td><a [routerLink]="['/localizacoes', row.locationId]"><i class="icon-eye"></i></a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+      [rowHeight]="'auto'" [reorderable]="true">
+      <ngx-datatable-column name="Código" prop="locationId"></ngx-datatable-column>
+      <ngx-datatable-column name="Descrição" prop="description"></ngx-datatable-column>
+      <ngx-datatable-column name="Visualizar" [sortable]="false">
+        <ng-template ngx-datatable-cell-template let-row="row">
+          <a [routerLink]="['/localizacoes', row.locationId]"><i class="icon-eye"></i></a>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
   </div>
 </div>

@@ -5,15 +5,10 @@
     de <strong>Localizações</strong>
   </div>
   <div class="card-body">
-    <form class="form-inline" [formGroup]="newLocationForm">
+    <form [formGroup]="newLocationForm">
       <div class="form-group">
+        <label>Descrição</label>
         <input type="text" class="form-control" formControlName="description" placeholder="Descrição">
-      </div>
-      <div class="form-check ml-2" *ngIf="locationId">
-        <input class="form-check-input" type="checkbox" formControlName="status" id="active">
-        <label class="form-check-label" for="active">
-          Ativo
-        </label>
       </div>
     </form>
   </div>
@@ -22,7 +17,8 @@
       <span *ngIf="!locationId"> Cadastrar</span>
       <span *ngIf="locationId"> Salvar</span></button>
     <span *ngIf="locationId">
-      <button type="reset" class="btn btn-sm btn-danger" (click)="delete()"><i class="fa cui-circle-x "></i> Excluir</button>
+      <button type="reset" class="btn btn-sm btn-danger" [disabled]="!canDelete" (click)="delete()"><i
+          class="fa cui-circle-x "></i> Excluir</button>
     </span>
     <button type="reset" class="btn btn-sm btn-danger" (click)="cancel()"><i class="fa fa-ban"></i> Cancelar</button>
   </div>

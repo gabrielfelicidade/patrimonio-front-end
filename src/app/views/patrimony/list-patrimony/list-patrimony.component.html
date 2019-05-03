@@ -4,39 +4,30 @@
   </div>
   <div class="card-body">
     <div class="form-inline">
-      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter" placeholder="Descrição">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.patrimonyId"
+        placeholder="Número do Patrimônio">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.description"
+        placeholder="Descrição">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.brand" placeholder="Marca">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.locationDescription"
+        placeholder="Localização">
       <button type="submit" class="btn btn-primary mb-4" (click)="filter()">Filtrar</button>
     </div>
     <div class="form-inline">
       <button type="submit" class="btn btn-primary mb-4" (click)="goToNew()">Novo</button>
     </div>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Código</th>
-            <th>Descrição</th>
-            <th>Modelo</th>
-            <th>Marca</th>
-            <th>Valor</th>
-            <th>Localização</th>
-            <th>Método de Aquisição</th>
-            <th>Visualizar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let row of rows">
-            <td>{{row.patrimonyId}}</td>
-            <td>{{row.description}}</td>
-            <td>{{row.model}}</td>
-            <td>{{row.brand}}</td>
-            <td>{{row.value}}</td>
-            <td><span *ngIf="row.location">{{row.location.description}}</span></td>
-            <td><span *ngIf="row.acquisitionMethod">{{row.acquisitionMethod.description}}</span></td>
-            <td><a [routerLink]="['/patrimonios', row.patrimonyId]"><i class="icon-eye"></i></a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+      [rowHeight]="'auto'" [reorderable]="true">
+      <ngx-datatable-column name="Código" prop="patrimonyId"></ngx-datatable-column>
+      <ngx-datatable-column name="Descrição" prop="description"></ngx-datatable-column>
+      <ngx-datatable-column name="Marca" prop="brand"></ngx-datatable-column>
+      <ngx-datatable-column name="Localização" prop="location.description"></ngx-datatable-column>
+      <ngx-datatable-column name="Modelo" prop="model"></ngx-datatable-column>
+      <ngx-datatable-column name="Visualizar" [sortable]="false">
+        <ng-template ngx-datatable-cell-template let-row="row">
+          <a [routerLink]="['/patrimonios', row.patrimonyId]"><i class="icon-eye"></i></a>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
   </div>
 </div>

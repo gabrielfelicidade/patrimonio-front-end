@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header">
-    <span *ngIf="!acquisitionMethodId">Cadastro</span>
-    <span *ngIf="acquisitionMethodId">Edição</span>
+    <span *ngIf="!userId">Cadastro</span>
+    <span *ngIf="userId">Edição</span>
     de <strong>Usuários</strong>
   </div>
   <div class="card-body">
@@ -37,7 +37,8 @@
       <span *ngIf="!userId"> Cadastrar</span>
       <span *ngIf="userId"> Salvar</span></button>
     <span *ngIf="userId">
-      <button type="reset" class="btn btn-sm btn-danger" (click)="delete()"><i class="fa cui-circle-x "></i> Excluir</button>
+      <button type="reset" class="btn btn-sm btn-danger" (click)="delete()"><i class="fa cui-circle-x "></i>
+        Excluir</button>
     </span>
     <button type="reset" class="btn btn-sm btn-danger" (click)="cancel()"><i class="fa fa-ban"></i> Cancelar</button>
   </div>

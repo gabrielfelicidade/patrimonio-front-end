@@ -17,6 +17,7 @@ import { NewPatrimonyComponent } from './views/patrimony/new-patrimony/new-patri
 import { LogoutComponent } from './views/logout/logout.component';
 import { ListUserComponent } from './views/user/list-user/list-user.component';
 import { NewUserComponent } from './views/user/new-user/new-user.component';
+import { UserLevel } from './constants/user-level.enum';
 
 export const routes: Routes = [
   {

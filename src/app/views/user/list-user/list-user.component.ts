@@ -10,8 +10,8 @@ import { User } from '../../../model/user';
 })
 export class ListUserComponent implements OnInit {
 
-  allRows: User[] = [];
-  rows: User[] = [];
+  allRows: User[];
+  rows: User[];
   nameFilter: string;
 
   constructor(

@@ -10,27 +10,16 @@
     <div class="form-inline">
       <button type="submit" class="btn btn-primary mb-4" (click)="goToNew()">Novo</button>
     </div>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Código</th>
-            <th>Nome</th>
-            <th>Usuário</th>
-            <th>Status</th>
-            <th>Visualizar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let row of rows">
-            <td>{{row.userId}}</td>
-            <td>{{row.name}}</td>
-            <td>{{row.username}}</td>
-            <td>{{row.status ? 'Ativo' : 'Inativo'}}</td>
-            <td><a [routerLink]="['/usuarios', row.userId]"><i class="icon-eye"></i></a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+      [rowHeight]="'auto'" [reorderable]="true">
+      <ngx-datatable-column name="Código" prop="userId"></ngx-datatable-column>
+      <ngx-datatable-column name="Nome" prop="name"></ngx-datatable-column>
+      <ngx-datatable-column name="Usuário" prop="username"></ngx-datatable-column>
+      <ngx-datatable-column name="Visualizar" [sortable]="false">
+        <ng-template ngx-datatable-cell-template let-row="row">
+          <a [routerLink]="['/usuarios', row.userId]"><i class="icon-eye"></i></a>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
   </div>
 </div>

@@ -5,8 +5,9 @@
     de <strong>Métodos de Aquisição</strong>
   </div>
   <div class="card-body">
-    <form class="form-inline" [formGroup]="newAcquisitionMethodForm">
+    <form [formGroup]="newAcquisitionMethodForm">
       <div class="form-group">
+        <label>Descrição</label>
         <input type="text" class="form-control" formControlName="description" placeholder="Descrição">
       </div>
     </form>
@@ -16,7 +17,8 @@
       <span *ngIf="!acquisitionMethodId"> Cadastrar</span>
       <span *ngIf="acquisitionMethodId"> Salvar</span></button>
     <span *ngIf="acquisitionMethodId">
-      <button type="reset" class="btn btn-sm btn-danger" (click)="delete()"><i class="fa cui-circle-x "></i> Excluir</button>
+      <button type="reset" class="btn btn-sm btn-danger" [disabled]="!canDelete" (click)="delete()"><i
+          class="fa cui-circle-x "></i> Excluir</button>
     </span>
     <button type="reset" class="btn btn-sm btn-danger" (click)="cancel()"><i class="fa fa-ban"></i> Cancelar</button>
   </div>

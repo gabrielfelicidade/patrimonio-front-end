@@ -12,7 +12,12 @@ export class ListPatrimonyComponent implements OnInit {
 
   allRows: Patrimony[] = [];
   rows: Patrimony[] = [];
-  descriptionFilter: string;
+  descriptionFilter = {
+    patrimonyId: '',
+    description: '',
+    brand: '',
+    locationDescription: ''
+  };
 
   constructor(
     public patrimonyService: PatrimonyService,
@@ -31,7 +36,10 @@ export class ListPatrimonyComponent implements OnInit {
     this.rows = [];
     this.allRows.forEach(
       (element: Patrimony) => {
-        if (element.description.toLowerCase().includes(this.descriptionFilter.toLowerCase())) {
+        if (element.patrimonyId.toString().includes(this.descriptionFilter.patrimonyId) &&
+          element.description.toLowerCase().includes(this.descriptionFilter.description.toLowerCase()) &&
+          element.brand.toLowerCase().includes(this.descriptionFilter.brand.toLowerCase()) &&
+          element.location.description.toLowerCase().includes(this.descriptionFilter.locationDescription.toLowerCase())) {
           this.rows.push(element);
         }
       });

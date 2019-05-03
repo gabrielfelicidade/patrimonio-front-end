@@ -13,13 +13,15 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Usuário" formControlName="login" required>
+                    <input type="text" class="form-control" placeholder="Usuário" formControlName="login"
+                      (keydown.enter)="logIn()" required>
                   </div>
                   <div class="input-group mb-4">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
-                    <input type="password" class="form-control" placeholder="Senha" formControlName="password" required>
+                    <input type="password" class="form-control" placeholder="Senha" formControlName="password"
+                      (keydown.enter)="logIn()" required>
                   </div>
                   <div class="row">
                     <div class="col-6">

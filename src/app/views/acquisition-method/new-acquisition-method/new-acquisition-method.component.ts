@@ -13,6 +13,7 @@ import { AcquisitionMethod } from '../../../model/acquisition-method';
 export class NewAcquisitionMethodComponent implements OnInit {
 
   acquisitionMethodId: number;
+  canDelete: boolean = true;
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +40,9 @@ export class NewAcquisitionMethodComponent implements OnInit {
           this.newAcquisitionMethodForm.setValue({
             description: data.description
           });
+          if (data.patrimonies.length > 0) {
+            this.canDelete = false;
+          }
         },
         (err) => {
           this.toastr.error('Método de Aquisição não encontrado!', 'Erro!');
@@ -49,27 +53,29 @@ export class NewAcquisitionMethodComponent implements OnInit {
   }
 
   save() {
-    let obj: AcquisitionMethod = this.newAcquisitionMethodForm.value;
-    obj.acquisitionMethodId = this.acquisitionMethodId;
+    if (this.isFormValid()) {
+      let obj: AcquisitionMethod = this.newAcquisitionMethodForm.value;
+      obj.acquisitionMethodId = this.acquisitionMethodId;
 
-    if (this.acquisitionMethodId) {
-      this.acquisitionMethodService.update(obj).subscribe(
-        (data) => {
-          this.toastr.success('Método de Aquisição alterado com sucesso!', 'Sucesso!');
-          this.cancel();
-        },
-        (err) => {
-          this.toastr.error('Erro: ' + err, 'Erro!');
-        });
-    } else {
-      this.acquisitionMethodService.insert(obj).subscribe(
-        (data) => {
-          this.toastr.success('Método de Aquisição inserido com sucesso!', 'Sucesso!');
-          this.cancel();
-        },
-        (err) => {
-          this.toastr.error('Erro: ' + err, 'Erro!');
-        });
+      if (this.acquisitionMethodId) {
+        this.acquisitionMethodService.update(obj).subscribe(
+          (data) => {
+            this.toastr.success('Método de Aquisição alterado com sucesso!', 'Sucesso!');
+            this.cancel();
+          },
+          (err) => {
+            this.toastr.error('Não foi possível alterar o Método de Aquisição!', 'Erro!');
+          });
+      } else {
+        this.acquisitionMethodService.insert(obj).subscribe(
+          (data) => {
+            this.toastr.success('Método de Aquisição inserido com sucesso!', 'Sucesso!');
+            this.cancel();
+          },
+          (err) => {
+            this.toastr.error('Não foi possível inserir o Método de Aquisição!', 'Erro!');
+          });
+      }
     }
   }
 
@@ -81,13 +87,26 @@ export class NewAcquisitionMethodComponent implements OnInit {
           this.cancel();
         },
         (err) => {
-          this.toastr.error('Erro: ' + err, 'Erro!');
+          this.toastr.error('Não foi possível excluir o Método de Aquisição!', 'Erro!');
         });
     }
   }
 
   cancel() {
     this.router.navigate(['metodos-aquisicao']);
+  }
+
+  isFormValid() {
+    let controls = this.newAcquisitionMethodForm.controls;
+    let isValid: boolean = true;
+
+    if (controls.description.errors) {
+      isValid = false;
+      controls.description.markAsTouched();
+      this.toastr.error('Uma descrição de 1 à 50 caracteres deve ser informada.', 'Erro!');
+    }
+
+    return isValid;
   }
 
 }

@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class NewLocationComponent implements OnInit {
 
   locationId: number;
+  canDelete: boolean = true;
 
   constructor(
     private fb: FormBuilder,
@@ -23,8 +24,11 @@ export class NewLocationComponent implements OnInit {
   ) { }
 
   newLocationForm = this.fb.group({
-    description: ['', Validators.required],
-    status: [true]
+    description: ['', Validators.compose([
+      Validators.required,
+      Validators.minLength(1),
+      Validators.maxLength(100)
+    ])]
   });
 
   ngOnInit() {
@@ -38,9 +42,11 @@ export class NewLocationComponent implements OnInit {
             return;
           }
           this.newLocationForm.setValue({
-            description: data.description,
-            status: data.status
+            description: data.description
           });
+          if (data.patrimonies.length > 0) {
+            this.canDelete = false;
+          }
         },
         (err) => {
           this.toastr.error('Localização não encontrada!', 'Erro!');
@@ -51,27 +57,29 @@ export class NewLocationComponent implements OnInit {
   }
 
   save() {
-    let obj: Location = this.newLocationForm.value;
-    obj.locationId = this.locationId;
+    if (this.isFormValid()) {
+      let obj: Location = this.newLocationForm.value;
+      obj.locationId = this.locationId;
 
-    if (this.locationId) {
-      this.locationService.update(obj).subscribe(
-        (data) => {
-          this.toastr.success('Localização alterada com sucesso!', 'Sucesso!');
-          this.cancel();
-        },
-        (err) => {
-          this.toastr.error('Erro: ' + err, 'Erro!');
-        });
-    } else {
-      this.locationService.insert(obj).subscribe(
-        (data) => {
-          this.toastr.success('Localização inserida com sucesso!', 'Sucesso!');
-          this.cancel();
-        },
-        (err) => {
-          this.toastr.error('Erro: ' + err, 'Erro!');
-        });
+      if (this.locationId) {
+        this.locationService.update(obj).subscribe(
+          (data) => {
+            this.toastr.success('Localização alterada com sucesso!', 'Sucesso!');
+            this.cancel();
+          },
+          (err) => {
+            this.toastr.error('Não foi possível alterar a Localização!', 'Erro!');
+          });
+      } else {
+        this.locationService.insert(obj).subscribe(
+          (data) => {
+            this.toastr.success('Localização inserida com sucesso!', 'Sucesso!');
+            this.cancel();
+          },
+          (err) => {
+            this.toastr.error('Não foi possível inserir a Localização!', 'Erro!');
+          });
+      }
     }
   }
 
@@ -83,13 +91,26 @@ export class NewLocationComponent implements OnInit {
           this.cancel();
         },
         (err) => {
-          this.toastr.error('Erro: ' + err, 'Erro!');
+          this.toastr.error('Não foi possível excluir a Localização!', 'Erro!');
         });
     }
   }
 
   cancel() {
     this.router.navigate(['localizacoes']);
+  }
+
+  isFormValid() {
+    let controls = this.newLocationForm.controls;
+    let isValid: boolean = true;
+
+    if (controls.description.errors) {
+      isValid = false;
+      controls.description.markAsTouched();
+      this.toastr.error('Uma descrição de 1 à 100 caracteres deve ser informada.', 'Erro!');
+    }
+
+    return isValid;
   }
 
 }

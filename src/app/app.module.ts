@@ -57,6 +57,8 @@ import { ListUserComponent } from './views/user/list-user/list-user.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { CustomFormsModule } from 'ng2-validation'
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -85,7 +87,9 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter
       }
-    })
+    }),
+    NgxDatatableModule,
+    CustomFormsModule
   ],
   declarations: [
     AppComponent,

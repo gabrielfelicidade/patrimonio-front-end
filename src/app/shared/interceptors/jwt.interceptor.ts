@@ -6,7 +6,7 @@ import { ApiConfig } from '../../constants/api.config';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-    constructor(){ }
+    constructor() { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let N = ApiConfig.API_ENDPOINT.length;
@@ -14,12 +14,12 @@ export class JwtInterceptor implements HttpInterceptor {
         let token = localStorage.getItem('token');
         if (thisRoute == ApiConfig.API_ENDPOINT) {
             request = request.clone({
-                setHeaders: { 
+                setHeaders: {
                     Authorization: `Bearer ${token}`
                 }
             });
         }
-        
+
         return next.handle(request);
     }
 }

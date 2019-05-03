@@ -24,9 +24,21 @@ export class NewUserComponent implements OnInit {
   ) { }
 
   newUserForm = this.fb.group({
-    name: ['', Validators.required],
-    username: ['', Validators.required],
-    password: ['', Validators.required]
+    name: ['', Validators.compose([
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(50)
+    ])],
+    username: ['', Validators.compose([
+      Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(30)
+    ])],
+    password: ['', Validators.compose([
+      Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(60)
+    ])],
   });
 
   ngOnInit() {
@@ -55,29 +67,30 @@ export class NewUserComponent implements OnInit {
   }
 
   save() {
-    let obj: User = this.newUserForm.value;
-    obj.userlevel = this.user.userlevel ? this.user.userlevel : 0;
-    obj.status = true;
-    obj.userId = this.userId ? this.userId : null;
+    if (this.isFormValid()) {
+      let obj: User = this.newUserForm.value;
+      obj.userlevel = this.user.userlevel ? this.user.userlevel : 0;
+      obj.userId = this.userId ? this.userId : null;
 
-    if (this.userId) {
-      this.userService.update(obj).subscribe(
-        (data) => {
-          this.toastr.success('Usuário alterado com sucesso!', 'Sucesso!');
-          this.cancel();
-        },
-        (err) => {
-          this.toastr.error('Erro: ' + err, 'Erro!');
-        });
-    } else {
-      this.userService.insert(obj).subscribe(
-        (data) => {
-          this.toastr.success('Usuário inserido com sucesso!', 'Sucesso!');
-          this.cancel();
-        },
-        (err) => {
-          this.toastr.error('Erro: ' + err, 'Erro!');
-        });
+      if (this.userId) {
+        this.userService.update(obj).subscribe(
+          (data) => {
+            this.toastr.success('Usuário alterado com sucesso!', 'Sucesso!');
+            this.cancel();
+          },
+          (err) => {
+            this.toastr.error('Erro: ' + err, 'Erro!');
+          });
+      } else {
+        this.userService.insert(obj).subscribe(
+          (data) => {
+            this.toastr.success('Usuário inserido com sucesso!', 'Sucesso!');
+            this.cancel();
+          },
+          (err) => {
+            this.toastr.error('Erro: ' + err, 'Erro!');
+          });
+      }
     }
   }
 
@@ -96,6 +109,29 @@ export class NewUserComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['usuarios']);
+  }
+
+  isFormValid() {
+    let controls = this.newUserForm.controls;
+    let isValid: boolean = true;
+
+    if (controls.name.errors) {
+      isValid = false;
+      controls.name.markAsTouched();
+      this.toastr.error('Um nome de 8 à 50 caracteres deve ser informado.', 'Erro!');
+    }
+    if (controls.username.errors) {
+      isValid = false;
+      controls.username.markAsTouched();
+      this.toastr.error('Um nome de usuário de 6 à 30 caracteres deve ser informado.', 'Erro!');
+    }
+    if (controls.password.errors) {
+      isValid = false;
+      controls.password.markAsTouched();
+      this.toastr.error('Uma senha de 6 à 60 caracteres deve ser informado.', 'Erro!');
+    }
+
+    return isValid;
   }
 
 }
