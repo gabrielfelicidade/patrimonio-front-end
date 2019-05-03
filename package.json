@@ -47,6 +47,7 @@
     "core-js": "^2.6.5",
     "flag-icon-css": "^3.3.0",
     "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "mutationobserver-shim": "^0.3.3",
     "ng2-charts": "^1.6.0",
@@ -55,6 +56,7 @@
     "ngx-bootstrap": "^3.2.0",
     "ngx-perfect-scrollbar": "^7.2.1",
     "ngx-toastr": "^10.0.2",
+    "popper": "^1.0.1",
     "rxjs": "^6.4.0",
     "simple-line-icons": "^2.4.1",
     "ts-helpers": "^1.1.2",
@@ -64,7 +66,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.6",
-    "@angular/cli": "^7.3.6",
+    "@angular/cli": "^7.3.8",
     "@angular/compiler-cli": "^7.2.10",
     "@angular/language-service": "^7.2.10",
     "@types/jasmine": "^3.3.12",
@@ -81,7 +83,7 @@
     "protractor": "^5.4.2",
     "ts-node": "^8.0.3",
     "tslint": "^5.14.0",
-    "typescript": "~3.2.4"
+    "typescript": "^3.2.4"
   },
   "engines": {
     "node": ">= 8.9.4",

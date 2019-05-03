@@ -145,6 +145,7 @@ export class NewPatrimonyComponent implements OnInit {
             this.cancel();
           },
           (err) => {
+            console.log(err);
             this.toastr.error('Erro: ' + err, 'Erro!');
           });
       } else {
