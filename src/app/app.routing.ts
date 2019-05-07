@@ -18,6 +18,8 @@ import { LogoutComponent } from './views/logout/logout.component';
 import { ListUserComponent } from './views/user/list-user/list-user.component';
 import { NewUserComponent } from './views/user/new-user/new-user.component';
 import { UserLevel } from './constants/user-level.enum';
+import { WriteOffPatrimonyComponent } from './views/patrimony/write-off-patrimony/write-off-patrimony.component';
+import { PerformWriteOffPatrimonyComponent } from './views/patrimony/perform-write-off-patrimony/perform-write-off-patrimony.component';
 
 export const routes: Routes = [
   {
@@ -47,6 +49,14 @@ export const routes: Routes = [
       {
         path: 'patrimonios',
         component: ListPatrimonyComponent
+      },
+      {
+        path: 'patrimonios/baixa',
+        component: PerformWriteOffPatrimonyComponent
+      },
+      {
+        path: 'patrimonios/baixados',
+        component: WriteOffPatrimonyComponent
       },
       {
         path: 'patrimonios/novo',

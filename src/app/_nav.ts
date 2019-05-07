@@ -37,8 +37,22 @@ export const navItems: NavData[] = [
   },
   {
     name: 'Patrimônios',
-    url: '/patrimonios',
     icon: 'icon-briefcase'
+  },
+  {
+    name: 'Consulta',
+    url: '/patrimonios',
+    icon: ''
+  },
+  {
+    name: 'Realizar Baixa',
+    url: '/patrimonios/baixa',
+    icon: ''
+  },
+  {
+    name: 'Baixados',
+    url: '/patrimonios/baixados',
+    icon: ''
   },
   {
     name: 'Localizações',

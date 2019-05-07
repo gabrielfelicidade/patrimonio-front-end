@@ -1,27 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user/user.service';
 import { User } from '../../../model/user';
+import { MustMatch } from './password-validation';
 
 @Component({
   selector: 'app-new-user',
   templateUrl: './new-user.component.html',
   styleUrls: ['./new-user.component.scss']
 })
+
+
+
 export class NewUserComponent implements OnInit {
 
   userId: number;
   user = {} as User;
+  form: FormGroup;
+  registerForm: FormGroup;
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private toastr: ToastrService,
     private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
+    
+  ) {  }
+    
 
   newUserForm = this.fb.group({
     name: ['', Validators.compose([
@@ -38,10 +48,19 @@ export class NewUserComponent implements OnInit {
       Validators.required,
       Validators.minLength(6),
       Validators.maxLength(60)
-    ])],
+    ])],   
   });
+  
 
   ngOnInit() {
+
+    this.registerForm = this.formBuilder.group({
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
+    });
+
     this.userId = +this.route.snapshot.paramMap.get('id');
     if (this.userId) {
       this.userService.get(this.userId).subscribe(
@@ -63,6 +82,16 @@ export class NewUserComponent implements OnInit {
           this.cancel();
           return;
         });
+    }
+  }
+
+  get f() { return this.registerForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;  
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+        return;
     }
   }
 
@@ -135,3 +164,4 @@ export class NewUserComponent implements OnInit {
   }
 
 }
+

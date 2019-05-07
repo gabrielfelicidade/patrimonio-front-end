@@ -59,6 +59,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CustomFormsModule } from 'ng2-validation'
+import { WriteOffPatrimonyComponent } from './views/patrimony/write-off-patrimony/write-off-patrimony.component';
+import { PerformWriteOffPatrimonyComponent } from './views/patrimony/perform-write-off-patrimony/perform-write-off-patrimony.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -107,7 +109,9 @@ export function tokenGetter() {
     NewAcquisitionMethodComponent,
     NewPatrimonyComponent,
     NewUserComponent,
-    LogoutComponent
+    LogoutComponent,
+    WriteOffPatrimonyComponent,
+    PerformWriteOffPatrimonyComponent
   ],
   providers: [{
     provide: LocationStrategy,
