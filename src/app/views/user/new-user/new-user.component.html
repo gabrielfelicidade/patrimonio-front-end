@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 <div class="card">
   <div class="card-header">
     <span *ngIf="!userId">Cadastro</span>
@@ -28,52 +26,43 @@
         <div class="col-4">
           <div class="form-group">
             <label>Nível do Usuário</label>
-            <select class="custom-select" formControlName="HierarchyLevel">
+            <select class="custom-select" formControlName="userlevel">
               <option value="" disabled hidden selected>Selecione o Nível do Usuário</option>
-              <option value="2">Administrador</option>
-              <option value="1">Intermediário</option>
               <option value="0">Consultor</option>
+              <option value="1">Intermediário</option>
+              <option value="2">Administrador</option>
             </select>
           </div>
         </div>
       </div>
-
-    
-
-    
-  
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div class="col-4">
-        <div class="form-group">
-          <label>Senha</label>
-          <input type="password" class="form-control" formControlName="password" placeholder="Senha" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-          <div *ngIf="!!submitted && !!f.password.errors" class="invalid-feedback">
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label>Senha</label>
+            <input type="password" class="form-control" formControlName="password" placeholder="Senha"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+            <div *ngIf="!!submitted && !!f.password.errors" class="invalid-feedback">
               <div *ngIf="!!f.confirmPassword.errors.mustMatch"></div>
+            </div>
           </div>
         </div>
       </div>
-    </div>  
-  </form>
-    
-    <div class="row">
-     <div class="col-4">
-        <div class="form-group">
-          <label>Confirme a Senha</label>
-          <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Confirme a Senha" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
-          <div *ngIf="!!submitted && !!f.confirmPassword.errors" class="invalid-feedback">
-            <div *ngIf="!!f.confirmPassword.errors.mustMatch">Senhas Diferentes</div>
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label>Confirme a Senha</label>
+            <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirme a Senha"
+              [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+            <div *ngIf="!!submitted && !!f.confirmPassword.errors" class="invalid-feedback">
+              <div *ngIf="!!f.confirmPassword.errors.mustMatch">Senhas Diferentes</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>   
-
-  
-
-  
-
-    <div class="card-footer">
-      <div class="form-group">
+    </form>
+  </div>
+  <div class="card-footer">
+    <div class="form-group">
       <button type="submit" class="btn btn-sm btn-primary" (click)="save()"><i class="fa fa-save"></i>
         <span *ngIf="!userId"> Cadastrar</span>
         <span *ngIf="userId"> Salvar</span></button>
@@ -81,10 +70,8 @@
         <button type="reset" class="btn btn-sm btn-danger" (click)="delete()"><i class="fa cui-circle-x "></i>
           Excluir</button>
       </span>
-      <button type="reset" class="btn btn-sm btn-danger" (click)="cancel()"><i class="fa fa-ban"></i> Cancelar</button>
+      <button type="reset" class="btn btn-sm btn-danger" (click)="cancel()"><i class="fa fa-ban"></i>
+        Cancelar</button>
     </div>
-    </div>
-
-  </form>
-  
+  </div>
 </div>

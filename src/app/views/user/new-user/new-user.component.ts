@@ -4,7 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user/user.service';
 import { User } from '../../../model/user';
-import { MustMatch } from './password-validation';
+import { CustomValidators } from 'ng2-validation';
 
 @Component({
   selector: 'app-new-user',
@@ -12,14 +12,11 @@ import { MustMatch } from './password-validation';
   styleUrls: ['./new-user.component.scss']
 })
 
-
-
 export class NewUserComponent implements OnInit {
 
   userId: number;
   user = {} as User;
   form: FormGroup;
-  registerForm: FormGroup;
   submitted = false;
 
   constructor(
@@ -27,11 +24,9 @@ export class NewUserComponent implements OnInit {
     private userService: UserService,
     private toastr: ToastrService,
     private router: Router,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder
-    
-  ) {  }
-    
+    private route: ActivatedRoute
+  ) { }
+
 
   newUserForm = this.fb.group({
     name: ['', Validators.compose([
@@ -48,19 +43,20 @@ export class NewUserComponent implements OnInit {
       Validators.required,
       Validators.minLength(6),
       Validators.maxLength(60)
-    ])],   
+    ])],
+    confirmPassword: ['', Validators.compose([
+      Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(60)
+    ])],
+    userlevel: ['', Validators.compose([
+      Validators.required,
+      CustomValidators.number,
+      Validators.min(0)
+    ])],
   });
-  
 
   ngOnInit() {
-
-    this.registerForm = this.formBuilder.group({
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    }, {
-      validator: MustMatch('password', 'confirmPassword')
-    });
-
     this.userId = +this.route.snapshot.paramMap.get('id');
     if (this.userId) {
       this.userService.get(this.userId).subscribe(
@@ -73,7 +69,9 @@ export class NewUserComponent implements OnInit {
           this.newUserForm.setValue({
             name: data.name,
             username: data.username,
-            password: ''
+            password: '',
+            confirmPassword: '',
+            userlevel: data.userlevel
           });
           this.user = Object.assign({}, data);
         },
@@ -85,20 +83,9 @@ export class NewUserComponent implements OnInit {
     }
   }
 
-  get f() { return this.registerForm.controls; }
-
-  onSubmit() {
-    this.submitted = true;  
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
-        return;
-    }
-  }
-
   save() {
     if (this.isFormValid()) {
       let obj: User = this.newUserForm.value;
-      obj.userlevel = this.user.userlevel ? this.user.userlevel : 0;
       obj.userId = this.userId ? this.userId : null;
 
       if (this.userId) {
@@ -157,7 +144,18 @@ export class NewUserComponent implements OnInit {
     if (controls.password.errors) {
       isValid = false;
       controls.password.markAsTouched();
-      this.toastr.error('Uma senha de 6 à 60 caracteres deve ser informado.', 'Erro!');
+      this.toastr.error('Uma senha de 6 à 60 caracteres deve ser informada.', 'Erro!');
+    }
+    if (controls.userlevel.errors) {
+      isValid = false;
+      controls.userlevel.markAsTouched();
+      this.toastr.error('Um nível de usuário deve ser escolhido.', 'Erro!');
+    }
+    if (controls.password.value != controls.confirmPassword.value) {
+      isValid = false;
+      controls.password.markAsTouched();
+      controls.confirmPassword.markAsTouched();
+      this.toastr.error('As senhas devem coincidir.', 'Erro!');
     }
 
     return isValid;
