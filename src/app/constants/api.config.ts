@@ -10,7 +10,10 @@ export class ApiConfig {
     };
 
     public static PATRIMONIES = {
-        Base: ApiConfig.API_ENDPOINT + 'patrimonies'
+        Base: ApiConfig.API_ENDPOINT + 'patrimonies',
+        AllNotWriteOff: ApiConfig.API_ENDPOINT + 'patrimonies/getAllNotWriteOff',
+        AllPending: ApiConfig.API_ENDPOINT + 'patrimonies/pending',
+        ExportExcel: ApiConfig.API_ENDPOINT + 'patrimonies/export'
     };
 
     public static USERS = {

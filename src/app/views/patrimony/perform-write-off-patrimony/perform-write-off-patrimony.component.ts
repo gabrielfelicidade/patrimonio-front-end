@@ -1,43 +1,60 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-import { MustMatch } from './register.validator';
+import { Patrimony } from '../../../model/patrimony';
+import { Router } from '@angular/router';
+import { PatrimonyService } from '../../../services/patrimony/patrimony.service';
+import { saveAs } from 'file-saver';
 
 @Component({
-  selector: 'app-perform-write-off-patrimony',
-  templateUrl: './perform-write-off-patrimony.component.html',
-  styleUrls: ['./perform-write-off-patrimony.component.scss']
+    selector: 'app-perform-write-off-patrimony',
+    templateUrl: './perform-write-off-patrimony.component.html',
+    styleUrls: ['./perform-write-off-patrimony.component.scss']
 })
 export class PerformWriteOffPatrimonyComponent implements OnInit {
 
-  registerForm: FormGroup;
-    submitted = false;
+    allRows: Patrimony[] = [];
+    rows: Patrimony[] = [];
+    descriptionFilter = {
+        patrimonyId: '',
+        description: '',
+        brand: '',
+        locationDescription: ''
+    };
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(
+        public patrimonyService: PatrimonyService,
+        private router: Router
+    ) { }
 
     ngOnInit() {
-        this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPassword: ['', Validators.required]
-        }, {
-            validator: MustMatch('password', 'confirmPassword')
-        });
+        this.patrimonyService.getAllNotWriteOff().subscribe(
+            (data) => {
+                this.allRows = Object.assign([], data);
+                this.rows = Object.assign([], data);
+            });
     }
 
-    // convenience getter for easy access to form fields
-    get f() { return this.registerForm.controls; }
-
-    onSubmit() {
-        this.submitted = true;
-
-        // stop here if form is invalid
-        if (this.registerForm.invalid) {
-            return;
-        }
-
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+    filter() {
+        this.rows = [];
+        this.allRows.forEach(
+            (element: Patrimony) => {
+                if (element.patrimonyId.toString().includes(this.descriptionFilter.patrimonyId) &&
+                    element.description.toLowerCase().includes(this.descriptionFilter.description.toLowerCase()) &&
+                    element.brand.toLowerCase().includes(this.descriptionFilter.brand.toLowerCase()) &&
+                    element.location.description.toLowerCase().includes(this.descriptionFilter.locationDescription.toLowerCase())) {
+                    this.rows.push(element);
+                }
+            });
     }
+
+    exportToExcel() {
+        this.patrimonyService.exportToExcel(this.allRows.filter(patrimony => patrimony.chosen)).subscribe(
+            (data) => {
+                saveAs(data, 'export.xlsx');
+            });
+    }
+
+    writeOff() {
+
+    }
+
 }
