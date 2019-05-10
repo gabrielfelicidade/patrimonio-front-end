@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AcquisitionMethodService } from '../../../services/acquisition-method/acquisition-method.service';
 import { AcquisitionMethod } from '../../../model/acquisition-method';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-acquisition-method',
@@ -16,7 +17,8 @@ export class ListAcquisitionMethodComponent implements OnInit {
 
   constructor(
     public acquisitionMethodService: AcquisitionMethodService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -24,6 +26,9 @@ export class ListAcquisitionMethodComponent implements OnInit {
       (data) => {
         this.allRows = Object.assign([], data);
         this.rows = Object.assign([], data);
+      }, 
+      (err) => {
+        this.toastr.error('Erro ao receber os métodos de aquisição!', 'Erro!');
       });
   }
 

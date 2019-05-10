@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocationService } from '../../../services/location/location.service';
 import { Location } from '../../../model/location';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-location',
@@ -16,7 +17,8 @@ export class ListLocationComponent implements OnInit {
 
   constructor(
     public locationService: LocationService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -24,6 +26,9 @@ export class ListLocationComponent implements OnInit {
       (data: any) => {
         this.allRows = Object.assign([], data);
         this.rows = Object.assign([], data);
+      }, 
+      (err) => {
+        this.toastr.error('Erro ao receber as localizações!', 'Erro!');
       });
   }
 
