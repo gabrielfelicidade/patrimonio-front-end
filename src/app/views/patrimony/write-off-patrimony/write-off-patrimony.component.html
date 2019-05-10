@@ -1,3 +1,30 @@
-<p>
-  write-off-patrimony works!
-</p>
+<div class="card">
+  <div class="card-header">
+    Consulta de <strong>Patrimônios Baixados</strong>
+  </div>
+  <div class="card-body">
+    <div class="form-inline">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.patrimonyId"
+        placeholder="Número do Patrimônio">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.description"
+        placeholder="Descrição">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.brand" placeholder="Marca">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.locationDescription"
+        placeholder="Localização">
+      <button type="submit" class="btn btn-primary mb-4" (click)="filter()">Filtrar</button>
+    </div>
+    <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+      [rowHeight]="'auto'" [reorderable]="true" [limit]="10">
+      <ngx-datatable-column name="Código" prop="patrimonyId"></ngx-datatable-column>
+      <ngx-datatable-column name="Descrição" prop="description"></ngx-datatable-column>
+      <ngx-datatable-column name="Marca" prop="brand"></ngx-datatable-column>
+      <ngx-datatable-column name="Localização" prop="location.description"></ngx-datatable-column>
+      <ngx-datatable-column name="Modelo" prop="model"></ngx-datatable-column>
+      <ngx-datatable-column name="Visualizar" [sortable]="false">
+        <ng-template ngx-datatable-cell-template let-row="row">
+          <a [routerLink]="['/patrimonios', row.patrimonyId]"><i class="icon-eye"></i></a>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>

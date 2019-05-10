@@ -20,8 +20,14 @@ export class PatrimonyService implements ICrud<Patrimony> {
   getAll(): Observable<Patrimony[]> {
     return this.httpClient.get<Patrimony[]>(ApiConfig.PATRIMONIES.Base);
   }
+  getAllPending(): Observable<Patrimony[]> {
+    return this.httpClient.get<Patrimony[]>(ApiConfig.PATRIMONIES.AllPending);
+  }
   getAllNotWriteOff(): Observable<Patrimony[]> {
     return this.httpClient.get<Patrimony[]>(ApiConfig.PATRIMONIES.AllNotWriteOff);
+  }
+  getAllWritedOff(): Observable<Patrimony[]> {
+    return this.httpClient.get<Patrimony[]>(ApiConfig.PATRIMONIES.AllWritedOff);
   }
   insert(model: Patrimony): Observable<Patrimony> {
     return this.httpClient.post<Patrimony>(ApiConfig.PATRIMONIES.Base, model);
@@ -33,7 +39,10 @@ export class PatrimonyService implements ICrud<Patrimony> {
     throw new Error("Method not implemented.");
   }
   exportToExcel(patrimonies: Patrimony[]) {
-    return this.httpClient.post(ApiConfig.PATRIMONIES.ExportExcel, patrimonies, {responseType: 'blob'});
+    return this.httpClient.post(ApiConfig.PATRIMONIES.ExportExcel, patrimonies, { responseType: 'blob' });
+  }
+  writeOffPatrimonies(patrimonies: Patrimony[]) {
+    return this.httpClient.post(ApiConfig.PATRIMONIES.WriteOff, patrimonies);
   }
 
 }

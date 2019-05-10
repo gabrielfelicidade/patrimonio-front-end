@@ -62,6 +62,9 @@ import { CustomFormsModule } from 'ng2-validation'
 import { WriteOffPatrimonyComponent } from './views/patrimony/write-off-patrimony/write-off-patrimony.component';
 import { PerformWriteOffPatrimonyComponent } from './views/patrimony/perform-write-off-patrimony/perform-write-off-patrimony.component';
 
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { InWriteOffPatrimonyComponent } from './views/patrimony/in-write-off-patrimony/in-write-off-patrimony.component';
+
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -91,7 +94,8 @@ export function tokenGetter() {
       }
     }),
     NgxDatatableModule,
-    CustomFormsModule
+    CustomFormsModule,
+    NgbModalModule
   ],
   declarations: [
     AppComponent,
@@ -111,7 +115,8 @@ export function tokenGetter() {
     NewUserComponent,
     LogoutComponent,
     WriteOffPatrimonyComponent,
-    PerformWriteOffPatrimonyComponent
+    PerformWriteOffPatrimonyComponent,
+    InWriteOffPatrimonyComponent
   ],
   providers: [{
     provide: LocationStrategy,
@@ -121,6 +126,9 @@ export function tokenGetter() {
     useClass: JwtInterceptor,
     multi: true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    InWriteOffPatrimonyComponent
+  ]
 })
 export class AppModule { }

@@ -79,7 +79,7 @@ export class NewPatrimonyComponent implements OnInit {
     ])],
     value: [0, Validators.compose([
       CustomValidators.number,
-      Validators.min(0)
+      Validators.min(1)
     ])],
     locationId: [0, Validators.compose([
       Validators.required,
@@ -145,8 +145,7 @@ export class NewPatrimonyComponent implements OnInit {
             this.cancel();
           },
           (err) => {
-            console.log(err);
-            this.toastr.error('Erro: ' + err, 'Erro!');
+            this.toastr.error('Erro ao alterar o patrimônio!', 'Erro!');
           });
       } else {
         this.patrimonyService.insert(obj).subscribe(
@@ -155,7 +154,7 @@ export class NewPatrimonyComponent implements OnInit {
             this.cancel();
           },
           (err) => {
-            this.toastr.error('Erro: ' + err, 'Erro!');
+            this.toastr.error('Erro ao inserir o patrimônio!', 'Erro!');
           });
       }
     }
@@ -212,7 +211,7 @@ export class NewPatrimonyComponent implements OnInit {
     if (controls.value.errors) {
       isValid = false;
       controls.value.markAsTouched();
-      this.toastr.error('Um valor igual ou superior a R$ 0,00 deve ser informado.', 'Erro!');
+      this.toastr.error('Um valor igual ou superior a R$ 1,00 deve ser informado.', 'Erro!');
     }
     if (controls.locationId.errors) {
       isValid = false;

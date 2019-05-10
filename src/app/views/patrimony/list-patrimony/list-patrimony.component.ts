@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PatrimonyService } from '../../../services/patrimony/patrimony.service';
 import { Patrimony } from '../../../model/patrimony';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-patrimony',
@@ -21,7 +22,8 @@ export class ListPatrimonyComponent implements OnInit {
 
   constructor(
     public patrimonyService: PatrimonyService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -29,6 +31,9 @@ export class ListPatrimonyComponent implements OnInit {
       (data) => {
         this.allRows = Object.assign([], data);
         this.rows = Object.assign([], data);
+      }, 
+      (err) => {
+        this.toastr.error('Erro ao receber os patrimônios!', 'Erro!');
       });
   }
 
