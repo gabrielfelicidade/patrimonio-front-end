@@ -1,5 +1,5 @@
 export enum UserLevel {
-    Consultant = 0,
+    Basic = 0,
     Employee,
     Administrator
 }

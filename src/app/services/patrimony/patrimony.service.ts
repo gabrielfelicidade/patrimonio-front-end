@@ -23,11 +23,11 @@ export class PatrimonyService implements ICrud<Patrimony> {
   getAllPending(): Observable<Patrimony[]> {
     return this.httpClient.get<Patrimony[]>(ApiConfig.PATRIMONIES.AllPending);
   }
-  getAllNotWriteOff(): Observable<Patrimony[]> {
-    return this.httpClient.get<Patrimony[]>(ApiConfig.PATRIMONIES.AllNotWriteOff);
-  }
   getAllWritedOff(): Observable<Patrimony[]> {
     return this.httpClient.get<Patrimony[]>(ApiConfig.PATRIMONIES.AllWritedOff);
+  }
+  getAllActives(): Observable<Patrimony[]> {
+    return this.httpClient.get<Patrimony[]>(ApiConfig.PATRIMONIES.AllActives);
   }
   insert(model: Patrimony): Observable<Patrimony> {
     return this.httpClient.post<Patrimony>(ApiConfig.PATRIMONIES.Base, model);
@@ -41,8 +41,11 @@ export class PatrimonyService implements ICrud<Patrimony> {
   exportToExcel(patrimonies: Patrimony[]) {
     return this.httpClient.post(ApiConfig.PATRIMONIES.ExportExcel, patrimonies, { responseType: 'blob' });
   }
-  writeOffPatrimonies(patrimonies: Patrimony[]) {
+  writeOff(patrimonies: Patrimony[]) {
     return this.httpClient.post(ApiConfig.PATRIMONIES.WriteOff, patrimonies);
+  }
+  cancelWriteOff(patrimonies: Patrimony[]){
+    return this.httpClient.post(ApiConfig.PATRIMONIES.CancelWriteOff, patrimonies);
   }
 
 }

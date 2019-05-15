@@ -20,6 +20,7 @@ import { NewUserComponent } from './views/user/new-user/new-user.component';
 import { UserLevel } from './constants/user-level.enum';
 import { WriteOffPatrimonyComponent } from './views/patrimony/write-off-patrimony/write-off-patrimony.component';
 import { PerformWriteOffPatrimonyComponent } from './views/patrimony/perform-write-off-patrimony/perform-write-off-patrimony.component';
+import { ChangePasswordComponent } from './views/user/change-password/change-password.component';
 
 export const routes: Routes = [
   {
@@ -105,6 +106,10 @@ export const routes: Routes = [
       {
         path: 'sair',
         component: LogoutComponent
+      },
+      {
+        path: 'alterar-senha',
+        component: ChangePasswordComponent
       },
     ]
   },

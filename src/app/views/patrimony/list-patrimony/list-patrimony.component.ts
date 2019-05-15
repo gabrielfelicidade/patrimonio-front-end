@@ -17,7 +17,8 @@ export class ListPatrimonyComponent implements OnInit {
     patrimonyId: '',
     description: '',
     brand: '',
-    locationDescription: ''
+    locationDescription: '',
+    status: 3
   };
 
   constructor(
@@ -44,7 +45,8 @@ export class ListPatrimonyComponent implements OnInit {
         if (element.patrimonyId.toString().includes(this.descriptionFilter.patrimonyId) &&
           element.description.toLowerCase().includes(this.descriptionFilter.description.toLowerCase()) &&
           element.brand.toLowerCase().includes(this.descriptionFilter.brand.toLowerCase()) &&
-          element.location.description.toLowerCase().includes(this.descriptionFilter.locationDescription.toLowerCase())) {
+          element.location.description.toLowerCase().includes(this.descriptionFilter.locationDescription.toLowerCase()) &&
+          (this.descriptionFilter.status == 3 || element.status == this.descriptionFilter.status)) {
           this.rows.push(element);
         }
       });

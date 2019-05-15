@@ -46,27 +46,36 @@ export class PerformWriteOffPatrimonyComponent implements OnInit {
     }
 
     exportToExcel() {
-        this.patrimonyService.exportToExcel(this.allRows.filter(patrimony => patrimony.chosen)).subscribe(
-            (data) => {
-                saveAs(data, 'export.xlsx');
-                this.receiveDataFromApi();
-                this.toastr.success('Os patrimonios selecionados foram exportados e estão em processo de baixa!', 'Sucesso!');
-            }, 
-            (err) => {
-                this.toastr.error('Erro ao exportar os patrimônios!', 'Erro!');
-            });
+        let list: Patrimony[] = this.allRows.filter(patrimony => patrimony.chosen);
+        if (list.length > 0) {
+            this.patrimonyService.exportToExcel(list).subscribe(
+                (data) => {
+                    saveAs(data, 'export.xlsx');
+                    this.receiveDataFromApi();
+                    this.toastr.success('Os patrimonios selecionados foram exportados e estão em processo de baixa!', 'Sucesso!');
+                },
+                (err) => {
+                    this.toastr.error('Erro ao exportar os patrimônios!', 'Erro!');
+                });
+        }
     }
 
     writeOff() {
-        this.modalService.open(InWriteOffPatrimonyComponent, { size: 'lg' });
+        const modalRef = this.modalService.open(InWriteOffPatrimonyComponent, { size: 'lg' });
+        modalRef.componentInstance.passEntry.subscribe(
+            (data: boolean) => {
+                if(data){
+                    this.receiveDataFromApi();
+                }
+            });
     }
 
     receiveDataFromApi() {
-        this.patrimonyService.getAllNotWriteOff().subscribe(
+        this.patrimonyService.getAllActives().subscribe(
             (data) => {
                 this.allRows = Object.assign([], data);
                 this.rows = Object.assign([], data);
-            }, 
+            },
             (err) => {
                 this.toastr.error('Erro ao receber os patrimônios!', 'Erro!');
             });

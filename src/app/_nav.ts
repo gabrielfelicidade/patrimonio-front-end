@@ -43,17 +43,17 @@ export const navItems: NavData[] = [
       {
         name: 'Consulta',
         url: '/patrimonios',
-        icon: ''
+        icon: 'cui-arrow-right'
       },
       {
         name: 'Realizar Baixa',
         url: '/patrimonios/baixa',
-        icon: ''
+        icon: 'cui-arrow-right'
       },
       {
         name: 'Baixados',
         url: '/patrimonios/baixados',
-        icon: ''
+        icon: 'cui-arrow-right'
       }
     ]
   },
@@ -71,6 +71,11 @@ export const navItems: NavData[] = [
     name: 'Usuários',
     url: '/usuarios',
     icon: 'icon-user'
+  },
+  {
+    name: 'Alterar Senha',
+    url: '/alterar-senha',
+    icon: 'cui-lock-locked'
   },
   {
     name: 'Sair',

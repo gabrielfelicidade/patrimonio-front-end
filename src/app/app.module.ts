@@ -64,6 +64,8 @@ import { PerformWriteOffPatrimonyComponent } from './views/patrimony/perform-wri
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { InWriteOffPatrimonyComponent } from './views/patrimony/in-write-off-patrimony/in-write-off-patrimony.component';
+import { ChangePasswordComponent } from './views/user/change-password/change-password.component';
+import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -116,7 +118,9 @@ export function tokenGetter() {
     LogoutComponent,
     WriteOffPatrimonyComponent,
     PerformWriteOffPatrimonyComponent,
-    InWriteOffPatrimonyComponent
+    InWriteOffPatrimonyComponent,
+    ChangePasswordComponent,
+    ConfirmModalComponent
   ],
   providers: [{
     provide: LocationStrategy,
@@ -128,7 +132,8 @@ export function tokenGetter() {
   }],
   bootstrap: [AppComponent],
   entryComponents: [
-    InWriteOffPatrimonyComponent
+    InWriteOffPatrimonyComponent,
+    ConfirmModalComponent
   ]
 })
 export class AppModule { }

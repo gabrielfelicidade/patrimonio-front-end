@@ -11,6 +11,11 @@
       <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.brand" placeholder="Marca">
       <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.locationDescription"
         placeholder="Localização">
+      <select class="custom-select mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.status">
+        <option value="3">Ambos</option>
+        <option value="2">Ativos</option>
+        <option value="1">Em Processo</option>
+      </select>
       <button type="submit" class="btn btn-primary mb-4" (click)="filter()">Filtrar</button>
     </div>
     <div class="form-inline">
@@ -23,6 +28,11 @@
       <ngx-datatable-column name="Marca" prop="brand"></ngx-datatable-column>
       <ngx-datatable-column name="Localização" prop="location.description"></ngx-datatable-column>
       <ngx-datatable-column name="Modelo" prop="model"></ngx-datatable-column>
+      <ngx-datatable-column name="Status">
+        <ng-template ngx-datatable-cell-template let-row="row">
+          {{row.status == 2 ? 'Ativo' : 'Em Processo'}}
+        </ng-template>
+      </ngx-datatable-column>
       <ngx-datatable-column name="Visualizar" [sortable]="false">
         <ng-template ngx-datatable-cell-template let-row="row">
           <a [routerLink]="['/patrimonios', row.patrimonyId]"><i class="icon-eye"></i></a>

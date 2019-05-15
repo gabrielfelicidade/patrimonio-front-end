@@ -14,4 +14,5 @@ export interface Patrimony {
     location: Location;
     acquisitionMethod: AcquisitionMethod;
     chosen: boolean;
+    status: number;
 }

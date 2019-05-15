@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user/user.service';
@@ -95,7 +95,7 @@ export class NewUserComponent implements OnInit {
             this.cancel();
           },
           (err) => {
-            this.toastr.error('Erro: ' + err, 'Erro!');
+            this.toastr.error('Erro ao alterar o usuário!', 'Erro!');
           });
       } else {
         this.userService.insert(obj).subscribe(
@@ -104,7 +104,7 @@ export class NewUserComponent implements OnInit {
             this.cancel();
           },
           (err) => {
-            this.toastr.error('Erro: ' + err, 'Erro!');
+            this.toastr.error('Erro ao inserir o usuário!', 'Erro!');
           });
       }
     }
@@ -118,7 +118,7 @@ export class NewUserComponent implements OnInit {
           this.cancel();
         },
         (err) => {
-          this.toastr.error('Erro: ' + err, 'Erro!');
+          this.toastr.error('Erro ao excluir o usuário!', 'Erro!');
         });
     }
   }
