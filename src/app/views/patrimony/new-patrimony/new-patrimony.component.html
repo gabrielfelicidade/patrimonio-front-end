@@ -10,21 +10,19 @@
         <div class="col-4">
           <div class="form-group">
             <label>Número do Patrimônio</label>
-            <input type="text" class="form-control" formControlName="patrimonyId" placeholder="Número do Patrimônio"
-              [readOnly]="patrimonyId">
+            <input type="text" class="form-control" formControlName="patrimonyId" [readOnly]="patrimonyId">
           </div>
         </div>
         <div class="col-4">
           <div class="form-group">
             <label>Número do Processo de Aquisição</label>
-            <input type="text" class="form-control" formControlName="acquisitionProcessId"
-              placeholder="Número do Processo de Aquisição">
+            <input type="text" class="form-control" formControlName="acquisitionProcessId">
           </div>
         </div>
         <div class="col-4">
           <div class="form-group">
             <label>Número de Série</label>
-            <input type="text" class="form-control" formControlName="serialNumber" placeholder="Número de Série">
+            <input type="text" class="form-control" formControlName="serialNumber">
           </div>
         </div>
       </div>
@@ -32,19 +30,19 @@
         <div class="col-4">
           <div class="form-group">
             <label>Descrição</label>
-            <input type="text" class="form-control" formControlName="description" placeholder="Descrição">
+            <input type="text" class="form-control" formControlName="description">
           </div>
         </div>
         <div class="col-4">
           <div class="form-group">
             <label>Nota Fiscal</label>
-            <input type="text" class="form-control" formControlName="commercialInvoice" placeholder="Nota Fiscal">
+            <input type="text" class="form-control" formControlName="commercialInvoice">
           </div>
         </div>
         <div class="col-4">
           <div class="form-group">
             <label>Modelo</label>
-            <input type="text" class="form-control" formControlName="model" placeholder="Modelo">
+            <input type="text" class="form-control" formControlName="model">
           </div>
         </div>
       </div>
@@ -52,14 +50,13 @@
         <div class="col-4">
           <div class="form-group">
             <label>Marca</label>
-            <input type="text" class="form-control" formControlName="brand" placeholder="Marca">
+            <input type="text" class="form-control" formControlName="brand">
           </div>
         </div>
         <div class="col-4">
           <div class="form-group">
             <label>Informações Adicionais</label>
-            <input type="text" class="form-control" formControlName="additionalInformation"
-              placeholder="Informações Adicionais">
+            <input type="text" class="form-control" formControlName="additionalInformation">
           </div>
         </div>
         <div class="col-4">
@@ -95,7 +92,7 @@
     </form>
   </div>
   <div class="card-footer">
-    <button type="submit" class="btn btn-sm btn-primary" (click)="save()"><i class="fa fa-save"></i>
+    <button type="submit" class="btn btn-sm btn-primary" (click)="save()" [disabled]="disableSave"><i class="fa fa-save"></i>
       <span *ngIf="!patrimonyId"> Cadastrar</span>
       <span *ngIf="patrimonyId"> Salvar</span></button>
     <button type="reset" class="btn btn-sm btn-danger" (click)="cancel()"><i class="fa fa-ban"></i> Cancelar</button>

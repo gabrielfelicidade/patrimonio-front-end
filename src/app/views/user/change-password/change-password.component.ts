@@ -4,7 +4,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-change-password',

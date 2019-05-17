@@ -42,7 +42,7 @@ export const navItems: NavData[] = [
     children: [
       {
         name: 'Consulta',
-        url: '/patrimonios',
+        url: '/patrimonios/consulta',
         icon: 'cui-arrow-right'
       },
       {
@@ -59,17 +59,17 @@ export const navItems: NavData[] = [
   },
   {
     name: 'Localizações',
-    url: '/localizacoes',
+    url: '/localizacoes/consulta',
     icon: 'icon-location-pin'
   },
   {
     name: 'Métodos de Aquisição',
-    url: '/metodos-aquisicao',
+    url: '/metodos-aquisicao/consulta',
     icon: 'icon-credit-card'
   },
   {
     name: 'Usuários',
-    url: '/usuarios',
+    url: '/usuarios/consulta',
     icon: 'icon-user'
   },
   {

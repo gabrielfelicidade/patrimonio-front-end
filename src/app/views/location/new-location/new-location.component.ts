@@ -4,6 +4,8 @@ import { LocationService } from '../../../services/location/location.service';
 import { Location } from '../../../model/location';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmModalComponent } from '../../../shared/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-new-location',
@@ -20,6 +22,7 @@ export class NewLocationComponent implements OnInit {
     private locationService: LocationService,
     private toastr: ToastrService,
     private router: Router,
+    private modalService: NgbModal,
     private route: ActivatedRoute
   ) { }
 
@@ -85,23 +88,29 @@ export class NewLocationComponent implements OnInit {
 
   delete() {
     if (this.locationId) {
-      this.locationService.delete(this.locationId).subscribe(
-        (data) => {
-          this.toastr.success('Localização excluída com sucesso!', 'Sucesso!');
-          this.cancel();
-        },
-        (err) => {
-          this.toastr.error('Não foi possível excluir a Localização!', 'Erro!');
+      const modalRef = this.modalService.open(ConfirmModalComponent);
+      modalRef.componentInstance.passEntry.subscribe(
+        (data: boolean) => {
+          this.locationService.delete(this.locationId).subscribe(
+            (data) => {
+              this.toastr.success('Localização excluída com sucesso!', 'Sucesso!');
+              this.cancel();
+            },
+            (err) => {
+              this.toastr.error('Não foi possível excluir a Localização!', 'Erro!');
+            });
         });
     }
   }
 
   cancel() {
-    this.router.navigate(['localizacoes']);
+    this.router.navigate(['localizacoes/consulta']);
   }
 
   isFormValid() {
     let controls = this.newLocationForm.controls;
+    controls.description.setValue(controls.description.value.trim());
+    this.newLocationForm.updateValueAndValidity();
     let isValid: boolean = true;
 
     if (controls.description.errors) {

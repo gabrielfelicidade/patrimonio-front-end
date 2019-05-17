@@ -30,7 +30,7 @@ export class UserService implements ICrud<User> {
     return this.httpClient.delete<User>(ApiConfig.USERS.Base + '/' + id);
   }
   changePassword(model: User): Observable<User> {
-    return this.httpClient.put<User>(ApiConfig.USERS.Base, model);
+    return this.httpClient.put<User>(ApiConfig.USERS.ChangePassword, model);
   }
 
 }

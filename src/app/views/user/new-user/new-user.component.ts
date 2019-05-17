@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user/user.service';
 import { User } from '../../../model/user';
 import { CustomValidators } from 'ng2-validation';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmModalComponent } from '../../../shared/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-new-user',
@@ -24,6 +26,7 @@ export class NewUserComponent implements OnInit {
     private userService: UserService,
     private toastr: ToastrService,
     private router: Router,
+    private modalService: NgbModal,
     private route: ActivatedRoute
   ) { }
 
@@ -112,23 +115,30 @@ export class NewUserComponent implements OnInit {
 
   delete() {
     if (this.userId) {
-      this.userService.delete(this.userId).subscribe(
-        (data) => {
-          this.toastr.success('Usuário excluído com sucesso!', 'Sucesso!');
-          this.cancel();
-        },
-        (err) => {
-          this.toastr.error('Erro ao excluir o usuário!', 'Erro!');
+      const modalRef = this.modalService.open(ConfirmModalComponent);
+      modalRef.componentInstance.passEntry.subscribe(
+        (data: boolean) => {
+          this.userService.delete(this.userId).subscribe(
+            (data) => {
+              this.toastr.success('Usuário excluído com sucesso!', 'Sucesso!');
+              this.cancel();
+            },
+            (err) => {
+              this.toastr.error('Erro ao excluir o usuário!', 'Erro!');
+            });
         });
     }
   }
 
   cancel() {
-    this.router.navigate(['usuarios']);
+    this.router.navigate(['usuarios/consulta']);
   }
 
   isFormValid() {
     let controls = this.newUserForm.controls;
+    controls.name.setValue(controls.name.value.trim());
+    controls.username.setValue(controls.username.value.trim());
+    this.newUserForm.updateValueAndValidity();
     let isValid: boolean = true;
 
     if (controls.name.errors) {

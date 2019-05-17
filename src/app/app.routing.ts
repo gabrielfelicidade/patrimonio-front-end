@@ -41,75 +41,158 @@ export const routes: Routes = [
     data: {
       title: 'Home'
     },
-    canActivate: [AuthService],
     children: [
       {
         path: 'home',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
       {
         path: 'patrimonios',
-        component: ListPatrimonyComponent
+        redirectTo: 'patrimonios/consulta'
+      },
+      {
+        path: 'patrimonios/consulta',
+        component: ListPatrimonyComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
       {
         path: 'patrimonios/baixa',
-        component: PerformWriteOffPatrimonyComponent
+        component: PerformWriteOffPatrimonyComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
       {
         path: 'patrimonios/baixados',
-        component: WriteOffPatrimonyComponent
+        component: WriteOffPatrimonyComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
       {
         path: 'patrimonios/novo',
-        component: NewPatrimonyComponent
+        component: NewPatrimonyComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
       {
         path: 'patrimonios/:id',
-        component: NewPatrimonyComponent
+        component: NewPatrimonyComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
       {
         path: 'localizacoes',
-        component: ListLocationComponent
+        redirectTo: 'localizacoes/consulta'
+      },
+      {
+        path: 'localizacoes/consulta',
+        component: ListLocationComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
       {
         path: 'localizacoes/novo',
-        component: NewLocationComponent
+        component: NewLocationComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
       {
         path: 'localizacoes/:id',
-        component: NewLocationComponent
+        component: NewLocationComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
       {
         path: 'metodos-aquisicao',
-        component: ListAcquisitionMethodComponent
+        redirectTo: 'metodos-aquisicao/consulta'
+      },
+      {
+        path: 'metodos-aquisicao/consulta',
+        component: ListAcquisitionMethodComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
       {
         path: 'metodos-aquisicao/novo',
-        component: NewAcquisitionMethodComponent
+        component: NewAcquisitionMethodComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
       {
         path: 'metodos-aquisicao/:id',
-        component: NewAcquisitionMethodComponent
+        component: NewAcquisitionMethodComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
       {
         path: 'usuarios',
-        component: ListUserComponent
+        redirectTo: 'usuarios/consulta'
+      },
+      {
+        path: 'usuarios/consulta',
+        component: ListUserComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Administrator
+        }
       },
       {
         path: 'usuarios/novo',
-        component: NewUserComponent
+        component: NewUserComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Administrator
+        }
       },
       {
         path: 'usuarios/:id',
-        component: NewUserComponent
+        component: NewUserComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Administrator
+        }
       },
       {
         path: 'sair',
-        component: LogoutComponent
+        component: LogoutComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
       {
         path: 'alterar-senha',
-        component: ChangePasswordComponent
+        component: ChangePasswordComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
+        }
       },
     ]
   },

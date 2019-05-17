@@ -10,6 +10,7 @@ import { Location } from '../../../model/location';
 import { AcquisitionMethod } from '../../../model/acquisition-method';
 import { CurrencyMaskConfig } from 'ng2-currency-mask/src/currency-mask.config';
 import { CustomValidators } from 'ng2-validation';
+import { PatrimonyStatus } from '../../../constants/patrimony-status.enum';
 
 @Component({
   selector: 'app-new-patrimony',
@@ -21,6 +22,7 @@ export class NewPatrimonyComponent implements OnInit {
   patrimonyId: number;
   locations: Location[] = [];
   acquisitionMethods: AcquisitionMethod[] = [];
+  disableSave: boolean;
 
   CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     align: "right",
@@ -122,6 +124,11 @@ export class NewPatrimonyComponent implements OnInit {
             locationId: (data.location) ? data.location.locationId : 0,
             acquisitionMethodId: (data.acquisitionMethod) ? data.acquisitionMethod.acquisitionMethodId : 0
           });
+          this.disableSave = false;
+          if(data.status != PatrimonyStatus.Active){
+            this.newPatrimonyForm.disable();
+            this.disableSave = true;
+          }
         },
         (err) => {
           this.toastr.error('Patrimônio não encontrado!', 'Erro!');
@@ -161,11 +168,19 @@ export class NewPatrimonyComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['patrimonios']);
+    this.router.navigate(['patrimonios/consulta']);
   }
 
   isFormValid() {
     let controls = this.newPatrimonyForm.controls;
+    controls.acquisitionProcessId.setValue(controls.acquisitionProcessId.value.trim());
+    controls.serialNumber.setValue(controls.serialNumber.value.trim());
+    controls.description.setValue(controls.description.value.trim());
+    controls.commercialInvoice.setValue(controls.commercialInvoice.value.trim());
+    controls.model.setValue(controls.model.value.trim());
+    controls.brand.setValue(controls.brand.value.trim());
+    controls.additionalInformation.setValue(controls.additionalInformation.value.trim());
+    this.newPatrimonyForm.updateValueAndValidity();
     let isValid: boolean = true;
 
     if (controls.patrimonyId.errors) {

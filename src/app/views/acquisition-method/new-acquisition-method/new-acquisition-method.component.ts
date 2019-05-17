@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AcquisitionMethodService } from '../../../services/acquisition-method/acquisition-method.service';
 import { AcquisitionMethod } from '../../../model/acquisition-method';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmModalComponent } from '../../../shared/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-new-acquisition-method',
@@ -20,6 +22,7 @@ export class NewAcquisitionMethodComponent implements OnInit {
     private acquisitionMethodService: AcquisitionMethodService,
     private toastr: ToastrService,
     private router: Router,
+    private modalService: NgbModal,
     private route: ActivatedRoute
   ) { }
 
@@ -81,23 +84,29 @@ export class NewAcquisitionMethodComponent implements OnInit {
 
   delete() {
     if (this.acquisitionMethodId) {
-      this.acquisitionMethodService.delete(this.acquisitionMethodId).subscribe(
-        (data) => {
-          this.toastr.success('Método de Aquisição excluído com sucesso!', 'Sucesso!');
-          this.cancel();
-        },
-        (err) => {
-          this.toastr.error('Não foi possível excluir o Método de Aquisição!', 'Erro!');
+      const modalRef = this.modalService.open(ConfirmModalComponent);
+      modalRef.componentInstance.passEntry.subscribe(
+        (data: boolean) => {
+          this.acquisitionMethodService.delete(this.acquisitionMethodId).subscribe(
+            (data) => {
+              this.toastr.success('Método de Aquisição excluído com sucesso!', 'Sucesso!');
+              this.cancel();
+            },
+            (err) => {
+              this.toastr.error('Não foi possível excluir o Método de Aquisição!', 'Erro!');
+            });
         });
     }
   }
 
   cancel() {
-    this.router.navigate(['metodos-aquisicao']);
+    this.router.navigate(['metodos-aquisicao/consulta']);
   }
 
   isFormValid() {
     let controls = this.newAcquisitionMethodForm.controls;
+    controls.description.setValue(controls.description.value.trim());
+    this.newAcquisitionMethodForm.updateValueAndValidity();
     let isValid: boolean = true;
 
     if (controls.description.errors) {

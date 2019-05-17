@@ -6,6 +6,7 @@
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="false">
   <ul class="nav navbar-nav ml-auto">
+    <span class="mr-4">{{ getActualUser() + ' - ' + getActualUserLevelString() }}</span>
   </ul>
 </app-header>
 <div class="app-body">

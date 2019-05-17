@@ -1,6 +1,8 @@
 import { Component, OnDestroy, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { navItems } from '../../_nav';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserLevel } from '../../constants/user-level.enum';
 
 
 @Component({
@@ -12,6 +14,9 @@ export class DefaultLayoutComponent implements OnDestroy {
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
+  helper = new JwtHelperService();
+  decodedToken = this.helper.decodeToken(localStorage.getItem('token'));
+
   constructor(@Inject(DOCUMENT) _document?: any) {
 
     this.changes = new MutationObserver((mutations) => {
@@ -22,6 +27,20 @@ export class DefaultLayoutComponent implements OnDestroy {
       attributes: true,
       attributeFilter: ['class']
     });
+  }
+
+  getActualUser(): string {
+    return this.decodedToken.sub;
+  }
+
+  getActualUserLevelString(): string {
+    if(this.decodedToken.userlevel == UserLevel.Basic){
+      return "Básico";
+    }else if(this.decodedToken.userlevel == UserLevel.Intermediary){
+      return "Intermediário";
+    }else if(this.decodedToken.userlevel == UserLevel.Administrator){
+      return "Administrador";
+    }
   }
 
   ngOnDestroy(): void {
