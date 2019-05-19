@@ -18,7 +18,7 @@ export class ApiConfig {
         Base: ApiConfig.API_ENDPOINT + 'patrimonies',
         CancelWriteOff: ApiConfig.API_ENDPOINT + 'patrimonies/cancelWriteOff',
         ExportExcel: ApiConfig.API_ENDPOINT + 'patrimonies/export',
-        WriteOff: ApiConfig.API_ENDPOINT + 'patrimonies/writeoff'
+        WriteOff: ApiConfig.API_ENDPOINT + 'patrimonies/writeOff'
     };
 
     public static USERS = {
