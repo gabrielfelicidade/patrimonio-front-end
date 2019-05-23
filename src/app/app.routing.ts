@@ -21,6 +21,7 @@ import { UserLevel } from './constants/user-level.enum';
 import { WriteOffPatrimonyComponent } from './views/patrimony/write-off-patrimony/write-off-patrimony.component';
 import { PerformWriteOffPatrimonyComponent } from './views/patrimony/perform-write-off-patrimony/perform-write-off-patrimony.component';
 import { ChangePasswordComponent } from './views/user/change-password/change-password.component';
+import { LogComponent } from './views/log/log.component';
 
 export const routes: Routes = [
   {
@@ -192,6 +193,14 @@ export const routes: Routes = [
         canActivate: [AuthService],
         data: {
           canSee: UserLevel.Basic
+        }
+      },
+      {
+        path: 'logs',
+        component: LogComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Administrator
         }
       },
     ]

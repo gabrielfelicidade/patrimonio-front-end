@@ -78,6 +78,11 @@ export const navItems: NavData[] = [
     icon: 'cui-lock-locked'
   },
   {
+    name: 'Consultar Logs',
+    url: '/logs',
+    icon: 'cui-file'
+  },
+  {
     name: 'Sair',
     url: '/sair',
     icon: 'icon-ban'

@@ -30,7 +30,9 @@
       <ngx-datatable-column name="Modelo" prop="model"></ngx-datatable-column>
       <ngx-datatable-column name="Status">
         <ng-template ngx-datatable-cell-template let-row="row">
-          {{row.status == 2 ? 'Ativo' : 'Em Processo'}}
+          <span [ngClass]="{'process': row.status == 1}">
+            {{ row.status == 2 ? 'Ativo' : 'Em Processo' }}
+          </span>
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Visualizar" [sortable]="false">

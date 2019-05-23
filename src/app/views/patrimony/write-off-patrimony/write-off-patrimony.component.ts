@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PatrimonyService } from '../../../services/patrimony/patrimony.service';
 import { Patrimony } from '../../../model/patrimony';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-write-off-patrimony',
@@ -20,8 +19,7 @@ export class WriteOffPatrimonyComponent implements OnInit {
   };
 
   constructor(
-    public patrimonyService: PatrimonyService,
-    private router: Router
+    public patrimonyService: PatrimonyService
   ) { }
 
   ngOnInit() {

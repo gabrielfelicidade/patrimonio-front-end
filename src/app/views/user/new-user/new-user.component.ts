@@ -7,6 +7,7 @@ import { User } from '../../../model/user';
 import { CustomValidators } from 'ng2-validation';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmModalComponent } from '../../../shared/confirm-modal/confirm-modal.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-new-user',
@@ -20,6 +21,8 @@ export class NewUserComponent implements OnInit {
   user = {} as User;
   form: FormGroup;
   submitted = false;
+  username: string;
+  canDelete: boolean = true;
 
   constructor(
     private fb: FormBuilder,
@@ -77,6 +80,14 @@ export class NewUserComponent implements OnInit {
             userlevel: data.userlevel
           });
           this.user = Object.assign({}, data);
+          this.username = data.username;
+          if(this.userId == 1){
+            let controls = this.newUserForm.controls;
+            controls.name.disable();
+            controls.username.disable();
+            controls.userlevel.disable();
+            this.canDelete = false;
+          }
         },
         (err) => {
           this.toastr.error('Usuário não encontrado!', 'Erro!');
@@ -109,6 +120,13 @@ export class NewUserComponent implements OnInit {
           (err) => {
             this.toastr.error('Erro ao inserir o usuário!', 'Erro!');
           });
+      }
+      
+      let helper = new JwtHelperService();
+      let decodedToken = helper.decodeToken(localStorage.getItem('token'));
+      
+      if(this.username == decodedToken.sub){
+        this.router.navigate(['sair']);
       }
     }
   }

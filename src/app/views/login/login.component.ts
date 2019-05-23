@@ -27,7 +27,6 @@ export class LoginComponent {
     this.authService.logIn(controls.login.value, controls.password.value).subscribe(
       (data: any) => {
         if (data) {
-          console.log(data);
           localStorage.setItem('token', data.token);
           this.toastr.success('Logado com sucesso!', 'Sucesso!');
           this.router.navigate(['home']);

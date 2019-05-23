@@ -27,4 +27,6 @@ export class ApiConfig {
     }
 
     public static LOGIN = ApiConfig.API_ENDPOINT + 'login';
+
+    public static LOGS = ApiConfig.API_ENDPOINT + 'logs';
 }
