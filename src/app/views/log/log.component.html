@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-      [rowHeight]="'auto'" [reorderable]="true" [limit]="10">
+      [rowHeight]="'auto'" [reorderable]="true" [limit]="10" [messages]="messages">
       <ngx-datatable-column name="Código" prop="logId" [width]="30"></ngx-datatable-column>
       <ngx-datatable-column name="Data">
         <ng-template ngx-datatable-cell-template let-row="row">

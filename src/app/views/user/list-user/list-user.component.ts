@@ -13,7 +13,10 @@ export class ListUserComponent implements OnInit {
   allRows: User[];
   rows: User[];
   nameFilter: string;
-
+  messages = {
+    'emptyMessage': 'Nenhum registro encontrado',
+    'totalMessage': 'total'
+  };
   constructor(
     private userService: UserService,
     private router: Router

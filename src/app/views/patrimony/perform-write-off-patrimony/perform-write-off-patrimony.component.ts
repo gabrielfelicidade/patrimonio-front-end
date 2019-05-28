@@ -21,6 +21,10 @@ export class PerformWriteOffPatrimonyComponent implements OnInit {
         brand: '',
         locationDescription: ''
     };
+    messages = {
+        'emptyMessage': 'Nenhum registro encontrado',
+        'totalMessage': 'total'
+      };
 
     constructor(
         public patrimonyService: PatrimonyService,

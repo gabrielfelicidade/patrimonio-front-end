@@ -19,7 +19,7 @@
             <button type="submit" class="btn btn-primary mb-4 ml-2" (click)="writeOff()">Baixar Patrimônios</button>
         </div>
         <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-            [rowHeight]="'auto'" [reorderable]="true" [limit]="10">
+            [rowHeight]="'auto'" [reorderable]="true" [limit]="10" [messages]="messages">
             <ngx-datatable-column name="Selecionado" [sortable]="false">
                 <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex">
                     <div class="form-check">

@@ -20,6 +20,10 @@ export class ListPatrimonyComponent implements OnInit {
     locationDescription: '',
     status: 3
   };
+  messages = {
+    'emptyMessage': 'Nenhum registro encontrado',
+    'totalMessage': 'total'
+  };
 
   constructor(
     public patrimonyService: PatrimonyService,

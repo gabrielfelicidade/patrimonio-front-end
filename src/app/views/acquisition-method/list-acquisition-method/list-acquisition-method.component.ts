@@ -14,6 +14,10 @@ export class ListAcquisitionMethodComponent implements OnInit {
   allRows: AcquisitionMethod[] = [];
   rows: AcquisitionMethod[] = [];
   descriptionFilter: string;
+  messages = {
+    'emptyMessage': 'Nenhum registro encontrado',
+    'totalMessage': 'total'
+  };
 
   constructor(
     public acquisitionMethodService: AcquisitionMethodService,

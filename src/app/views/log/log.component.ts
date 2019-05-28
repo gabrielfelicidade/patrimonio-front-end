@@ -12,7 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 export class LogComponent implements OnInit {
 
   rows: Log[] = [];
-
+  messages = {
+    'emptyMessage': 'Nenhum registro encontrado',
+    'totalMessage': 'total'
+  };
+  
   constructor(
     public logService: LogService,
     private router: Router,

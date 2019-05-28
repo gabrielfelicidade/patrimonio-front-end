@@ -12,6 +12,10 @@ import { ToastrService } from 'ngx-toastr';
 export class InWriteOffPatrimonyComponent implements OnInit {
 
   rows: Patrimony[] = [];
+  messages = {
+    'emptyMessage': 'Nenhum registro encontrado',
+    'totalMessage': 'total'
+  };
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   constructor(

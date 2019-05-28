@@ -14,7 +14,7 @@
       <button type="submit" class="btn btn-primary mb-4" (click)="filter()">Filtrar</button>
     </div>
     <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-      [rowHeight]="'auto'" [reorderable]="true" [limit]="10">
+      [rowHeight]="'auto'" [reorderable]="true" [limit]="10" [messages]="messages" >
       <ngx-datatable-column name="Código" prop="patrimonyId"></ngx-datatable-column>
       <ngx-datatable-column name="Descrição" prop="description"></ngx-datatable-column>
       <ngx-datatable-column name="Data de Baixa">

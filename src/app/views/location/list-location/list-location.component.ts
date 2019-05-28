@@ -14,7 +14,10 @@ export class ListLocationComponent implements OnInit {
   allRows: Location[] = [];
   rows: Location[] = [];
   descriptionFilter: string;
-
+  messages = {
+    'emptyMessage': 'Nenhum registro encontrado',
+    'totalMessage': 'total'
+  };
   constructor(
     public locationService: LocationService,
     private router: Router,
