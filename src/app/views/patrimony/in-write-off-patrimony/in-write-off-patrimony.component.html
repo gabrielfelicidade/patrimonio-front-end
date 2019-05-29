@@ -11,14 +11,14 @@
 </div>
   <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
       [rowHeight]="'auto'" [reorderable]="true" [limit]="10" [messages]="messages">
-      <ngx-datatable-column name="Selecionado" [sortable]="false">
+      <ngx-datatable-column name="Selecionado" [sortable]="false" [width]="105">
           <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex">
               <div class="form-check">
                   <input type="checkbox" class="form-check-input" [(ngModel)]="row.chosen">
               </div>
           </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Código" prop="patrimonyId"></ngx-datatable-column>
+      <ngx-datatable-column name="Número do Patrimônio" prop="patrimonyId" [width]="175"></ngx-datatable-column>
       <ngx-datatable-column name="Descrição" prop="description"></ngx-datatable-column>
       <ngx-datatable-column name="Marca" prop="brand"></ngx-datatable-column>
       <ngx-datatable-column name="Localização" prop="location.description"></ngx-datatable-column>

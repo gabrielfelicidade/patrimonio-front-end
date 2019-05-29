@@ -15,7 +15,8 @@ export class WriteOffPatrimonyComponent implements OnInit {
     patrimonyId: '',
     description: '',
     brand: '',
-    locationDescription: ''
+    locationDescription: '',
+    additionalInformation: ''
   };
   messages = {
     'emptyMessage': 'Nenhum registro encontrado',
@@ -41,7 +42,8 @@ export class WriteOffPatrimonyComponent implements OnInit {
         if (element.patrimonyId.toString().includes(this.descriptionFilter.patrimonyId) &&
           element.description.toLowerCase().includes(this.descriptionFilter.description.toLowerCase()) &&
           element.brand.toLowerCase().includes(this.descriptionFilter.brand.toLowerCase()) &&
-          element.location.description.toLowerCase().includes(this.descriptionFilter.locationDescription.toLowerCase())) {
+          element.location.description.toLowerCase().includes(this.descriptionFilter.locationDescription.toLowerCase()) &&
+          element.additionalInformation.toLowerCase().includes(this.descriptionFilter.additionalInformation.toLowerCase())) {
           this.rows.push(element);
         }
       });

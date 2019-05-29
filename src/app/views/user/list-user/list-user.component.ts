@@ -17,6 +17,7 @@ export class ListUserComponent implements OnInit {
     'emptyMessage': 'Nenhum registro encontrado',
     'totalMessage': 'total'
   };
+  
   constructor(
     private userService: UserService,
     private router: Router

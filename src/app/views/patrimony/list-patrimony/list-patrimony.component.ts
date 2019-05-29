@@ -18,6 +18,7 @@ export class ListPatrimonyComponent implements OnInit {
     description: '',
     brand: '',
     locationDescription: '',
+    additionalInformation: '',
     status: 3
   };
   messages = {
@@ -50,6 +51,7 @@ export class ListPatrimonyComponent implements OnInit {
           element.description.toLowerCase().includes(this.descriptionFilter.description.toLowerCase()) &&
           element.brand.toLowerCase().includes(this.descriptionFilter.brand.toLowerCase()) &&
           element.location.description.toLowerCase().includes(this.descriptionFilter.locationDescription.toLowerCase()) &&
+          element.additionalInformation.toLowerCase().includes(this.descriptionFilter.additionalInformation.toLowerCase()) &&
           (this.descriptionFilter.status == 3 || element.status == this.descriptionFilter.status)) {
           this.rows.push(element);
         }
