@@ -11,6 +11,7 @@ import { AcquisitionMethod } from '../../../model/acquisition-method';
 import { CurrencyMaskConfig } from 'ng2-currency-mask/src/currency-mask.config';
 import { CustomValidators } from 'ng2-validation';
 import { PatrimonyStatus } from '../../../constants/patrimony-status.enum';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-new-patrimony',
@@ -41,7 +42,8 @@ export class NewPatrimonyComponent implements OnInit {
     private acquisitionMethodService: AcquisitionMethodService,
     private toastr: ToastrService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient
   ) { }
 
   newPatrimonyForm = this.fb.group({
@@ -242,4 +244,26 @@ export class NewPatrimonyComponent implements OnInit {
     return isValid;
   }
 
+  selectedFile: File = null;
+  
+  onFileSelected(event) {
+    this.selectedFile = <File>event.target.files[0];
+  }
+
+  onUpload() {
+    const fd = new FormData();
+    fd.append('image', this.selectedFile, this.selectedFile.name);
+    this.http.post('ENDEREÇO', fd, {
+      reportProgress: true,
+      observe: 'events'
+    })
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          console.log('Upload Progress: ' + Math.round(event.loaded / event.total * 100) + '%');
+        } else if (event.type === HttpEventType.Response) {
+          console.log(event);
+        }
+      });
+
+  }
 }
