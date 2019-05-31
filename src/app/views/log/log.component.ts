@@ -11,7 +11,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LogComponent implements OnInit {
 
+  allRows: Log[] = [];
   rows: Log[] = [];
+  descriptionFilter = {
+    date: '',
+    interfaceName: '',
+    action: ''
+  };
   messages = {
     'emptyMessage': 'Nenhum registro encontrado',
     'totalMessage': 'total'
@@ -26,10 +32,23 @@ export class LogComponent implements OnInit {
   ngOnInit() {
     this.logService.getAll().subscribe(
       (data) => {
+        this.allRows = Object.assign([], data);
         this.rows = Object.assign([], data);
       }, 
       (err) => {
         this.toastr.error('Erro ao receber os logs!', 'Erro!');
+      });
+  }
+
+  filter() {
+    this.rows = [];
+    this.allRows.forEach(
+      (element: Log) => {
+        if (element.date.toString().includes(this.descriptionFilter.date) &&
+          element.interfaceName.toLowerCase().includes(this.descriptionFilter.interfaceName.toLowerCase()) &&
+          element.action.toLowerCase().includes(this.descriptionFilter.action.toLowerCase())) {
+          this.rows.push(element);
+        }
       });
   }
 

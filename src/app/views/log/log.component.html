@@ -3,6 +3,14 @@
     Consulta de <strong>Logs</strong>
   </div>
   <div class="card-body">
+    <div class="form-inline">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.date"
+        placeholder="Data">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.interfaceName"
+        placeholder="Tela">
+      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.action" placeholder="Ação">
+      <button type="submit" class="btn btn-primary mb-4" (click)="filter()">Filtrar</button>
+    </div>
     <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
       [rowHeight]="'auto'" [reorderable]="true" [limit]="10" [messages]="messages">
       <ngx-datatable-column name="Código" prop="logId" [width]="30"></ngx-datatable-column>

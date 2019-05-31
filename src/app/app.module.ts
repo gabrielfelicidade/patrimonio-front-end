@@ -32,7 +32,7 @@ import {
   AppHeaderModule,
   AppFooterModule,
   AppSidebarModule,
-  HttpClientModule,
+  //HttpClientModule,
 } from '@coreui/angular';
 
 // Import routing module
@@ -46,7 +46,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ListLocationComponent } from './views/location/list-location/list-location.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { NewLocationComponent } from './views/location/new-location/new-location.component';
-import { HttpClientModule } from '@angular/common/http';
 import { ListAcquisitionMethodComponent } from './views/acquisition-method/list-acquisition-method/list-acquisition-method.component';
 import { ListPatrimonyComponent } from './views/patrimony/list-patrimony/list-patrimony.component';
 import { ToastrModule } from 'ngx-toastr';
