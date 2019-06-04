@@ -16,7 +16,6 @@ export class LogComponent implements OnInit {
   descriptionFilter = {
     date: '',
     interfaceName: '',
-    action: ''
   };
   messages = {
     'emptyMessage': 'Nenhum registro encontrado',
@@ -45,8 +44,7 @@ export class LogComponent implements OnInit {
     this.allRows.forEach(
       (element: Log) => {
         if (element.date.toString().includes(this.descriptionFilter.date) &&
-          element.interfaceName.toLowerCase().includes(this.descriptionFilter.interfaceName.toLowerCase()) &&
-          element.action.toLowerCase().includes(this.descriptionFilter.action.toLowerCase())) {
+          element.interfaceName.toLowerCase().includes(this.descriptionFilter.interfaceName.toLowerCase())) {
           this.rows.push(element);
         }
       });

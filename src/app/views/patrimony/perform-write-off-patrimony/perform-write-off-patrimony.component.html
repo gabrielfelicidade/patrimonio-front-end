@@ -8,8 +8,6 @@
                 placeholder="Número do Patrimônio">
             <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.description"
                 placeholder="Descrição">
-            <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.brand"
-                placeholder="Marca">
             <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.locationDescription"
                 placeholder="Localização">
             <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.additionalInformation"
@@ -29,17 +27,10 @@
                     </div>
                 </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Número do Patrimônio" prop="patrimonyId"></ngx-datatable-column>
+            <ngx-datatable-column name="Nº Patrimônio" prop="patrimonyId"></ngx-datatable-column>
             <ngx-datatable-column name="Descrição" prop="description"></ngx-datatable-column>
-            <ngx-datatable-column name="Marca" prop="brand"></ngx-datatable-column>
             <ngx-datatable-column name="Localização" prop="location.description"></ngx-datatable-column>
-            <ngx-datatable-column name="Modelo" prop="model" [width]="80"></ngx-datatable-column>
             <ngx-datatable-column name="Informações Adicionais" prop="additionalInformation"></ngx-datatable-column>
-            <ngx-datatable-column name="Visualizar" [sortable]="false">
-                <ng-template ngx-datatable-cell-template let-row="row">
-                    <a [routerLink]="['/patrimonios', row.patrimonyId]"><i class="icon-eye"></i></a>
-                </ng-template>
-            </ngx-datatable-column>
         </ngx-datatable>
     </div>
 </div>

@@ -41,7 +41,7 @@ export const navItems: NavData[] = [
     icon: 'icon-briefcase',
     children: [
       {
-        name: 'Consulta',
+        name: 'Cadastro',
         url: '/patrimonios/consulta',
         icon: 'cui-arrow-right'
       },

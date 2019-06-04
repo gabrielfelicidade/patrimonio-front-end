@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -32,7 +31,6 @@ import {
   AppHeaderModule,
   AppFooterModule,
   AppSidebarModule,
-  //HttpClientModule,
 } from '@coreui/angular';
 
 // Import routing module
@@ -62,7 +60,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CustomFormsModule } from 'ng2-validation'
 import { WriteOffPatrimonyComponent } from './views/patrimony/write-off-patrimony/write-off-patrimony.component';
 import { PerformWriteOffPatrimonyComponent } from './views/patrimony/perform-write-off-patrimony/perform-write-off-patrimony.component';
-
+import { HttpClientModule } from '@angular/common/http';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { InWriteOffPatrimonyComponent } from './views/patrimony/in-write-off-patrimony/in-write-off-patrimony.component';
 import { ChangePasswordComponent } from './views/user/change-password/change-password.component';

@@ -159,15 +159,11 @@ export class NewUserComponent implements OnInit {
     this.newUserForm.updateValueAndValidity();
     let isValid: boolean = true;
 
-    if (controls.name.errors) {
+    if (controls.password.value != controls.confirmPassword.value) {
       isValid = false;
-      controls.name.markAsTouched();
-      this.toastr.error('Um nome de 8 à 50 caracteres deve ser informado.', 'Erro!');
-    }
-    if (controls.username.errors) {
-      isValid = false;
-      controls.username.markAsTouched();
-      this.toastr.error('Um nome de usuário de 6 à 30 caracteres deve ser informado.', 'Erro!');
+      controls.password.markAsTouched();
+      controls.confirmPassword.markAsTouched();
+      this.toastr.error('As senhas devem coincidir.', 'Erro!');
     }
     if (controls.password.errors) {
       isValid = false;
@@ -179,11 +175,15 @@ export class NewUserComponent implements OnInit {
       controls.userlevel.markAsTouched();
       this.toastr.error('Um nível de usuário deve ser escolhido.', 'Erro!');
     }
-    if (controls.password.value != controls.confirmPassword.value) {
+    if (controls.username.errors) {
       isValid = false;
-      controls.password.markAsTouched();
-      controls.confirmPassword.markAsTouched();
-      this.toastr.error('As senhas devem coincidir.', 'Erro!');
+      controls.username.markAsTouched();
+      this.toastr.error('Um usuário de 6 à 30 caracteres deve ser informado.', 'Erro!');
+    }
+    if (controls.name.errors) {
+      isValid = false;
+      controls.name.markAsTouched();
+      this.toastr.error('Um nome de 8 à 50 caracteres deve ser informado.', 'Erro!');
     }
 
     return isValid;

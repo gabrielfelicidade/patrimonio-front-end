@@ -11,7 +11,6 @@ import { AcquisitionMethod } from '../../../model/acquisition-method';
 import { CurrencyMaskConfig } from 'ng2-currency-mask/src/currency-mask.config';
 import { CustomValidators } from 'ng2-validation';
 import { PatrimonyStatus } from '../../../constants/patrimony-status.enum';
-import { HttpClient, HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-new-patrimony',
@@ -42,8 +41,7 @@ export class NewPatrimonyComponent implements OnInit {
     private acquisitionMethodService: AcquisitionMethodService,
     private toastr: ToastrService,
     private router: Router,
-    private route: ActivatedRoute,
-    private http: HttpClient
+    private route: ActivatedRoute
   ) { }
 
   newPatrimonyForm = this.fb.group({
@@ -185,85 +183,62 @@ export class NewPatrimonyComponent implements OnInit {
     this.newPatrimonyForm.updateValueAndValidity();
     let isValid: boolean = true;
 
-    if (controls.patrimonyId.errors) {
+    if (controls.acquisitionMethodId.errors) {
       isValid = false;
-      controls.patrimonyId.markAsTouched();
-      this.toastr.error('Um número de patrimônio deve ser informado.', 'Erro!');
-    }
-    if (controls.acquisitionProcessId.errors) {
-      isValid = false;
-      controls.acquisitionProcessId.markAsTouched();
-      this.toastr.error('Um número de processo de aquisição de 1 à 20 caracteres deve ser informado.', 'Erro!');
-    }
-    if (controls.serialNumber.errors) {
-      isValid = false;
-      controls.serialNumber.markAsTouched();
-      this.toastr.error('Um número de série de 1 à 15 caracteres deve ser informado.', 'Erro!');
-    }
-    if (controls.description.errors) {
-      isValid = false;
-      controls.description.markAsTouched();
-      this.toastr.error('Uma descrição de 1 à 100 caracteres deve ser informado.', 'Erro!');
-    }
-    if (controls.commercialInvoice.errors) {
-      isValid = false;
-      controls.commercialInvoice.markAsTouched();
-      this.toastr.error('Uma nota fiscal de 1 à 20 caracteres deve ser informada.', 'Erro!');
-    }
-    if (controls.model.errors) {
-      isValid = false;
-      controls.model.markAsTouched();
-      this.toastr.error('Um modelo de 1 à 50 caracteres deve ser informado.', 'Erro!');
-    }
-    if (controls.brand.errors) {
-      isValid = false;
-      controls.brand.markAsTouched();
-      this.toastr.error('Uma marca de 1 à 50 caracteres deve ser informada.', 'Erro!');
-    }
-    if (controls.additionalInformation.errors) {
-      isValid = false;
-      controls.additionalInformation.markAsTouched();
-      this.toastr.error('As informações adicionais devem conter de 1 à 200 caracteres.', 'Erro!');
-    }
-    if (controls.value.errors) {
-      isValid = false;
-      controls.value.markAsTouched();
-      this.toastr.error('Um valor igual ou superior a R$ 1,00 deve ser informado.', 'Erro!');
+      controls.acquisitionMethodId.markAsTouched();
+      this.toastr.error('Um método de aquisição deve ser selecionado.', 'Erro!');
     }
     if (controls.locationId.errors) {
       isValid = false;
       controls.locationId.markAsTouched();
       this.toastr.error('Uma localização deve ser selecionada.', 'Erro!');
     }
-    if (controls.acquisitionMethodId.errors) {
+    if (controls.value.errors) {
       isValid = false;
-      controls.acquisitionMethodId.markAsTouched();
-      this.toastr.error('Um método de aquisição deve ser selecionado.', 'Erro!');
+      controls.value.markAsTouched();
+      this.toastr.error('Um valor igual ou superior a R$ 1,00 deve ser informado.', 'Erro!');
     }
-
+    if (controls.additionalInformation.errors) {
+      isValid = false;
+      controls.additionalInformation.markAsTouched();
+      this.toastr.error('As informações adicionais devem conter de 1 à 200 caracteres.', 'Erro!');
+    }
+    if (controls.brand.errors) {
+      isValid = false;
+      controls.brand.markAsTouched();
+      this.toastr.error('Uma marca de 1 à 50 caracteres deve ser informada.', 'Erro!');
+    }
+    if (controls.model.errors) {
+      isValid = false;
+      controls.model.markAsTouched();
+      this.toastr.error('Um modelo de 1 à 50 caracteres deve ser informado.', 'Erro!');
+    }
+    if (controls.commercialInvoice.errors) {
+      isValid = false;
+      controls.commercialInvoice.markAsTouched();
+      this.toastr.error('Uma nota fiscal de 1 à 20 caracteres deve ser informada.', 'Erro!');
+    }
+    if (controls.description.errors) {
+      isValid = false;
+      controls.description.markAsTouched();
+      this.toastr.error('Uma descrição de 1 à 100 caracteres deve ser informado.', 'Erro!');
+    }
+    if (controls.serialNumber.errors) {
+      isValid = false;
+      controls.serialNumber.markAsTouched();
+      this.toastr.error('Um número de série de 1 à 15 caracteres deve ser informado.', 'Erro!');
+    }
+    if (controls.acquisitionProcessId.errors) {
+      isValid = false;
+      controls.acquisitionProcessId.markAsTouched();
+      this.toastr.error('Um número de processo de aquisição de 1 à 20 caracteres deve ser informado.', 'Erro!');
+    }
+    if (controls.patrimonyId.errors) {
+      isValid = false;
+      controls.patrimonyId.markAsTouched();
+      this.toastr.error('Um número de patrimônio deve ser informado.', 'Erro!');
+    }
     return isValid;
   }
-
-  selectedFile: File = null;
   
-  onFileSelected(event) {
-    this.selectedFile = <File>event.target.files[0];
-  }
-
-  onUpload() {
-    const fd = new FormData();
-    fd.append('image', this.selectedFile, this.selectedFile.name);
-    this.http.post('ENDEREÇO', fd, {
-      reportProgress: true,
-      observe: 'events'
-    })
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          console.log('Upload Progress: ' + Math.round(event.loaded / event.total * 100) + '%');
-        } else if (event.type === HttpEventType.Response) {
-          console.log(event);
-        }
-      });
-
-  }
 }

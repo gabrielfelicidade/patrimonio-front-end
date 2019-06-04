@@ -8,7 +8,6 @@
         placeholder="Número do Patrimônio">
       <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.description"
         placeholder="Descrição">
-      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.brand" placeholder="Marca">
       <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.locationDescription"
         placeholder="Localização">
       <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.additionalInformation"
@@ -16,7 +15,7 @@
       <select class="custom-select mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.status">
         <option value="3">Ambos</option>
         <option value="2">Ativos</option>
-        <option value="1">Em Processo</option>
+        <option value="1">Em Processo de Baixa</option>
       </select>
       <button type="submit" class="btn btn-primary mb-4" (click)="filter()">Filtrar</button>
     </div>
@@ -25,16 +24,14 @@
     </div>
     <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
       [rowHeight]="'auto'" [reorderable]="true" [limit]="10" [messages]="messages">
-      <ngx-datatable-column name="Número do Patrimônio" prop="patrimonyId"></ngx-datatable-column>
+      <ngx-datatable-column name="Nº Patrimônio" prop="patrimonyId"></ngx-datatable-column>
       <ngx-datatable-column name="Descrição" prop="description"></ngx-datatable-column>
-      <ngx-datatable-column name="Marca" prop="brand"></ngx-datatable-column>
       <ngx-datatable-column name="Localização" prop="location.description"></ngx-datatable-column>
-      <ngx-datatable-column name="Modelo" prop="model" [width]="80"></ngx-datatable-column>
       <ngx-datatable-column name="Informações Adicionais" prop="additionalInformation"></ngx-datatable-column>
       <ngx-datatable-column name="Status">
         <ng-template ngx-datatable-cell-template let-row="row">
           <span [ngClass]="{'process': row.status == 1}">
-            {{ row.status == 2 ? 'Ativo' : 'Em Processo' }}
+            {{ row.status == 2 ? 'Ativo' : 'Em Processo de Baixa' }}
           </span>
         </ng-template>
       </ngx-datatable-column>

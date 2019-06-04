@@ -62,16 +62,16 @@ export class ChangePasswordComponent implements OnInit {
     let controls = this.changePasswordForm.controls;
     let isValid: boolean = true;
 
-    if (controls.password.errors) {
-      isValid = false;
-      controls.password.markAsTouched();
-      this.toastr.error('Uma senha de 6 à 60 caracteres deve ser informada.', 'Erro!');
-    }
     if (controls.password.value != controls.confirmPassword.value) {
       isValid = false;
       controls.password.markAsTouched();
       controls.confirmPassword.markAsTouched();
       this.toastr.error('As senhas devem coincidir.', 'Erro!');
+    }
+    if (controls.password.errors) {
+      isValid = false;
+      controls.password.markAsTouched();
+      this.toastr.error('Uma senha de 6 à 60 caracteres deve ser informada.', 'Erro!');
     }
 
     return isValid;

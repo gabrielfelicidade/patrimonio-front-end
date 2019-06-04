@@ -18,7 +18,6 @@ export class PerformWriteOffPatrimonyComponent implements OnInit {
     descriptionFilter = {
         patrimonyId: '',
         description: '',
-        brand: '',
         locationDescription: '',
         additionalInformation: ''
     };
@@ -43,7 +42,6 @@ export class PerformWriteOffPatrimonyComponent implements OnInit {
             (element: Patrimony) => {
                 if (element.patrimonyId.toString().includes(this.descriptionFilter.patrimonyId) &&
                     element.description.toLowerCase().includes(this.descriptionFilter.description.toLowerCase()) &&
-                    element.brand.toLowerCase().includes(this.descriptionFilter.brand.toLowerCase()) &&
                     element.location.description.toLowerCase().includes(this.descriptionFilter.locationDescription.toLowerCase()) &&
                     element.additionalInformation.toLowerCase().includes(this.descriptionFilter.additionalInformation.toLowerCase())) {
                     this.rows.push(element);
