@@ -1,7 +1,7 @@
 import { PatrimonyStatus } from './patrimony-status.enum';
 
 export class ApiConfig {
-    public static API_ENDPOINT = 'http://localhost:8090/';
+    public static API_ENDPOINT = 'http://localhost:8080/patrimonio-back-end/';
 
     public static LOCATIONS = {
         Base: ApiConfig.API_ENDPOINT + 'locations'

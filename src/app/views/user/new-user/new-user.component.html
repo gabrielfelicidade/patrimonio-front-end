@@ -39,11 +39,7 @@
         <div class="col-4">
           <div class="form-group">
             <label>Senha</label>
-            <input type="password" class="form-control" formControlName="password" placeholder="Senha"
-              [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-            <div *ngIf="!!submitted && !!f.password.errors" class="invalid-feedback">
-              <div *ngIf="!!f.confirmPassword.errors.mustMatch"></div>
-            </div>
+            <input type="password" class="form-control" formControlName="password" placeholder="Senha"/>
           </div>
         </div>
       </div>
@@ -51,11 +47,7 @@
         <div class="col-4">
           <div class="form-group">
             <label>Confirme a Senha</label>
-            <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirme a Senha"
-              [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
-            <div *ngIf="!!submitted && !!f.confirmPassword.errors" class="invalid-feedback">
-              <div *ngIf="!!f.confirmPassword.errors.mustMatch">Senhas Diferentes</div>
-            </div>
+            <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirme a Senha"/>
           </div>
         </div>
       </div>
