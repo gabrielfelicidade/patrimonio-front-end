@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PatrimonyService } from '../../../services/patrimony/patrimony.service';
 import { Patrimony } from '../../../model/patrimony';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-list-patrimony',
@@ -24,11 +25,14 @@ export class ListPatrimonyComponent implements OnInit {
     'emptyMessage': 'Nenhum registro encontrado',
     'totalMessage': 'total'
   };
+  canEdit: boolean;
 
   constructor(
     public patrimonyService: PatrimonyService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public jwtHelper: JwtHelperService,
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -40,6 +44,8 @@ export class ListPatrimonyComponent implements OnInit {
       (err) => {
         this.toastr.error('Erro ao receber os patrimônios!', 'Erro!');
       });
+    let decodedToken = this.jwtHelper.decodeToken(localStorage.getItem('token'));
+    this.canEdit = decodedToken.userlevel >= this.route.snapshot.data.canEdit;
   }
 
   filter() {

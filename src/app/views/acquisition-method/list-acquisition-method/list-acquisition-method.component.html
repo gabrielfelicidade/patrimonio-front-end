@@ -8,7 +8,7 @@
       <button type="submit" class="btn btn-primary mb-4" (click)="filter()">Filtrar</button>
     </div>
     <div class="form-inline">
-      <button type="submit" class="btn btn-primary mb-4" (click)="goToNew()">Novo</button>
+      <button type="submit" class="btn btn-primary mb-4" [disabled]="!canEdit" (click)="goToNew()">Novo</button>
     </div>
     <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
       [rowHeight]="'auto'" [reorderable]="true" [limit]="10"  [messages]="messages">
@@ -16,7 +16,7 @@
       <ngx-datatable-column name="Descrição" prop="description"></ngx-datatable-column>
       <ngx-datatable-column name="Visualizar" [sortable]="false">
         <ng-template ngx-datatable-cell-template let-row="row">
-          <a [routerLink]="['/metodos-aquisicao', row.acquisitionMethodId]"><i class="icon-eye"></i></a>
+          <a [routerLink]="canEdit ? ['/metodos-aquisicao', row.acquisitionMethodId] : []"><i class="icon-eye"></i></a>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>

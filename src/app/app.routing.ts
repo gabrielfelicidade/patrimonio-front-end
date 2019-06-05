@@ -60,7 +60,8 @@ export const routes: Routes = [
         component: ListPatrimonyComponent,
         canActivate: [AuthService],
         data: {
-          canSee: UserLevel.Basic
+          canSee: UserLevel.Basic,
+          canEdit: UserLevel.Intermediary
         }
       },
       {
@@ -68,7 +69,8 @@ export const routes: Routes = [
         component: PerformWriteOffPatrimonyComponent,
         canActivate: [AuthService],
         data: {
-          canSee: UserLevel.Basic
+          canSee: UserLevel.Basic,
+          canEdit: UserLevel.Intermediary
         }
       },
       {
@@ -84,7 +86,7 @@ export const routes: Routes = [
         component: NewPatrimonyComponent,
         canActivate: [AuthService],
         data: {
-          canSee: UserLevel.Basic
+          canSee: UserLevel.Intermediary
         }
       },
       {
@@ -92,7 +94,7 @@ export const routes: Routes = [
         component: NewPatrimonyComponent,
         canActivate: [AuthService],
         data: {
-          canSee: UserLevel.Basic
+          canSee: UserLevel.Intermediary
         }
       },
       {
@@ -104,7 +106,8 @@ export const routes: Routes = [
         component: ListLocationComponent,
         canActivate: [AuthService],
         data: {
-          canSee: UserLevel.Basic
+          canSee: UserLevel.Basic,
+          canEdit: UserLevel.Intermediary
         }
       },
       {
@@ -112,7 +115,7 @@ export const routes: Routes = [
         component: NewLocationComponent,
         canActivate: [AuthService],
         data: {
-          canSee: UserLevel.Basic
+          canSee: UserLevel.Intermediary
         }
       },
       {
@@ -120,7 +123,7 @@ export const routes: Routes = [
         component: NewLocationComponent,
         canActivate: [AuthService],
         data: {
-          canSee: UserLevel.Basic
+          canSee: UserLevel.Intermediary
         }
       },
       {
@@ -132,7 +135,8 @@ export const routes: Routes = [
         component: ListAcquisitionMethodComponent,
         canActivate: [AuthService],
         data: {
-          canSee: UserLevel.Basic
+          canSee: UserLevel.Basic,
+          canEdit: UserLevel.Intermediary
         }
       },
       {
@@ -140,7 +144,7 @@ export const routes: Routes = [
         component: NewAcquisitionMethodComponent,
         canActivate: [AuthService],
         data: {
-          canSee: UserLevel.Basic
+          canSee: UserLevel.Intermediary
         }
       },
       {
@@ -148,7 +152,7 @@ export const routes: Routes = [
         component: NewAcquisitionMethodComponent,
         canActivate: [AuthService],
         data: {
-          canSee: UserLevel.Basic
+          canSee: UserLevel.Intermediary
         }
       },
       {
@@ -180,14 +184,6 @@ export const routes: Routes = [
         }
       },
       {
-        path: 'sair',
-        component: LogoutComponent,
-        canActivate: [AuthService],
-        data: {
-          canSee: UserLevel.Basic
-        }
-      },
-      {
         path: 'alterar-senha',
         component: ChangePasswordComponent,
         canActivate: [AuthService],
@@ -201,6 +197,14 @@ export const routes: Routes = [
         canActivate: [AuthService],
         data: {
           canSee: UserLevel.Administrator
+        }
+      },
+      {
+        path: 'sair',
+        component: LogoutComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Basic
         }
       },
     ]

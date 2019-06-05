@@ -15,8 +15,8 @@
             <button type="submit" class="btn btn-primary mb-4" (click)="filter()">Filtrar</button>
         </div>
         <div class="form-inline">
-            <button type="submit" class="btn btn-primary mb-4" (click)="exportToExcel()">Exportar</button>
-            <button type="submit" class="btn btn-primary mb-4 ml-2" (click)="writeOff()">Baixar Patrimônios</button>
+            <button type="submit" class="btn btn-primary mb-4" [disabled]="!canEdit" (click)="exportToExcel()">Exportar</button>
+            <button type="submit" class="btn btn-primary mb-4 ml-2" [disabled]="!canEdit" (click)="writeOff()">Baixar Patrimônios</button>
         </div>
         <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
             [rowHeight]="'auto'" [reorderable]="true" [limit]="10" [messages]="messages">

@@ -5,6 +5,8 @@ import { saveAs } from 'file-saver';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { InWriteOffPatrimonyComponent } from '../in-write-off-patrimony/in-write-off-patrimony.component';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
     selector: 'app-perform-write-off-patrimony',
@@ -24,16 +26,21 @@ export class PerformWriteOffPatrimonyComponent implements OnInit {
     messages = {
         'emptyMessage': 'Nenhum registro encontrado',
         'totalMessage': 'total'
-      };
+    };
+    canEdit: boolean;
 
     constructor(
         public patrimonyService: PatrimonyService,
         private modalService: NgbModal,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        public jwtHelper: JwtHelperService,
+        public route: ActivatedRoute
     ) { }
 
     ngOnInit() {
         this.receiveDataFromApi();
+        let decodedToken = this.jwtHelper.decodeToken(localStorage.getItem('token'));
+        this.canEdit = decodedToken.userlevel >= this.route.snapshot.data.canEdit;
     }
 
     filter() {
@@ -51,7 +58,7 @@ export class PerformWriteOffPatrimonyComponent implements OnInit {
 
     exportToExcel() {
         let list: Patrimony[] = this.allRows.filter(patrimony => patrimony.chosen);
-        if (list.length > 0) {
+        if (list.length > 0 && this.canEdit) {
             this.patrimonyService.exportToExcel(list).subscribe(
                 (data) => {
                     saveAs(data, 'export.xlsx');
@@ -65,6 +72,7 @@ export class PerformWriteOffPatrimonyComponent implements OnInit {
     }
 
     writeOff() {
+        if(this.canEdit){
         const modalRef = this.modalService.open(InWriteOffPatrimonyComponent, { size: 'lg' });
         modalRef.componentInstance.passEntry.subscribe(
             (data: boolean) => {
@@ -72,6 +80,7 @@ export class PerformWriteOffPatrimonyComponent implements OnInit {
                     this.receiveDataFromApi();
                 }
             });
+        }
     }
 
     receiveDataFromApi() {

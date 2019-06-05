@@ -46,12 +46,10 @@ export class NewUserComponent implements OnInit {
       Validators.maxLength(30)
     ])],
     password: ['', Validators.compose([
-      Validators.required,
       Validators.minLength(6),
       Validators.maxLength(60)
     ])],
     confirmPassword: ['', Validators.compose([
-      Validators.required,
       Validators.minLength(6),
       Validators.maxLength(60)
     ])],
@@ -81,7 +79,7 @@ export class NewUserComponent implements OnInit {
           });
           this.user = Object.assign({}, data);
           this.username = data.username;
-          if(this.userId == 1){
+          if (this.userId == 1) {
             let controls = this.newUserForm.controls;
             controls.name.disable();
             controls.username.disable();
@@ -94,6 +92,18 @@ export class NewUserComponent implements OnInit {
           this.cancel();
           return;
         });
+    } else {
+      let controls = this.newUserForm.controls;
+      controls.password.setValidators(Validators.compose([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(60)
+      ]));
+      controls.confirmPassword.setValidators(Validators.compose([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(60)
+      ]));
     }
   }
 
@@ -103,6 +113,9 @@ export class NewUserComponent implements OnInit {
       obj.userId = this.userId ? this.userId : null;
 
       if (this.userId) {
+        if (obj.password == '') {
+          delete obj.password;
+        }
         this.userService.update(obj).subscribe(
           (data) => {
             this.toastr.success('Usuário alterado com sucesso!', 'Sucesso!');
@@ -121,11 +134,11 @@ export class NewUserComponent implements OnInit {
             this.toastr.error('Erro ao inserir o usuário!', 'Erro!');
           });
       }
-      
+
       let helper = new JwtHelperService();
       let decodedToken = helper.decodeToken(localStorage.getItem('token'));
-      
-      if(this.username == decodedToken.sub){
+
+      if (this.username == decodedToken.sub) {
         this.router.navigate(['sair']);
       }
     }

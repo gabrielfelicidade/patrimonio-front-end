@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AcquisitionMethodService } from '../../../services/acquisition-method/acquisition-method.service';
 import { AcquisitionMethod } from '../../../model/acquisition-method';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-list-acquisition-method',
@@ -18,11 +19,14 @@ export class ListAcquisitionMethodComponent implements OnInit {
     'emptyMessage': 'Nenhum registro encontrado',
     'totalMessage': 'total'
   };
+  canEdit: boolean;
 
   constructor(
     public acquisitionMethodService: AcquisitionMethodService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    public jwtHelper: JwtHelperService,
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -34,6 +38,8 @@ export class ListAcquisitionMethodComponent implements OnInit {
       (err) => {
         this.toastr.error('Erro ao receber os métodos de aquisição!', 'Erro!');
       });
+    let decodedToken = this.jwtHelper.decodeToken(localStorage.getItem('token'));
+    this.canEdit = decodedToken.userlevel >= this.route.snapshot.data.canEdit;
   }
 
   filter() {

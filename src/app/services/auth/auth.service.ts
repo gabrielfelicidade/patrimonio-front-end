@@ -3,6 +3,7 @@ import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
 import { ApiConfig } from '../../constants/api.config';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class AuthService {
     public router: Router,
     public httpClient: HttpClient,
     public jwtHelper: JwtHelperService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private toastr: ToastrService
   ) { }
 
   public logIn(username: string, password: string) {
@@ -25,6 +27,7 @@ export class AuthService {
     if (token && !this.jwtHelper.isTokenExpired(token)) {
       let decodedToken = this.jwtHelper.decodeToken(token);
       if(decodedToken.userlevel < route.data.canSee){
+        this.toastr.error('Você não tem permissão para acessar a página!', 'Erro!');
         this.router.navigate(['home']);
         return false;
       }
