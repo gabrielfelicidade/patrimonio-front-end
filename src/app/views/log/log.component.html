@@ -6,14 +6,25 @@
     <div class="form-inline">
       <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.date"
         placeholder="Data">
-      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.interfaceName"
-        placeholder="Tela">
+      <select class="custom-select mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.interfaceName" placeholder="Tela">
+        <option value="">Todas as Telas</option>
+        <option value="Cadastro de Patrimônios">Cadastro de Patrimônios</option>
+        <option value="Edição de Patrimônios">Edição de Patrimônios</option>
+        <option value="Baixa de Patrimônios">Baixa de Patrimônios</option>
+        <option value="Cadastro de Localizações">Cadastro de Localizações</option>
+        <option value="Edição de Localizações">Edição de Localizações</option>
+        <option value="Cadastro de Métodos de Aquisição">Cadastro de Métodos de Aquisição</option>
+        <option value="Edição de Métodos de Aquisição">Edição de Métodos de Aquisição</option>
+        <option value="Cadastro de Usuários">Cadastro de Usuários</option>
+        <option value="Edição de Usuários">Edição de Usuários</option>
+        <option value="Altera Senha">Altera Senha</option>
+      </select>
       <button type="submit" class="btn btn-primary mb-4" (click)="filter()">Filtrar</button>
     </div>
-    <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+    <ngx-datatable class="material" [sorts]="[{prop: 'date', dir: 'desc'}]" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
       [rowHeight]="'auto'" [reorderable]="true" [limit]="10" [messages]="messages">
       <ngx-datatable-column name="Código" prop="logId" [width]="30"></ngx-datatable-column>
-      <ngx-datatable-column name="Data">
+      <ngx-datatable-column name="Data" prop="date">
         <ng-template ngx-datatable-cell-template let-row="row">
           {{ row.date | date: 'dd/MM/yyyy HH:mm:ss' }}
         </ng-template>
