@@ -52,7 +52,10 @@ export class NewLocationComponent implements OnInit {
           }
         },
         (err) => {
-          this.toastr.error('Localização não encontrada!', 'Erro!');
+          if (err.error.status == 404)
+            this.toastr.error(err.error.detail, 'Erro!');
+          else
+            this.toastr.error('Localização não encontrada!', 'Erro!');
           this.cancel();
           return;
         });
@@ -71,7 +74,10 @@ export class NewLocationComponent implements OnInit {
             this.cancel();
           },
           (err) => {
-            this.toastr.error('Não foi possível alterar a Localização!', 'Erro!');
+            if (err.error.status == 400)
+              this.toastr.error(err.error.detail, 'Erro!');
+            else
+              this.toastr.error('Erro ao alterar a Localização!', 'Erro!');
           });
       } else {
         this.locationService.insert(obj).subscribe(
@@ -80,7 +86,10 @@ export class NewLocationComponent implements OnInit {
             this.cancel();
           },
           (err) => {
-            this.toastr.error('Não foi possível inserir a Localização!', 'Erro!');
+            if (err.error.status == 400)
+              this.toastr.error(err.error.detail, 'Erro!');
+            else
+              this.toastr.error('Erro ao inserir a Localização!', 'Erro!');
           });
       }
     }
@@ -97,7 +106,10 @@ export class NewLocationComponent implements OnInit {
               this.cancel();
             },
             (err) => {
-              this.toastr.error('Não foi possível excluir a Localização!', 'Erro!');
+              if (err.error.status == 404)
+                this.toastr.error(err.error.detail, 'Erro!');
+              else
+                this.toastr.error('Não foi possível excluir a Localização!', 'Erro!');
             });
         });
     }

@@ -88,7 +88,10 @@ export class NewUserComponent implements OnInit {
           }
         },
         (err) => {
-          this.toastr.error('Usuário não encontrado!', 'Erro!');
+          if (err.error.status == 404)
+            this.toastr.error(err.error.detail, 'Erro!');
+          else
+            this.toastr.error('Usuário não encontrado!', 'Erro!');
           this.cancel();
           return;
         });
@@ -122,7 +125,10 @@ export class NewUserComponent implements OnInit {
             this.cancel();
           },
           (err) => {
-            this.toastr.error('Erro ao alterar o usuário!', 'Erro!');
+            if (err.error.status == 400)
+              this.toastr.error(err.error.detail, 'Erro!');
+            else
+              this.toastr.error('Erro ao alterar o Usuário!', 'Erro!');
           });
       } else {
         this.userService.insert(obj).subscribe(
@@ -131,7 +137,10 @@ export class NewUserComponent implements OnInit {
             this.cancel();
           },
           (err) => {
-            this.toastr.error('Erro ao inserir o usuário!', 'Erro!');
+            if (err.error.status == 400)
+              this.toastr.error(err.error.detail, 'Erro!');
+            else
+              this.toastr.error('Erro ao inserir o Usuário!', 'Erro!');
           });
       }
 
@@ -155,7 +164,10 @@ export class NewUserComponent implements OnInit {
               this.cancel();
             },
             (err) => {
-              this.toastr.error('Erro ao excluir o usuário!', 'Erro!');
+              if (err.error.status == 404)
+                this.toastr.error(err.error.detail, 'Erro!');
+              else
+                this.toastr.error('Não foi possível excluir o Usuário!', 'Erro!');
             });
         });
     }
@@ -198,9 +210,7 @@ export class NewUserComponent implements OnInit {
       controls.name.markAsTouched();
       this.toastr.error('Um nome de 8 à 50 caracteres deve ser informado.', 'Erro!');
     }
-
     return isValid;
   }
 
 }
-

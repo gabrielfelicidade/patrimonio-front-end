@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Log } from '../../model/log';
 import { LogService } from '../../services/log/log.service';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -24,7 +23,6 @@ export class LogComponent implements OnInit {
   
   constructor(
     public logService: LogService,
-    private router: Router,
     private toastr: ToastrService
   ) { }
 

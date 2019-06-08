@@ -131,7 +131,10 @@ export class NewPatrimonyComponent implements OnInit {
           }
         },
         (err) => {
-          this.toastr.error('Patrimônio não encontrado!', 'Erro!');
+          if (err.error.status == 404)
+            this.toastr.error(err.error.detail, 'Erro!');
+          else
+            this.toastr.error('Patrimônio não encontrado!', 'Erro!');
           this.cancel();
           return;
         });
@@ -152,7 +155,10 @@ export class NewPatrimonyComponent implements OnInit {
             this.cancel();
           },
           (err) => {
-            this.toastr.error('Erro ao alterar o patrimônio!', 'Erro!');
+            if (err.error.status == 400)
+              this.toastr.error(err.error.detail, 'Erro!');
+            else
+              this.toastr.error('Erro ao alterar o Patrimônio!', 'Erro!');
           });
       } else {
         this.patrimonyService.insert(obj).subscribe(
@@ -161,7 +167,10 @@ export class NewPatrimonyComponent implements OnInit {
             this.cancel();
           },
           (err) => {
-            this.toastr.error('Erro ao inserir o patrimônio!', 'Erro!');
+            if (err.error.status == 400)
+              this.toastr.error(err.error.detail, 'Erro!');
+            else
+              this.toastr.error('Erro ao inserir o Patrimônio!', 'Erro!');
           });
       }
     }

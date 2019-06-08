@@ -48,7 +48,10 @@ export class NewAcquisitionMethodComponent implements OnInit {
           }
         },
         (err) => {
-          this.toastr.error('Método de Aquisição não encontrado!', 'Erro!');
+          if (err.error.status == 404)
+            this.toastr.error(err.error.detail, 'Erro!');
+          else
+            this.toastr.error('Método de Aquisição não encontrado!', 'Erro!');
           this.cancel();
           return;
         });
@@ -67,7 +70,10 @@ export class NewAcquisitionMethodComponent implements OnInit {
             this.cancel();
           },
           (err) => {
-            this.toastr.error('Não foi possível alterar o Método de Aquisição!', 'Erro!');
+            if (err.error.status == 400)
+              this.toastr.error(err.error.detail, 'Erro!');
+            else
+              this.toastr.error('Erro ao alterar o Método de Aquisição!', 'Erro!');
           });
       } else {
         this.acquisitionMethodService.insert(obj).subscribe(
@@ -76,7 +82,10 @@ export class NewAcquisitionMethodComponent implements OnInit {
             this.cancel();
           },
           (err) => {
-            this.toastr.error('Não foi possível inserir o Método de Aquisição!', 'Erro!');
+            if (err.error.status == 400)
+              this.toastr.error(err.error.detail, 'Erro!');
+            else
+              this.toastr.error('Erro ao inserir o Método de Aquisição!', 'Erro!');
           });
       }
     }
@@ -93,7 +102,10 @@ export class NewAcquisitionMethodComponent implements OnInit {
               this.cancel();
             },
             (err) => {
-              this.toastr.error('Não foi possível excluir o Método de Aquisição!', 'Erro!');
+              if (err.error.status == 404)
+                this.toastr.error(err.error.detail, 'Erro!');
+              else
+                this.toastr.error('Não foi possível excluir o Método de Aquisição!', 'Erro!');
             });
         });
     }
@@ -114,7 +126,6 @@ export class NewAcquisitionMethodComponent implements OnInit {
       controls.description.markAsTouched();
       this.toastr.error('Uma descrição de 1 à 50 caracteres deve ser informada.', 'Erro!');
     }
-
     return isValid;
   }
 
