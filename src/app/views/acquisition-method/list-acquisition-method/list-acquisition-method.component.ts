@@ -14,7 +14,9 @@ export class ListAcquisitionMethodComponent implements OnInit {
 
   allRows: AcquisitionMethod[] = [];
   rows: AcquisitionMethod[] = [];
-  descriptionFilter: string;
+  descriptionFilter = {
+    description: ''
+  };
   messages = {
     'emptyMessage': 'Nenhum registro encontrado',
     'totalMessage': 'total'
@@ -46,7 +48,7 @@ export class ListAcquisitionMethodComponent implements OnInit {
     this.rows = [];
     this.allRows.forEach(
       (element: AcquisitionMethod) => {
-        if (element.description.toLowerCase().includes(this.descriptionFilter.toLowerCase())) {
+        if (element.description.toLowerCase().includes(this.descriptionFilter.description.toLowerCase())) {
           this.rows.push(element);
         }
       });

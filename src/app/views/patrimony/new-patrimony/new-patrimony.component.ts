@@ -177,7 +177,17 @@ export class NewPatrimonyComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['patrimonios/consulta']);
+    if (this.patrimonyId){
+      this.patrimonyService.get(this.patrimonyId).subscribe(
+        (data) => {
+          if (data.status == PatrimonyStatus.WritedOff)
+            this.router.navigate(['patrimonios/baixados']);
+          else
+            this.router.navigate(['patrimonios/consulta']);
+        })
+    }
+    else
+      this.router.navigate(['patrimonios/consulta']);
   }
 
   isFormValid() {

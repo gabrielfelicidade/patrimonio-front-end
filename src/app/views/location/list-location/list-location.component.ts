@@ -14,7 +14,9 @@ export class ListLocationComponent implements OnInit {
 
   allRows: Location[] = [];
   rows: Location[] = [];
-  descriptionFilter: string;
+  descriptionFilter = {
+    description: ''
+  };
   messages = {
     'emptyMessage': 'Nenhum registro encontrado',
     'totalMessage': 'total'
@@ -46,7 +48,7 @@ export class ListLocationComponent implements OnInit {
     this.rows = [];
     this.allRows.forEach(
       (element: Location) => {
-        if (element.description.toLowerCase().includes(this.descriptionFilter.toLowerCase())) {
+        if (element.description.toLowerCase().includes(this.descriptionFilter.description.toLowerCase())) {
           this.rows.push(element);
         }
       });

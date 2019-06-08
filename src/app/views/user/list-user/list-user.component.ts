@@ -12,7 +12,9 @@ export class ListUserComponent implements OnInit {
 
   allRows: User[];
   rows: User[];
-  nameFilter: string;
+  descriptionFilter = {
+    name: ''
+  };
   messages = {
     'emptyMessage': 'Nenhum registro encontrado',
     'totalMessage': 'total'
@@ -35,7 +37,7 @@ export class ListUserComponent implements OnInit {
     this.rows = [];
     this.allRows.forEach(
       (element: User) => {
-        if (element.name.toLowerCase().includes(this.nameFilter.toLowerCase())) {
+        if (element.name.toLowerCase().includes(this.descriptionFilter.name.toLowerCase())) {
           this.rows.push(element);
         }
       });

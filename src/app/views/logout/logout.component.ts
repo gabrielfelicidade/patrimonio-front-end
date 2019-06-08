@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -10,8 +10,7 @@ export class LogoutComponent implements OnInit {
 
   constructor(
     private toastr: ToastrService,
-    private router: Router,
-    private cdr: ChangeDetectorRef
+    private router: Router
   ) {
     localStorage.removeItem('token');
     this.toastr.success('Deslogado com sucesso!', 'Sucesso!');

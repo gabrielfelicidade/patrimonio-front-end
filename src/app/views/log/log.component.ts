@@ -14,7 +14,7 @@ export class LogComponent implements OnInit {
   rows: Log[] = [];
   descriptionFilter = {
     date: '',
-    interfaceName: '',
+    interfaceName: ''
   };
   messages = {
     'emptyMessage': 'Nenhum registro encontrado',
