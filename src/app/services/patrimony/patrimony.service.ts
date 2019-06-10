@@ -38,8 +38,11 @@ export class PatrimonyService implements ICrud<Patrimony> {
   delete(id: number): Observable<Patrimony> {
     throw new Error("Method not implemented.");
   }
-  exportToExcel(patrimonies: Patrimony[]) {
+  exportToExcel(patrimonies: Patrimony[]): Observable<Blob> {
     return this.httpClient.post(ApiConfig.PATRIMONIES.ExportExcel, patrimonies, { responseType: 'blob' });
+  }
+  report(): Observable<Blob> {
+    return this.httpClient.get(ApiConfig.REPORTS.WritedOffByYearAndMonth, { responseType: 'blob' });
   }
   writeOff(patrimonies: Patrimony[]) {
     return this.httpClient.post(ApiConfig.PATRIMONIES.WriteOff, patrimonies);

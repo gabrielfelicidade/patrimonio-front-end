@@ -73,6 +73,23 @@ export const navItems: NavData[] = [
     icon: 'icon-user'
   },
   {
+    name: 'Relatórios',
+    url: '/relatorios',
+    icon: 'cui-chart',
+    children: [
+      {
+        name: 'Patrimônios Baixados',
+        url: '/relatorios/baixados',
+        icon: 'cui-arrow-right'
+      },
+      {
+        name: 'Patrimônios por Localização',
+        url: '/relatorios/localizacoes',
+        icon: 'cui-arrow-right'
+      }
+    ]
+  },
+  {
     name: 'Alterar Senha',
     url: '/alterar-senha',
     icon: 'cui-lock-locked'

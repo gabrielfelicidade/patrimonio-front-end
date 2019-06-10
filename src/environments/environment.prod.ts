@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  API_ENDPOINT: 'http://localhost:8080/patrimonio-back-end/'
 };

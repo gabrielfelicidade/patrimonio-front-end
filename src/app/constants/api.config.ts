@@ -1,7 +1,8 @@
 import { PatrimonyStatus } from './patrimony-status.enum';
+import { environment } from '../../environments/environment'
 
 export class ApiConfig {
-    public static API_ENDPOINT = 'http://localhost:8090/';
+    public static API_ENDPOINT = environment.API_ENDPOINT;
 
     public static LOCATIONS = {
         Base: ApiConfig.API_ENDPOINT + 'locations'
@@ -29,4 +30,9 @@ export class ApiConfig {
     public static LOGIN = ApiConfig.API_ENDPOINT + 'login';
 
     public static LOGS = ApiConfig.API_ENDPOINT + 'logs';
+
+    public static REPORTS = {
+        LocationsPatrimonies: ApiConfig.API_ENDPOINT + 'reports/LocationsPatrimonies',
+        WritedOffByYearAndMonth: ApiConfig.API_ENDPOINT + 'reports/WritedOffByYearAndMonth/'
+    }
 }
