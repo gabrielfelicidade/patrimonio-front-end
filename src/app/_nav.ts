@@ -78,12 +78,12 @@ export const navItems: NavData[] = [
     icon: 'cui-chart',
     children: [
       {
-        name: 'Patrimônios Baixados',
+        name: 'Patr. Baixados',
         url: '/relatorios/baixados',
         icon: 'cui-arrow-right'
       },
       {
-        name: 'Patrimônios por Localização',
+        name: 'Patr. por Localização',
         url: '/relatorios/localizacoes',
         icon: 'cui-arrow-right'
       }
