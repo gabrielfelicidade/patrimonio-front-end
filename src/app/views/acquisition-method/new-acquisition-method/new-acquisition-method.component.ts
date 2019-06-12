@@ -124,7 +124,7 @@ export class NewAcquisitionMethodComponent implements OnInit {
     if (controls.description.errors) {
       isValid = false;
       controls.description.markAsTouched();
-      this.toastr.error('Uma descrição de 1 à 50 caracteres deve ser informada.', 'Erro!');
+      this.toastr.error('Uma descrição de 1 a 50 caracteres deve ser informada.', 'Erro!');
     }
     return isValid;
   }

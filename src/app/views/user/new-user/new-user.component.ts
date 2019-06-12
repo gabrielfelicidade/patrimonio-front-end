@@ -193,7 +193,7 @@ export class NewUserComponent implements OnInit {
     if (controls.password.errors) {
       isValid = false;
       controls.password.markAsTouched();
-      this.toastr.error('Uma senha de 6 à 60 caracteres deve ser informada.', 'Erro!');
+      this.toastr.error('Uma senha de 6 a 60 caracteres deve ser informada.', 'Erro!');
     }
     if (controls.userlevel.errors) {
       isValid = false;
@@ -203,12 +203,12 @@ export class NewUserComponent implements OnInit {
     if (controls.username.errors) {
       isValid = false;
       controls.username.markAsTouched();
-      this.toastr.error('Um usuário de 6 à 30 caracteres deve ser informado.', 'Erro!');
+      this.toastr.error('Um usuário de 6 a 30 caracteres deve ser informado.', 'Erro!');
     }
     if (controls.name.errors) {
       isValid = false;
       controls.name.markAsTouched();
-      this.toastr.error('Um nome de 8 à 50 caracteres deve ser informado.', 'Erro!');
+      this.toastr.error('Um nome de 8 a 50 caracteres deve ser informado.', 'Erro!');
     }
     return isValid;
   }

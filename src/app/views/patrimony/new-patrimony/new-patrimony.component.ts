@@ -220,37 +220,37 @@ export class NewPatrimonyComponent implements OnInit {
     if (controls.additionalInformation.errors) {
       isValid = false;
       controls.additionalInformation.markAsTouched();
-      this.toastr.error('As informações adicionais devem conter de 1 à 200 caracteres.', 'Erro!');
+      this.toastr.error('As informações adicionais devem conter de 1 a 200 caracteres.', 'Erro!');
     }
     if (controls.brand.errors) {
       isValid = false;
       controls.brand.markAsTouched();
-      this.toastr.error('Uma marca de 1 à 50 caracteres deve ser informada.', 'Erro!');
+      this.toastr.error('Uma marca de 1 a 50 caracteres deve ser informada.', 'Erro!');
     }
     if (controls.model.errors) {
       isValid = false;
       controls.model.markAsTouched();
-      this.toastr.error('Um modelo de 1 à 50 caracteres deve ser informado.', 'Erro!');
+      this.toastr.error('Um modelo de 1 a 50 caracteres deve ser informado.', 'Erro!');
     }
     if (controls.commercialInvoice.errors) {
       isValid = false;
       controls.commercialInvoice.markAsTouched();
-      this.toastr.error('Uma nota fiscal de 1 à 20 caracteres deve ser informada.', 'Erro!');
+      this.toastr.error('Uma nota fiscal de 1 a 20 caracteres deve ser informada.', 'Erro!');
     }
     if (controls.description.errors) {
       isValid = false;
       controls.description.markAsTouched();
-      this.toastr.error('Uma descrição de 1 à 100 caracteres deve ser informado.', 'Erro!');
+      this.toastr.error('Uma descrição de 1 a 100 caracteres deve ser informado.', 'Erro!');
     }
     if (controls.serialNumber.errors) {
       isValid = false;
       controls.serialNumber.markAsTouched();
-      this.toastr.error('Um número de série de 1 à 15 caracteres deve ser informado.', 'Erro!');
+      this.toastr.error('Um número de série de 1 a 15 caracteres deve ser informado.', 'Erro!');
     }
     if (controls.acquisitionProcessId.errors) {
       isValid = false;
       controls.acquisitionProcessId.markAsTouched();
-      this.toastr.error('Um número de processo de aquisição de 1 à 20 caracteres deve ser informado.', 'Erro!');
+      this.toastr.error('Um número de processo de aquisição de 1 a 20 caracteres deve ser informado.', 'Erro!');
     }
     if (controls.patrimonyId.errors) {
       isValid = false;
