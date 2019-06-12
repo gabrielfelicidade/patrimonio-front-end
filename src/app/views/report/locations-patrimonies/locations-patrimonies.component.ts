@@ -19,7 +19,7 @@ export class LocationsPatrimoniesComponent implements OnInit {
         let blob = new Blob([obj], {type: 'application/pdf'});
         let reportURL = URL.createObjectURL(blob);
         window.open(reportURL, '_blank');
-        //this.router.navigate(['home']);
+        this.router.navigate(['home']);
       });
   }
 

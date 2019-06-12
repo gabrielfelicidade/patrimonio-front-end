@@ -10,6 +10,8 @@ export class WritedOffPatrimoniesDateComponent implements OnInit {
 
   years: number[] = [];
   months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  selectedYear: number = 0;
+  selectedMonth: number = 0;
 
   constructor(
     private patrimonyService: PatrimonyService
@@ -25,7 +27,12 @@ export class WritedOffPatrimoniesDateComponent implements OnInit {
   }
 
   openReport() {
-    
+    this.patrimonyService.getWritedOffByYearAndMonthReport(this.selectedYear, this.selectedMonth).subscribe(
+      (obj) => {
+        let blob = new Blob([obj], {type: 'application/pdf'});
+        let reportURL = URL.createObjectURL(blob);
+        window.open(reportURL, '_blank');
+      });
   }
 
 }
