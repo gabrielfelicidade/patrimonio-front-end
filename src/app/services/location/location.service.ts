@@ -29,5 +29,8 @@ export class LocationService implements ICrud<Location> {
   delete(id: number): Observable<Location> {
     return this.httpClient.delete<Location>(ApiConfig.LOCATIONS.Base + '/' + id);
   }
+  getLocationsPatrimoniesReport(): Observable<Blob> {
+    return this.httpClient.get(ApiConfig.REPORTS.LocationsPatrimonies, { responseType: 'blob' });
+  }
 
 }

@@ -22,6 +22,8 @@ import { WriteOffPatrimonyComponent } from './views/patrimony/write-off-patrimon
 import { PerformWriteOffPatrimonyComponent } from './views/patrimony/perform-write-off-patrimony/perform-write-off-patrimony.component';
 import { ChangePasswordComponent } from './views/user/change-password/change-password.component';
 import { LogComponent } from './views/log/log.component';
+import { LocationsPatrimoniesComponent } from './views/report/locations-patrimonies/locations-patrimonies.component';
+import { WritedOffPatrimoniesDateComponent } from './views/report/writed-off-patrimonies-date/writed-off-patrimonies-date.component';
 
 export const routes: Routes = [
   {
@@ -178,6 +180,22 @@ export const routes: Routes = [
       {
         path: 'usuarios/:id',
         component: NewUserComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Administrator
+        }
+      },
+      {
+        path: 'relatorios/patrimonios-localizacoes',
+        component: LocationsPatrimoniesComponent,
+        canActivate: [AuthService],
+        data: {
+          canSee: UserLevel.Administrator
+        }
+      },
+      {
+        path: 'relatorios/patrimonios-baixados-data',
+        component: WritedOffPatrimoniesDateComponent,
         canActivate: [AuthService],
         data: {
           canSee: UserLevel.Administrator

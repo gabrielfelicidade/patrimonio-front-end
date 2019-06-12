@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-header">
+    Consulta de <strong>Localizações</strong>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="form-group col-3">
+        <label>Ano</label>
+        <select class="custom-select">
+          <option value="0" disabled hidden selected>Selecione um ano</option>
+          <option *ngFor="let year of years" value="{{ year }}">{{ year }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-3">
+        <label>Mês</label>
+        <select class="custom-select">
+          <option value="0" disabled hidden selected>Selecione um mês</option>
+          <option *ngFor="let month of months; let i = index" value="{{ i + 1 }}">{{ month }}
+          </option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary mb-4" (click)="openReport()">Gerar Relatório</button>
+    </div>
+  </div>
+</div>

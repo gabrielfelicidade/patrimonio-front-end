@@ -79,12 +79,12 @@ export const navItems: NavData[] = [
     children: [
       {
         name: 'Patr. Baixados',
-        url: '/relatorios/baixados',
+        url: '/relatorios/patrimonios-baixados-data',
         icon: 'cui-arrow-right'
       },
       {
         name: 'Patr. por Localização',
-        url: '/relatorios/localizacoes',
+        url: '/relatorios/patrimonios-localizacoes',
         icon: 'cui-arrow-right'
       }
     ]

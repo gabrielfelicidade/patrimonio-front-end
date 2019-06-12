@@ -32,7 +32,8 @@ export class ApiConfig {
     public static LOGS = ApiConfig.API_ENDPOINT + 'logs';
 
     public static REPORTS = {
-        LocationsPatrimonies: ApiConfig.API_ENDPOINT + 'reports/LocationsPatrimonies',
-        WritedOffByYearAndMonth: ApiConfig.API_ENDPOINT + 'reports/WritedOffByYearAndMonth/'
+        LocationsPatrimonies: ApiConfig.API_ENDPOINT + 'reports/locationsPatrimonies',
+        WritedOffByYearAndMonth: ApiConfig.API_ENDPOINT + 'reports/writedOffByYearAndMonth/',
+        GetMinMaxYearWritedOff: ApiConfig.API_ENDPOINT + 'reports/getMinMaxYearWritedOff'
     }
 }

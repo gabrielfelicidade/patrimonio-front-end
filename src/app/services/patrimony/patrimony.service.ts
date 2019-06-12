@@ -41,8 +41,11 @@ export class PatrimonyService implements ICrud<Patrimony> {
   exportToExcel(patrimonies: Patrimony[]): Observable<Blob> {
     return this.httpClient.post(ApiConfig.PATRIMONIES.ExportExcel, patrimonies, { responseType: 'blob' });
   }
-  report(): Observable<Blob> {
-    return this.httpClient.get(ApiConfig.REPORTS.WritedOffByYearAndMonth, { responseType: 'blob' });
+  getWritedOffByYearAndMonthReport(year: number, month: number): Observable<Blob> {
+    return this.httpClient.get(ApiConfig.REPORTS.WritedOffByYearAndMonth + `${year}/${month}`, { responseType: 'blob' });
+  }
+  getMinMaxYearWritedOff(): Observable<any> {
+    return this.httpClient.get(ApiConfig.REPORTS.GetMinMaxYearWritedOff);
   }
   writeOff(patrimonies: Patrimony[]) {
     return this.httpClient.post(ApiConfig.PATRIMONIES.WriteOff, patrimonies);
