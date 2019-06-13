@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PatrimonyService } from '../../../services/patrimony/patrimony.service';
 import { Patrimony } from '../../../model/patrimony';
+import { ActivatedRoute } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-write-off-patrimony',
@@ -21,9 +24,13 @@ export class WriteOffPatrimonyComponent implements OnInit {
     'emptyMessage': 'Nenhum registro encontrado',
     'totalMessage': 'total'
   };
+  canEdit: boolean;
 
   constructor(
-    public patrimonyService: PatrimonyService
+    public patrimonyService: PatrimonyService,
+    private toastr: ToastrService,
+    public jwtHelper: JwtHelperService,
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -31,7 +38,12 @@ export class WriteOffPatrimonyComponent implements OnInit {
       (data) => {
         this.allRows = Object.assign([], data);
         this.rows = Object.assign([], data);
+      }, 
+      (err) => {
+        this.toastr.error('Erro ao receber os patrimônios!', 'Erro!');
       });
+    let decodedToken = this.jwtHelper.decodeToken(localStorage.getItem('token'));
+    this.canEdit = decodedToken.userlevel >= this.route.snapshot.data.canEdit;
   }
 
   filter() {

@@ -27,7 +27,7 @@
       <ngx-datatable-column name="Informações Adicionais" prop="additionalInformation"></ngx-datatable-column>
       <ngx-datatable-column name="Visualizar" [sortable]="false">
         <ng-template ngx-datatable-cell-template let-row="row">
-          <a [routerLink]="['/patrimonios', row.patrimonyId]"><i class="icon-eye"></i></a>
+          <a [routerLink]="canEdit ? ['/patrimonios', row.patrimonyId] : []"><i class="icon-eye"></i></a>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>

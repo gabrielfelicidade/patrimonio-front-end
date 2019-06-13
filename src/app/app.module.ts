@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { LocationStrategy, HashLocationStrategy, registerLocaleData } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -66,6 +66,10 @@ import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.comp
 import { LogComponent } from './views/log/log.component';
 import { LocationsPatrimoniesComponent } from './views/report/locations-patrimonies/locations-patrimonies.component';
 import { WritedOffPatrimoniesDateComponent } from './views/report/writed-off-patrimonies-date/writed-off-patrimonies-date.component';
+import { MyDateRangePickerModule } from 'mydaterangepicker';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -97,7 +101,8 @@ export function tokenGetter() {
     }),
     NgxDatatableModule,
     CustomFormsModule,
-    NgbModalModule
+    NgbModalModule,
+    MyDateRangePickerModule
   ],
   declarations: [
     AppComponent,
@@ -126,11 +131,14 @@ export function tokenGetter() {
   ],
   providers: [{
     provide: LocationStrategy,
-    useClass: HashLocationStrategy
+    useClass: HashLocationStrategy,
   }, {
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptor,
     multi: true
+  }, {
+    provide: LOCALE_ID,
+    useValue: 'pt'
   }],
   bootstrap: [AppComponent],
   entryComponents: [

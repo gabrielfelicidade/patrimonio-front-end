@@ -4,9 +4,9 @@
   </div>
   <div class="card-body">
     <div class="form-inline">
-      <input type="text" class="form-control mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.date"
-        placeholder="Data">
-      <select class="custom-select mb-4 mr-sm-2" [(ngModel)]="descriptionFilter.interfaceName" placeholder="Tela">
+      <my-date-range-picker class="mb-3" name="mydaterange" [options]="myDateRangePickerOptions"
+                    [(ngModel)]="model" required></my-date-range-picker>
+      <select class="custom-select mb-4 ml-2 mr-sm-2" [(ngModel)]="descriptionFilter.interfaceName" placeholder="Tela">
         <option value="">Todas as Telas</option>
         <option value="Cadastro de Patrimônios">Cadastro de Patrimônios</option>
         <option value="Edição de Patrimônios">Edição de Patrimônios</option>

@@ -80,7 +80,8 @@ export const routes: Routes = [
         component: WriteOffPatrimonyComponent,
         canActivate: [AuthService],
         data: {
-          canSee: UserLevel.Basic
+          canSee: UserLevel.Basic,
+          canEdit: UserLevel.Intermediary
         }
       },
       {
@@ -186,11 +187,15 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'relatorios',
+        redirectTo: 'relatorios/patrimonios-localizacoes'
+      },
+      {
         path: 'relatorios/patrimonios-localizacoes',
         component: LocationsPatrimoniesComponent,
         canActivate: [AuthService],
         data: {
-          canSee: UserLevel.Administrator
+          canSee: UserLevel.Basic
         }
       },
       {
@@ -198,7 +203,7 @@ export const routes: Routes = [
         component: WritedOffPatrimoniesDateComponent,
         canActivate: [AuthService],
         data: {
-          canSee: UserLevel.Administrator
+          canSee: UserLevel.Basic
         }
       },
       {
