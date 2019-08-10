@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <div class="form-inline">
-      <my-date-range-picker class="mb-3" name="mydaterange" [options]="myDateRangePickerOptions"
+      <my-date-range-picker class="mb-3" name="mydaterange" placeholder="Intervalo de Data" [options]="myDateRangePickerOptions"
                     [(ngModel)]="model" required></my-date-range-picker>
       <select class="custom-select mb-4 ml-2 mr-sm-2" [(ngModel)]="descriptionFilter.interfaceName" placeholder="Tela">
         <option value="">Todas as Telas</option>
