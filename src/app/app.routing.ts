@@ -22,8 +22,8 @@ import { WriteOffPatrimonyComponent } from './views/patrimony/write-off-patrimon
 import { PerformWriteOffPatrimonyComponent } from './views/patrimony/perform-write-off-patrimony/perform-write-off-patrimony.component';
 import { ChangePasswordComponent } from './views/user/change-password/change-password.component';
 import { LogComponent } from './views/log/log.component';
-import { LocationsPatrimoniesComponent } from './views/report/locations-patrimonies/locations-patrimonies.component';
 import { WritedOffPatrimoniesDateComponent } from './views/report/writed-off-patrimonies-date/writed-off-patrimonies-date.component';
+import { LocationPatrimoniesComponent } from './views/report/location-patrimonies/location-patrimonies.component';
 
 export const routes: Routes = [
   {
@@ -191,8 +191,8 @@ export const routes: Routes = [
         redirectTo: 'relatorios/patrimonios-localizacoes'
       },
       {
-        path: 'relatorios/patrimonios-localizacoes',
-        component: LocationsPatrimoniesComponent,
+        path: 'relatorios/localizacao-patrimonios',
+        component: LocationPatrimoniesComponent,
         canActivate: [AuthService],
         data: {
           canSee: UserLevel.Basic

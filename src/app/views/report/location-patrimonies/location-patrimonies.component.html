@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-header">
+    Gerar Relatório de <strong>Patrimônios por Localização</strong>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="form-group col-3">
+        <label>Localização</label>
+        <select class="custom-select" [(ngModel)]="selectedLocationId">
+          <option [value]="0" disabled hidden selected>Selecione uma localização</option>
+          <option *ngFor="let location of locations" value="{{ location.locationId }}">{{ location.description }}
+          </option>
+        </select>
+      </div>
+      <div class="align-bottom">
+        <button type="submit" class="btn btn-primary mb-4" (click)="openReport()">Gerar Relatório</button>
+      </div>
+    </div>
+  </div>
+</div>

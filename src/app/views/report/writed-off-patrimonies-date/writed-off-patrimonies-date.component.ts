@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PatrimonyService } from '../../../services/patrimony/patrimony.service';
 import { ToastrService } from 'ngx-toastr';
+import { ReportService } from '../../../services/report/report.service';
 
 @Component({
   selector: 'app-writed-off-patrimonies-date',
@@ -15,12 +15,12 @@ export class WritedOffPatrimoniesDateComponent implements OnInit {
   selectedMonth: number = 0;
 
   constructor(
-    private patrimonyService: PatrimonyService,
+    private reportService: ReportService,
     private toastr: ToastrService
   ) { }
 
   ngOnInit() {
-    this.patrimonyService.getMinMaxYearWritedOff().subscribe(
+    this.reportService.getMinMaxYearWritedOff().subscribe(
       (data) => {
         for (let i = data.minYear; i <= data.maxYear; i++) {
           this.years.push(i);
@@ -30,7 +30,7 @@ export class WritedOffPatrimoniesDateComponent implements OnInit {
 
   openReport() {
     if (this.isFormValid()) {
-      this.patrimonyService.getWritedOffByYearAndMonthReport(this.selectedYear, this.selectedMonth).subscribe(
+      this.reportService.getWritedOffByYearAndMonthReport(this.selectedYear, this.selectedMonth).subscribe(
         (obj) => {
           let blob = new Blob([obj], { type: 'application/pdf' });
           let reportURL = URL.createObjectURL(blob);

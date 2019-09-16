@@ -51,6 +51,7 @@ export class NewPatrimonyComponent implements OnInit {
       Validators.min(1)
     ])],
     acquisitionProcessId: ['', Validators.compose([
+      Validators.required,
       Validators.minLength(1),
       Validators.maxLength(20)
     ])],
@@ -89,7 +90,7 @@ export class NewPatrimonyComponent implements OnInit {
     ])],
     acquisitionMethodId: [0, Validators.compose([
       Validators.required,
-      Validators.min(1)
+      Validators.min(0)
     ])],
   });
 

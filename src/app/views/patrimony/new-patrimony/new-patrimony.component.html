@@ -82,7 +82,7 @@
           <div class="form-group">
             <label>Método de Aquisição</label>
             <select class="custom-select" formControlName="acquisitionMethodId">
-              <option value="0" disabled hidden selected>Selecione o Método de Aquisição</option>
+              <option [value]="0" selected>Selecione o Método de Aquisição</option>
               <option *ngFor="let acquisitionMethod of acquisitionMethods"
                 value="{{acquisitionMethod.acquisitionMethodId}}">{{acquisitionMethod.description}}</option>
             </select>

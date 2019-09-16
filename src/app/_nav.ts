@@ -84,7 +84,7 @@ export const navItems: NavData[] = [
       },
       {
         name: 'Patr. por Localização',
-        url: '/relatorios/patrimonios-localizacoes',
+        url: '/relatorios/localizacao-patrimonios',
         icon: 'cui-arrow-right'
       }
     ]

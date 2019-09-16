@@ -64,10 +64,10 @@ import { InWriteOffPatrimonyComponent } from './views/patrimony/in-write-off-pat
 import { ChangePasswordComponent } from './views/user/change-password/change-password.component';
 import { ConfirmModalComponent } from './shared/confirm-modal/confirm-modal.component';
 import { LogComponent } from './views/log/log.component';
-import { LocationsPatrimoniesComponent } from './views/report/locations-patrimonies/locations-patrimonies.component';
 import { WritedOffPatrimoniesDateComponent } from './views/report/writed-off-patrimonies-date/writed-off-patrimonies-date.component';
 import { MyDateRangePickerModule } from 'mydaterangepicker';
 import localePt from '@angular/common/locales/pt';
+import { LocationPatrimoniesComponent } from './views/report/location-patrimonies/location-patrimonies.component';
 
 registerLocaleData(localePt);
 
@@ -126,8 +126,8 @@ export function tokenGetter() {
     ChangePasswordComponent,
     ConfirmModalComponent,
     LogComponent,
-    LocationsPatrimoniesComponent,
-    WritedOffPatrimoniesDateComponent
+    WritedOffPatrimoniesDateComponent,
+    LocationPatrimoniesComponent
   ],
   providers: [{
     provide: LocationStrategy,
